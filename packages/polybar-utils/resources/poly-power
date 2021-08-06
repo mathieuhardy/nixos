@@ -1,0 +1,67 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-power
+# Description: Display power menu in polybar format.
+# Dependencies: easier_cli.sh, rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+. easier_cli.sh
+
+requires rice
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+debug=0
+
+display_user=0
+
+icon=$(rice -u -m polybar "icons.power")
+
+fg=$(rice -m polybar "colors.power.fg")
+bg=$(rice -m polybar "colors.power.bg")
+
+easier_cli_program='poly-power'
+easier_cli_version='1.0.0'
+
+easer_cli_describe=( \
+    'o | 1 | - | h | help | Show this help and exit' \
+    'o | 1 | - | u | user | Show user' )
+
+# ------------------------------------------------------------------------------
+# Command line arguments
+# ------------------------------------------------------------------------------
+
+cli_parse "${cli_desc[@]}" "${@}"
+
+if [ "${opt_h}" = "1" ]
+then
+    cli_usage
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+if [ ${opt_u} -eq 1 ]
+then
+    user=" ${USER}"
+fi
+
+printf \
+    "%%{F%s}%%{B%s} %%{T2}%s%%{T-}%%{T1}%s%%{T-} %%{B- F-}\n" \
+    "${fg}" \
+    "${bg}" \
+    "${icon}" \
+    "${user}"

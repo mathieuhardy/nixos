@@ -1,0 +1,135 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-termtabs
+# Description: Display menu, in polybar format, to open a floating terminal.
+# Dependencies: rice, tdrop
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+if ! command -v rice >/dev/null
+then
+    echo "Missing 'rice'" 1>&2
+    exit 1
+fi
+
+if ! command -v tdrop >/dev/null
+then
+    echo "Missing 'tdrop'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+width="50%"
+height="50%"
+x=0
+y="50%"
+uid=1
+term=st
+
+fg=$(rice -m polybar "colors.terminal.fg")
+bg=$(rice -m polybar "colors.terminal.bg")
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+toggle()
+{
+    tdrop \
+        -a \
+        -m \
+        -w "${width}" \
+        -h "${height}" \
+        -x "${x}" \
+        -y "${y}" \
+        -n ${uid} \
+        ${term} 1>/dev/null 2>&1
+}
+
+dump()
+{
+    icon=$(rice -u -m polybar "icons.terminal")
+
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{B- F-}\n" \
+        "${fg}" \
+        "${bg}" \
+        "${icon}"
+}
+
+loop()
+{
+    interval=${1}
+
+    while [ /bin/true ]
+    do
+        dump
+
+        sleep ${interval} &
+        wait
+    done
+}
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+trap "toggle" USR1
+
+case ${1} in
+    start)
+        [ ${#} -ge 2 ] || error
+
+        if [ ${#} -ge 3 ]
+        then
+            width=${3}
+        fi
+
+        if [ ${#} -ge 4 ]
+        then
+            height=${4}
+        fi
+
+        if [ ${#} -ge 5 ]
+        then
+            x=${5}
+        fi
+
+        if [ ${#} -ge 6 ]
+        then
+            y=${6}
+        fi
+
+        if [ ${#} -ge 7 ]
+        then
+            uid=${7}
+        fi
+
+        if [ ${#} -ge 8 ]
+        then
+            term=${8}
+        fi
+
+        loop ${2}
+        ;;
+
+    toggle)
+        toggle
+        ;;
+
+    *)
+        exit 1
+        ;;
+esac

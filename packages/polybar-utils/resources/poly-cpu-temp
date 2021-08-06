@@ -1,0 +1,260 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-cpu-temp
+# Description: Display CPU temperature information in polybar format.
+# Dependencies: easier_cli.sh, rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+. easier_cli.sh
+
+requires rice
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+default_temperature="--°C"
+default_fan_speed="----"
+
+threshold=$(rice -m polybar "config.cpu_temp.threshold")
+
+icon_temp=$(rice -u -m polybar "icons.temperature.normal")
+icon_temp_default=$(rice -u -m polybar "icons.temperature.unknown")
+icon_fan=$(rice -u -m polybar "icons.fan.normal")
+icon_fan_default=$(rice -u -m polybar "icons.fan.unknown")
+
+fg_high=$(rice -m polybar "colors.cpu_temp.fg.high")
+bg_high=$(rice -m polybar "colors.cpu_temp.bg.high")
+
+fg_normal=$(rice -m polybar "colors.cpu_temp.fg.low")
+bg_normal=$(rice -m polybar "colors.cpu_temp.bg.low")
+
+mode_short=0
+mode_long=1
+mode_fan=2
+mode=${mode_short}
+mode_file=/tmp/poly-cpu-temp-mode
+
+if [ -f "${mode_file}" ]
+then
+    mode=$(cat ${mode_file})
+fi
+
+easier_cli_program='poly-cpu-temp'
+easier_cli_version='1.0.0'
+
+easer_cli_describe=( \
+    'o | 1 | - | h | help  | Show this help and exit' \
+    'o | 1 | - | m | mode   | Toggle display mode' \
+    'o | 1 | - | d | debug | Debug mode' )
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+temperature_short()
+{
+    i=0
+    max=0
+
+    while [ ${i} -lt ${physical_cpu_count} ]
+    do
+        var="physical_cpu_${i}_temperature"
+        temperature=${!var}
+
+        if [ ${temperature} -gt ${max} ]
+        then
+            max=${temperature}
+        fi
+
+        i=$(( i + 1 ))
+    done
+
+    if [ ${max} -eq 0 ]
+    then
+        error "Cannot get a valid temperature value"
+    fi
+
+    printable_temperature ${max}
+}
+
+temperature_long()
+{
+    i=0
+    output=
+
+    while [ ${i} -lt ${physical_cpu_count} ]
+    do
+        var="physical_cpu_${i}_temperature"
+        value=${!var}
+
+        if [ -n "${output}" ]
+        then
+            text="${output} "
+        fi
+
+        temperature=$(printable_temperature ${value})
+        output="${output}${temperature}"
+
+        i=$(( i + 1 ))
+    done
+
+    if [ -z "${output}" ]
+    then
+        output=${default_temperature}
+    fi
+
+    echo ${output}
+}
+
+#TODO: implement
+fan_speed()
+{
+    printf \
+        "%%{F%s}%%{B%s} %%{T1}%s%%{T-} %%{B- F-}\n" \
+        "${fg_normal}" \
+        "${bg_normal}" \
+        "${default_fan_speed}"
+}
+
+printable_temperature()
+{
+    if [ -z "${1}" ]
+    then
+        echo ${default_temperature}
+        return
+    fi
+
+    padded=$(printf "%02d" ${1})
+
+    if [ ${1} -ge ${threshold} ]
+    then
+        fg="${fg_high}"
+        bg="${bg_high}"
+    else
+        fg="${fg_normal}"
+        bg="${bg_normal}"
+    fi
+
+    printf \
+        "%%{F%s}%%{B%s}%s°C%%{B- F-}" \
+        "${fg}" \
+        "${bg}" \
+        "${padded}"
+}
+
+toggle_mode()
+{
+    mode=$(( (mode + 1) % 3 ))
+
+    if [ ${mode} -eq 1 ] && [ ${physical_cpu_count} -eq 1 ]
+    then
+        # Skip long mode display as there's only one CPU temperature value
+        mode=$(( (mode + 1) % 3 ))
+    fi
+
+    echo "${mode}" > ${mode_file}
+
+    polybar-msg hook cpu-temperature 1
+}
+
+dump()
+{
+    stats=/tmp/cerebro/cpu/shell
+    [ -f "${stats}" ] || error "Missing ${stats}"
+
+    value=$(cat ${stats})
+    eval "${value}"
+
+    if [ ${mode} -eq ${mode_short} ]
+    then
+        icon=${icon_temp}
+        text=$(temperature_short)
+    elif [ ${mode} -eq ${mode_long} ]
+    then
+        icon=${icon_temp}
+        text=$(temperature_long)
+    else
+        icon=${icon_fan}
+        text=$(fan_speed)
+    fi
+
+    if [ -z "${text}" ]
+    then
+        error "Cannot get temperature to display"
+    fi
+
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{B- F-}%%{T1}%s%%{T-}" \
+        "${fg_normal}" \
+        "${bg_normal}" \
+        "${icon}" \
+        "${text}"
+
+    printf \
+        "%%{F%s}%%{B%s} %%{B- F-}\n" \
+        "${fg_normal}" \
+        "${bg_normal}"
+}
+
+dump_default()
+{
+    if [ ${mode} -eq ${mode_short} ]
+    then
+        icon="${icon_temp_default}"
+        text="${default_temperature}"
+    elif [ ${mode} -eq ${mode_long} ]
+    then
+        icon="${icon_temp_default}"
+        text="${default_temperature}"
+    else
+        icon="${icon_fan_default}"
+        text="${default_fan_speed}"
+    fi
+
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%s%%{T-} %%{B- F-}\n" \
+        "${fg_normal}" \
+        "${bg_normal}" \
+        "${icon}" \
+        "${text}"
+}
+
+error()
+{
+    [ ${debug} -eq 1 ] && echo "${1}" 1>&2
+    dump_default
+    exit 1
+}
+
+# ------------------------------------------------------------------------------
+# Command line arguments
+# ------------------------------------------------------------------------------
+
+cli_parse "${cli_desc[@]}" "${@}"
+
+if [ "${opt_h}" = "1" ]
+then
+    cli_usage
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+if [ "${opt_m}" = "1" ]
+then
+    toggle_mode
+else
+    dump
+fi

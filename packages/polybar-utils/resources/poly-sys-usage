@@ -1,0 +1,172 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-sys-usage
+# Description: Display system usage information in polybar format.
+# Dependencies: easier_cli.sh, rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+. easier_cli.sh
+
+requires rice
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+icon_memory=$(rice -u -m polybar "icons.ram")
+icon_swap=$(rice -u -m polybar "icons.swap")
+icon_cpu=$(rice -u -m polybar "icons.cpu")
+icon_system_stats=$(rice -u -m polybar "icons.system_stats")
+
+fg_high=$(rice -m polybar "colors.sys_usage.fg.high")
+fg_low=$(rice -m polybar "colors.sys_usage.fg.low")
+
+bg_high=$(rice -m polybar "colors.sys_usage.bg.high")
+bg_low=$(rice -m polybar "colors.sys_usage.bg.low")
+
+default="--%"
+
+threshold=$(rice -m polybar "config.sys_usage.threshold")
+
+easier_cli_program='poly-sys-usage'
+easier_cli_version='1.0.0'
+
+easer_cli_describe=( \
+    'o | 1 | - | h | help  | Show this help and exit' \
+    'o | 1 | - | d | debug | Debug mode' )
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+get_memory_percentage()
+{
+    # Get values for cerebro
+    path=/tmp/cerebro/memory/shell
+    [ -f "${path}" ] || error "No memory information provided by cerebro"
+
+    values=$(cat "${path}")
+    eval "${values}"
+
+    percent=$(( used * 100 / total ))
+
+    if [ -z "${percent}" ]
+    then
+        printf \
+            "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%s%%{T-} %%{B- F-}\n" \
+            "${fg_low}" \
+            "${bg_low}" \
+            "${icon_memory}" \
+            "${default}"
+
+        return
+    fi
+
+    if [ ${percent} -ge ${threshold} ]
+    then
+        fg="${fg_high}"
+        bg="${bg_high}"
+    else
+        fg="${fg_low}"
+        bg="${bg_low}"
+    fi
+
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%02d%%%%{T-} %%{B- F-}" \
+        "${fg}" \
+        "${bg}" \
+        "${icon_memory}" \
+        "${percent}"
+}
+
+get_cpu_percentage()
+{
+    # Get values for cerebro
+    path=/tmp/cerebro/cpu/shell
+    [ -f "${path}" ] || error "No cpu information provided by cerebro"
+
+    values=$(cat "${path}")
+    eval "${values}"
+
+    value=$(echo "${logical_averrage_usage}" | sed 's;\..*$;;g')
+
+    if [ -z "${value}" ]
+    then
+        printf \
+            "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%s%%{T-} %%{B- F-}\n" \
+            "${fg_low}" \
+            "${bg_low}" \
+            "${icon_cpu}" \
+            "${default}"
+
+        return
+    fi
+
+    if [ ${value} -ge ${threshold} ]
+    then
+        fg="${fg_high}"
+        bg="${bg_high}"
+    else
+        fg="${fg_low}"
+        bg="${bg_low}"
+    fi
+
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%02d%%%%{T-} %%{B- F-}" \
+        "${fg}" \
+        "${bg}" \
+        "${icon_cpu}" \
+        "${value}"
+}
+
+dump()
+{
+    cpu_percent=$(get_cpu_percentage)
+    memory_percent=$(get_memory_percentage)
+
+    printf "%s%s\n" "${cpu_percent}" "${memory_percent}"
+}
+
+dump_default()
+{
+    printf \
+        "%%{F%s}%%{B%s} %%{T2}%s%%{T-} %%{T1}%s%%{T-}%%{B- F-}\n" \
+        "${fg_low}" \
+        "${bg_low}" \
+        "${icon_system_stats}" \
+        "${default}"
+}
+
+error()
+{
+    [ "${opt_d}" -eq "1" ] && echo "${1}" 1>&2
+    dump_default
+    exit 1
+}
+
+# ------------------------------------------------------------------------------
+# Command line arguments
+# ------------------------------------------------------------------------------
+
+cli_parse "${cli_desc[@]}" "${@}"
+
+if [ "${opt_h}" = "1" ]
+then
+    cli_usage
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+dump

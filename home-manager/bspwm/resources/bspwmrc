@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+#
+# Script name: bspwmrc
+# Description: Script loaded by bspwm at startup.
+# Dependencies: bspc
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+if ! command -v bspc >/dev/null
+then
+    echo "Missing 'bspc'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Bspwm
+# ------------------------------------------------------------------------------
+
+# Desktops
+bspc monitor -d I II III IV V VI VII VIII IX X
+
+# Colors
+bspc config normal_border_color \#272727
+bspc config active_border_color \#ffffff
+bspc config focused_border_color \#ffffff
+bspc config presel_feedback_color \#f1e189
+
+# Split
+bspc config split_ratio 0.5
+
+# Preselection
+bspc config presel_feedback true
+
+# Monocle
+bspc config borderless_monocle true
+bspc config gapless_monocle true
+
+bspc config top_monocle_padding 0
+bspc config right_monocle_padding 0
+bspc config bottom_monocle_padding 0
+bspc config left_monocle_padding 0
+
+bspc config single_monocle false
+
+# Pointer/focus
+bspc config pointer_modifier mod4
+bspc config pointer_action1 move
+bspc config pointer_action2 resize_side
+bspc config pointer_action3 resize_corner
+
+bspc config click_to_focus button1
+bspc config swallow_first_click false
+bspc config focus_follows_pointer false
+bspc config pointer_follows_focus false
+bspc config pointer_follows_monitor false
+
+# Desktop settings
+bspc config window_gap 10
+
+# Node settings
+bspc config border_width 2
+
+# Special rules
+bspc rule -a Pavucontrol state=floating
+#bspcp rule -a Gimp desktop='^8' state=floating follow=on manage=off
+
+# ------------------------------------------------------------------------------
+# Others
+# ------------------------------------------------------------------------------
+
+# Run thirdparties init scripts
+dropin=${HOME}/.config/bspwm/init.d
+
+if [ -d ${dropin} ]
+then
+    for f in ${dropin}/*
+    do
+        [ -f ${f} ] || continue
+        [ -x ${f} ] || continue
+
+        echo "loading ${f}"
+        ${f}
+    done
+fi

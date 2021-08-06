@@ -1,0 +1,560 @@
+# ==============================================================================
+#
+# Script name: config
+# Description: Configuration file loaded by polybar at startup.
+# Dependencies:
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Global configuration
+# ------------------------------------------------------------------------------
+
+[common]
+
+# Output
+monitor = ${env:MONITOR:}
+
+# Size
+width = 100%
+height = 24
+
+# Shape
+radius = 0.0
+line-size = 0
+border-size = 0
+padding-left = 0
+padding-right = 0
+module-padding = 0
+module-margin-left = 0
+module-margin-right = 0
+
+# Position
+offset-x = 0
+offset-y = 0
+fixed-center = false
+
+# Fonts
+font-0 = DejaVu Sans Mono:style=Bold:size=9;2
+font-1 = Material Design Icons:style=Regular;2
+font-2 = FontAwesome:style=Regular;2
+
+# Advanced
+screenchange-reload = true
+enable-ipc = true
+#override-redirect = true
+#wm-restack = bspwm
+
+# Theme
+include-file = $HOME/.config/polybar/themes/dark-colors.theme
+
+# ------------------------------------------------------------------------------
+# Base configuration for IPC modules
+# ------------------------------------------------------------------------------
+
+[ipc-base]
+
+format-padding = 0
+
+# ------------------------------------------------------------------------------
+# Base configuration for script modules
+# ------------------------------------------------------------------------------
+
+[script-base]
+
+label-padding = 0
+
+# ------------------------------------------------------------------------------
+# Top bar
+# ------------------------------------------------------------------------------
+
+[bar/top]
+
+inherit = common
+
+# List of modules
+#
+# TODO: add micro in cerebro ?
+# TODO: add volume in cerebro ?
+
+# TODO: center/mounts: show mount points
+# TODO: vpn: implement script
+# TODO: google cast ?
+modules-left = applications-menu
+
+modules-center = weather
+
+modules-right = volume micro bluetooth ethernet wifi vpn brightness battery system-usage cpu-temperature date power-management
+
+# ------------------------------------------------------------------------------
+# Bottom bar
+# ------------------------------------------------------------------------------
+
+[bar/bottom]
+
+inherit = common
+
+bottom = true
+
+# List of modules
+#modules-left = hidden-term
+#modules-left = windows
+
+modules-right = workspace trash
+
+# ------------------------------------------------------------------------------
+# Menu of applications
+# ------------------------------------------------------------------------------
+
+[module/applications-menu]
+
+action-start = poly-applications 2>/dev/null
+action-open = rofi -show drun
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Battery
+# ------------------------------------------------------------------------------
+
+[module/battery]
+
+action-start = poly-battery 2>/dev/null
+action-open =
+action-toggle = poly-battery --mode 2>/dev/null
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Bluetooth
+# ------------------------------------------------------------------------------
+
+[module/bluetooth]
+
+action-start = poly-bluetooth 2>/dev/null
+action-open = blueman-manager
+action-toggle = kill -USR1 %pid%
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Brightness
+# ------------------------------------------------------------------------------
+
+[module/brightness]
+
+action-start = poly-brightness 2>/dev/null
+action-open =
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# CPU temperature
+# ------------------------------------------------------------------------------
+
+[module/cpu-temperature]
+
+action-start = poly-cpu-temp 2>/dev/null
+action-open =
+action-toggle =
+action-toggle-display = poly-cpu-temp --mode 2>/dev/null
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Date/time
+# ------------------------------------------------------------------------------
+
+[module/date]
+
+action-start = poly-datetime 2>/dev/null
+action-open = toggle gsimplecal
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+interval = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Ethernet
+# ------------------------------------------------------------------------------
+
+[module/ethernet]
+
+action-start = poly-ethernet 2>/dev/null
+action-open = nm-connection-editor
+action-toggle =
+action-toggle-display = poly-ethernet --mode 2>/dev/null
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Hidden terminal
+# ------------------------------------------------------------------------------
+
+[module/hidden-term]
+
+action-start = poly-termtabs start 86400 2>/dev/null
+action-open = kill -USR1 %pid%
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Micro
+# ------------------------------------------------------------------------------
+
+[module/micro]
+
+action-start = poly-micro start 2>/dev/null
+action-open = pavucontrol &
+action-toggle = poly-micro toggle-mute 2>/dev/null
+action-toggle-display =
+action-increase = poly-micro volume-up 2>/dev/null
+action-decrease = poly-micro volume-down 2>/dev/null
+
+type = custom/script
+inherit = script-base
+
+label=%output%
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Power management: lock, reboot, poweroff, ...
+# ------------------------------------------------------------------------------
+
+[module/power-management]
+
+action-start = poly-power 2>/dev/null
+action-open = rofi-power-menu
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# System usage: memory, swap, CPU
+# ------------------------------------------------------------------------------
+
+[module/system-usage]
+
+action-start = poly-sys-usage 2>/dev/null
+action-open = mate-system-monitor
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Trash
+# ------------------------------------------------------------------------------
+
+[module/trash]
+
+action-start = poly-trash 2>/dev/null
+action-open = xdg-open $HOME/.local/share/Trash/files/
+action-toggle = poly-trash -e
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Volume
+# ------------------------------------------------------------------------------
+
+[module/volume]
+
+action-start = poly-volume start 2>/dev/null
+action-open = pavucontrol &
+action-toggle = poly-volume toggle-mute 2>/dev/null
+action-toggle-display =
+action-increase = poly-volume volume-up 2>/dev/null
+action-decrease = poly-volume volume-down 2>/dev/null
+
+type = custom/script
+inherit = script-base
+
+label=%output%
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# VPN
+# ------------------------------------------------------------------------------
+
+[module/vpn]
+
+action-start = poly-vpn 2>/dev/null
+action-open = nm-connection-editor
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Weather
+# ------------------------------------------------------------------------------
+
+[module/weather]
+
+action-start = poly-weather 2>/dev/null
+action-open =
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+interval = 3600
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Wifi
+# ------------------------------------------------------------------------------
+
+[module/wifi]
+
+action-start = poly-wifi 2>/dev/null
+action-open = rofi-wifi-menu &
+action-toggle = poly-wifi --toggle 2>/dev/null
+action-toggle-display = poly-wifi --mode 2>/dev/null
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Windows
+# ------------------------------------------------------------------------------
+
+[module/windows]
+
+action-start = poly-windows 2>/dev/null
+action-open =
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/ipc
+inherit = ipc-base
+
+hook-0 = ${self.action-start}
+initial = 1
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}
+
+# ------------------------------------------------------------------------------
+# Workspace
+# ------------------------------------------------------------------------------
+
+[module/workspace]
+
+action-start = poly-bspwm-workspace 2>/dev/null
+action-open =
+action-toggle =
+action-toggle-display =
+action-increase =
+action-decrease =
+
+type = custom/script
+inherit = script-base
+
+exec = ${self.action-start}
+tail = true
+
+click-left = ${self.action-open}
+click-middle = ${self.action-toggle}
+click-right = ${self.action-toggle-display}
+scroll-up = ${self.action-increase}
+scroll-down = ${self.action-decrease}

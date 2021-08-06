@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: polybar
+# Description: Script used to start polybar (meant to be used by window
+#              managers).
+# Dependencies: pidof, start
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# TODO: systemd service instead of init script ?
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+if ! command -v pidof >/dev/null
+then
+    echo "Missing 'pidof'" 1>&2
+    exit 1
+fi
+
+if ! command -v start >/dev/null
+then
+    echo "Missing 'start'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+pids=$(pidof polybar)
+
+if [ -z "$pids" ]
+then
+    start polybar
+fi

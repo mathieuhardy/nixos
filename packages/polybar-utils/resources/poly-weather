@@ -1,0 +1,209 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-weather
+# Description: Display weather information in polybar format.
+# Dependencies: curl, easier_cli.sh, rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+. easier_cli.sh
+
+requires curl
+requires rice
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+city="Paris"
+
+icon_temperature=$(rice -u -m polybar "icons.weather.temperature")
+icon_wind=$(rice -u -m polybar "icons.weather.wind")
+icon_precipitation=$(rice -u -m polybar "icons.weather.precipitation")
+
+fg=$(rice -m polybar "colors.weather.fg")
+bg=$(rice -m polybar "colors.weather.bg")
+
+fg_icon_condition=$(rice -m polybar "colors.weather.icon_condition.fg")
+bg_icon_condition=$(rice -m polybar "colors.weather.icon_condition.bg")
+
+fg_icon_temperature=$(rice -m polybar "colors.weather.icon_temperature.fg")
+bg_icon_temperature=$(rice -m polybar "colors.weather.icon_temperature.bg")
+
+fg_icon_wind=$(rice -m polybar "colors.weather.icon_wind.fg")
+bg_icon_wind=$(rice -m polybar "colors.weather.icon_wind.bg")
+
+fg_icon_precipitation=$(rice -m polybar "colors.weather.icon_precipitation.fg")
+bg_icon_precipitation=$(rice -m polybar "colors.weather.icon_precipitation.bg")
+
+declare -A icons=( \
+    ["Clear"]="sunny" \
+    ["Sunny"]="sunny" \
+    ["Partly cloudy"]="partly_cloudy" \
+    ["Cloudy"]="cloudy" \
+    ["Overcast"]="cloudy" \
+    ["Mist"]="hazy" \
+    ["Patchy rain possible"]="partly_cloudy_rainy" \
+    ["Patchy sleet possible"]="hail" \
+    ["Patchy freezing drizzle possible"]="partly_cloudy_rainy" \
+    ["Thundery outbreaks possible"]="lightning" \
+    ["Blowing snow"]="snowy" \
+    ["Blizzard"]="snowy_heavy" \
+    ["Fog"]="fog" \
+    ["Freezing fog"]="fog" \
+    ["Patchy light drizzle"]="rainy" \
+    ["Light drizzle"]="rainy" \
+    ["Freezing drizzle"]="rainy" \
+    ["Heavy freezing drizzle"]="rainy" \
+    ["Patchy light rain"]="rainy" \
+    ["Light rain"]="rainy" \
+    ["Moderate rain at times"]="rainy" \
+    ["Moderate rain"]="rainy" \
+    ["Heavy rain at times"]="rainy" \
+    ["Heavy rain"]="rainy" \
+    ["Light freezing rain"]="rainy" \
+    ["Moderate or heavy freezing rain"]="rainy" \
+    ["Light sleet"]="rainy" \
+    ["Moderate or heavy sleet"]="rainy" \
+    ["Patchy light snow"]="snowy" \
+    ["Light snow"]="snowy" \
+    ["Patchy moderate snow"]="snowy" \
+    ["Moderate snow"]="snowy" \
+    ["Patchy heavy snow"]="snowy_heavy" \
+    ["Heavy snow"]="snowy_heavy" \
+    ["Ice pellets"]="hail" \
+    ["Light rain shower"]="partly_cloudy_rainy" \
+    ["Moderate or heavy rain shower"]="pouring" \
+    ["Torrential rain shower"]="pouring" \
+    ["Light sleet showers"]="rainy" \
+    ["Moderate or heavy sleet showers"]="pouring" \
+    ["Light snow showers"]="snowy" \
+    ["Moderate or heavy snow showers"]="snowy_heavy" \
+    ["Patchy light rain with thunder"]="partly_cloudy_lightning" \
+    ["Moderate or heavy rain with thunder"]="partly_cloudy_lightning" \
+    ["Patchy light snow with thunder"]="snowy" \
+    ["Moderate or heavy snow with thunder"]="snowy_heavy" \
+    ["Thunderstorm, rain with thunderstorm"]="partly_cloudy_lightning")
+
+easier_cli_program='poly-weather'
+easier_cli_version='1.0.0'
+
+easer_cli_describe=( \
+    'o | 1 | - | h | help | Show this help and exit' )
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+get_condition()
+{
+    icon=$(rice -u -m polybar "icons.weather.condition.${icons[${1}]}")
+
+    if [ -n "${icon}" ]
+    then
+        echo "%{F${fg_icon_condition}}%{T2}${icon}%{T- F-}"
+    else
+        echo "%{F${fg_icon_condition}}%{T1}${1}%{T- F-}"
+    fi
+}
+
+dump()
+{
+    weather=
+
+    value=$(curl "wttr.in/${city}?m&format=%C_%t_%f_%w_%p" 2>/dev/null)
+    [ -n "${value}" ] || error "Cannot fetch weather"
+
+    token_1=$(echo ${value} | cut -d '_' -f 1)
+    token_2=$(echo ${value} | cut -d '_' -f 2)
+    token_3=$(echo ${value} | cut -d '_' -f 3)
+    token_4=$(echo ${value} | cut -d '_' -f 4)
+    token_5=$(echo ${value} | cut -d '_' -f 5)
+
+    temperature="%{F${fg}}%{T1}${token_2}%{T- F-}"
+    real_feel="%{F${fg}}%{T1}${token_3}%{T- F-}"
+    wind="%{F${fg}}%{T1}${token_4}%{T- F-}"
+    precipitation="%{F${fg}}%{T1}${token_5}%{T- F-}"
+
+    # Condition
+    weather=$(get_condition "${token_1}")
+
+    # City
+    weather="${weather} %{F${fg}}${city}%{F-}"
+
+    # Temperatures
+    weather="${weather} %{F${fg_icon_temperature}}"
+    weather="${weather}%{T2}${icon_temperature}%{T- F-}"
+
+    weather="${weather} ${temperature}"
+    weather="${weather} (${real_feel})"
+
+    # Wind
+    weather="${weather} %{F${fg_icon_wind}}"
+    weather="${weather}%{T2}${icon_wind}%{T- F-}"
+
+    weather="${weather} ${wind}"
+
+    # Precipitation
+    weather="${weather} %{F${fg_icon_precipitation}}"
+    weather="${weather}%{T2}${icon_precipitation}%{T- F-}"
+
+    weather="${weather} ${precipitation}"
+
+    echo "${weather}"
+}
+
+dump_default()
+{
+    echo ""
+}
+
+error()
+{
+    [ ${opt_d} -eq 1 ] && echo "${1}" 1>&2
+    dump_default
+    exit 1
+}
+
+# ------------------------------------------------------------------------------
+# Command line arguments
+# ------------------------------------------------------------------------------
+
+cli_parse "${cli_desc[@]}" "${@}"
+
+if [ "${opt_h}" = "1" ]
+then
+    cli_usage
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+# Try to find city automatically
+ip=$(curl https://ipinfo.io/ip)
+
+if [ -n "${ip}" ]
+then
+    location=$(curl "http://api.geoiplookup.net/?query=${ip}" 2>/dev/null \
+        | egrep "city" \
+        | sed 's,^.*<city>,,g' \
+        | sed 's,</city>.*,,g')
+
+    if [ -n "${location}" ]
+    then
+        city=${location}
+    fi
+fi
+
+# Dump
+dump

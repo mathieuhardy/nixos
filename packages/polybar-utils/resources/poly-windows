@@ -1,0 +1,95 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: poly-windows
+# Description: Display opened windows list in polybar format.
+# Dependencies: rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# TODO: remove this script ?
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+#if ! command -v rice >/dev/null
+#then
+    #echo "Missing 'rice'" 1>&2
+    #exit 1
+#fi
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+debug=0
+
+#icon=$(rice -u -m polybar ".icons.trash.full")
+#icon_empty=$(rice -u -m polybar "icons.trash.empty")
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+dump()
+{
+   names=$(bspc query --nodes -n .local.window.!hidden \
+    | xargs -i bspc query --tree -n {} \
+    | jq -r ".client.className")
+
+   echo ${names}
+   return
+
+   for name in ${names}
+   do
+       echo ${name}
+   done
+}
+
+#dump_default()
+#{
+    #echo "%{T2}${icon_empty}%{T-} %{T1}?%{T-}"
+#}
+
+#error()
+#{
+    #[ ${debug} -eq 1 ] && echo "${1}" 1>&2
+    #dump_default
+    #exit 1
+#}
+
+usage()
+{
+    echo "${0}" 1>&2
+    echo "  -h: Display this help and exit" 1>&2
+    echo "  -d: Debug mode" 1>&2
+
+    exit 1
+}
+
+# ------------------------------------------------------------------------------
+
+while getopts ":hd" opt
+do
+    case ${opt} in
+        \?)
+            usage
+            ;;
+
+        h)
+            usage
+            ;;
+
+        d)
+            debug=1
+            ;;
+    esac
+done
+
+# Dump
+dump

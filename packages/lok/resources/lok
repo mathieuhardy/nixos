@@ -1,0 +1,199 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: lok
+# Description: Lock the session using i3lock-color.
+# Dependencies: i3lock-color, rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+if ! command -v i3lock-color >/dev/null
+then
+    echo "Missing 'i3lock-color'" 1>&2
+    exit 1
+fi
+
+if ! command -v rice >/dev/null
+then
+    echo "Missing 'rice'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+# Theme
+theme=$(rice -m lok)
+eval "${theme}"
+
+c_background="${color_background}${alpha_background}"
+c_inner="${color_inner}${alpha_inner}"
+c_ring="${color_ring}${alpha_ring}"
+c_line="${color_line}${alpha_line}"
+
+c_time="${color_time}${alpha_time}"
+c_date="${color_date}${alpha_date}"
+
+c_verification_text="${color_verification_text}${alpha_verification_text}"
+c_verification_inner="${color_verification_inner}${alpha_verification_inner}"
+c_verification_ring="${color_verification_ring}${alpha_verification_ring}"
+
+c_wrong_text="${color_wrong_password_text}${alpha_wrong_password_text}"
+c_wrong_inner="${color_wrong_password_inner}${alpha_wrong_password_inner}"
+c_wrong_ring="${color_wrong_password_ring}${alpha_wrong_password_ring}"
+
+c_hl_ring_key_press="${color_hl_ring_key_press}${alpha_hl_ring_key_press}"
+c_hl_ring_backspace="${color_hl_ring_backspace}${alpha_hl_ring_backspace}"
+c_hl_separator="${color_hl_separator}${alpha_hl_spearator}"
+
+# Command to run
+cmd=i3lock-color
+
+# Other variables
+wallpaper=
+dimensions=
+options=
+
+# timestr: time format
+# datestr: date format
+# veriftext: text displayed during verification
+# wrongtext: text displayed on error
+# noinputtext: text displayed when empty
+options="${options} --timestr=${format_time}"
+options="${options} --datestr=${format_date}"
+options="${options} --veriftext=${text_verifying}"
+options="${options} --wrongtext=${text_wrong}"
+options="${options} --noinputtext=${text_empty}"
+
+# color: background
+# timecolor: color of the time
+# datecolor: color of the date
+options="${options} --color=${c_background}"
+options="${options} --timecolor=${c_time}"
+options="${options} --datecolor=${c_date}"
+
+# insidecolor: inner color
+# ringcolor: color of the ring
+# linecolor: separator between ring and inner
+options="${options} --insidecolor=${c_inner}"
+options="${options} --ringcolor=${c_ring}"
+options="${options} --linecolor=${c_line}"
+
+# keyhlcolor: ring highlight during key press
+# bshlcolor: ring highlight during backspace
+# separatorcolor: separator around highlight
+options="${options} --keyhlcolor=${c_hl_ring_key_press}"
+options="${options} --bshlcolor=${c_hl_ring_backspace}"
+options="${options} --separatorcolor=${c_hl_separator}"
+
+# verifcolor: text color during verification
+# insidevercolor: inner color during verification
+# ringvercolor: ring color during verification
+options="${options} --verifcolor=${c_verification_text}"
+options="${options} --insidevercolor=${c_verification_inner}"
+options="${options} --ringvercolor=${c_verification_ring}"
+
+# wrongcolor: text color on error
+# insidewrongcolor: inner color on error
+# ringwrongcolor: ring color on error
+options="${options} --wrongcolor=${c_wrong_text}"
+options="${options} --insidewrongcolor=${c_wrong_inner}"
+options="${options} --ringwrongcolor=${c_wrong_ring}"
+
+# clock: show time
+# indicator: show date
+options="${options} --clock"
+options="${options} --indicator"
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+lock_without_wallpaper()
+{
+    echo "lock"
+
+    ${cmd} ${options}
+}
+
+lock_with_wallpaper()
+{
+    echo "lock with wallpaper"
+
+    ${cmd} ${options} --image=${wallpaper}
+}
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+# Check if an image is provided
+if [ ${#} != 1 ]
+then
+    lock_without_wallpaper
+    exit 0
+fi
+
+# Check if dimensions of the screen can be read
+if ! command -v xdpyinfo >/dev/null
+then
+    echo "missing xdpyinfo"
+    echo "dimensions: unknown"
+
+    lock_without_wallpaper
+    exit 0
+fi
+
+# Read dimensions
+dimensions=$(xdpyinfo \
+    | grep dimensions \
+    | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+
+if [ "${dimensions}" = "" ]
+then
+    echo "dimensions: unknown"
+
+    lock_without_wallpaper
+    exit 0
+fi
+
+echo "dimensions: ${dimensions}"
+
+# Check if image is already converted
+wallpaper=${HOME}/.config/lok/${1}
+
+if [ -f ${wallpaper} ]
+then
+    echo "already converted"
+    lock_with_wallpaper
+    exit 0
+fi
+
+# Convert wallpaper provided and lock
+if ! command -v convert >/dev/null
+then
+    lock_without_wallpaper
+    exit 0
+fi
+
+if ! command -v dirname >/dev/null
+then
+    lock_without_wallpaper
+    exit 0
+fi
+
+input="${1}"
+
+echo "convert ${input}"
+
+wallpaper_dir=$(dirname ${wallpaper})
+mkdir -p ${wallpaper_dir}
+
+convert ${input} -resize ${dimensions}^ ${wallpaper} \
+    && lock_with_wallpaper \
+    || lock_without_wallpaper

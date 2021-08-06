@@ -1,0 +1,174 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: rice
+# Description: fetch information from theme files.
+# Dependencies: jq
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+if ! command -v jq >/dev/null
+then
+    echo "Missing 'jq'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+script_name="rice"
+version="1.0.0"
+
+as_bash_array=0
+as_unicode=0
+output=
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+append()
+{
+    value=${1}
+
+    if [ ${as_bash_array} -eq 1 ]
+    then
+        output="${output} \"${value}\""
+    else
+        if [ -n "${output}" ]
+        then
+            output="${output} "
+        fi
+
+        output="${output}${value}"
+    fi
+}
+
+error()
+{
+    echo "${1}" 1>&2
+    exit 1
+}
+
+usage()
+{
+    echo "${0}" 1>&2
+    echo "  -h: Display this help and exit" 1>&2
+    echo "  -d: Debug mode" 1>&2
+    echo "  -m: Name of the module to get theme of" 1>&2
+    echo "  -u: Interpret the value as unicode and show like it should" 1>&2
+    echo "  -b: display results as a bash array string"
+
+    exit 1
+}
+
+version()
+{
+    echo "${script_name} version ${version}" 1>&2
+
+    exit 0
+}
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+# Parse arguments
+while getopts ":hbm:uv" opt
+do
+    case ${opt} in
+        \?)
+            usage
+            ;;
+
+        h)
+            usage
+            ;;
+
+        b)
+            as_bash_array=1
+            ;;
+
+        m)
+            module=${OPTARG}
+            ;;
+
+        u)
+            as_unicode=1
+            ;;
+
+        v)
+            version
+            ;;
+    esac
+done
+
+shift $(( OPTIND - 1 ))
+
+# Check if there's an override
+overrides=${HOME}/.config/rice/overrides.json
+
+if [ -f "${overrides}" ]
+then
+    theme_path=$(jq -r ".${module}" ${overrides})
+fi
+
+if [ ! -f "${theme_path}" ]
+then
+    theme_path=${HOME}/.config/rice/${module}/theme.sh
+fi
+
+if [ ! -f "${theme_path}" ]
+then
+    theme_path=${HOME}/.config/rice/${module}/theme.json
+fi
+
+[ -f "${theme_path}" ] || error "No theme found for ${module}"
+
+# Check the type of the theme
+if [ "${theme_path: -3}" == ".sh" ]
+then
+    cat ${theme_path}
+    exit 0
+fi
+
+# Get value for each key
+if [ ${as_bash_array} -eq 1 ]
+then
+    output="values=("
+fi
+
+for key in ${*}
+do
+    value=$(jq -r ".${key}" ${theme_path})
+
+    # Display as it should
+    if [ ${as_unicode} -eq 1 ]
+    then
+        length=${#value}
+
+        if [ ${length} -eq 4 ]
+        then
+            append $(printf "\u${value}")
+        elif [ ${length} -ge 4 ]
+        then
+            append $(printf "\U${value}")
+        else
+            append ${value}
+        fi
+    else
+        append ${value}
+    fi
+done
+
+if [ ${as_bash_array} -eq 1 ]
+then
+    output="${output} )"
+fi
+
+echo "$output"

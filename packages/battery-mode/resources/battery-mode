@@ -1,0 +1,68 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: battery-mode
+# Description: Configure the battery mode
+# Dependencies:
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+path='/sys/class/power_supply/'
+file_start_threshold='charge_control_start_threshold'
+file_stop_threshold='charge_control_end_threshold'
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+dump()
+{
+    path="${path}/BAT0"
+    [ -d "${path}" ] || return
+
+    printf \
+        "[%s/%s]" \
+        $(cat "${path}/${file_start_threshold}") \
+        $(cat "${path}/${file_stop_threshold}")
+}
+
+configure()
+{
+    start_threshold=${1}
+    stop_threshold=${2}
+
+    for dir in $(ls "${path}" | grep 'BAT')
+    do
+        p="${path}/${dir}"
+
+        [ -f "${p}/${file_start_threshold}" ] || continue
+        [ -f "${p}/${file_stop_threshold}" ] || continue
+
+        echo ${start_threshold} | sudo tee "${p}/${file_start_threshold}"
+        echo ${stop_threshold} | sudo tee "${p}/${file_stop_threshold}"
+    done
+}
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+# Get arguments
+if [ ${#} -eq 0 ]
+then
+    dump
+elif [ ${#} -eq 2 ]
+then
+    configure "${1}" "${2}"
+else
+    echo "Error: expected 0 or 2 arguments"
+    exit 1
+fi

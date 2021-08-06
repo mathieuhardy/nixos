@@ -1,0 +1,162 @@
+*
+{
+    background: #f8f8f8;
+    foreground: #272727;
+
+    input-background: #e9c46a;
+    input-foreground: #272727;
+
+    active-background: #dee2ff;
+    active-foreground: @foreground;
+    normal-background: @background;
+    normal-foreground: @foreground;
+    selected-background: @foreground;
+    selected-foreground: @background;
+    urgent-background: @background;
+    urgent-foreground: @foreground;
+
+    selected-active-background: @selected-background;
+    selected-active-foreground: @selected-foreground;
+    selected-normal-foreground: @selected-foreground;
+    selected-normal-background: @selected-background;
+    selected-urgent-foreground: @selected-foreground;
+    selected-urgent-background: @selected-background;
+
+    alternate-active-background: @active-background;
+    alternate-active-foreground: @active-foreground;
+    alternate-normal-background: @normal-background;
+    alternate-normal-foreground: @normal-foreground;
+    alternate-urgent-background: @urgent-background;
+    alternate-urgent-foreground: @urgent-foreground;
+}
+
+#window
+{
+    background-color: @background;
+
+    border: 3;
+    border-radius: 10;
+    border-color: @foreground;
+
+    padding: 20;
+}
+
+#scrollbar
+{
+    background-color: #bbbbbb;
+
+    handle-color: @foreground;
+    handle-width: 8px;
+
+    border: 0;
+    border-radius: 10;
+
+    width: 4px;
+    padding: 0;
+}
+
+#inputbar
+{
+    children: [ prompt,textbox-prompt-colon,entry ];
+}
+
+#prompt
+{
+    background-color: @input-background;
+    text-color: @input-foreground;
+
+    padding: 0.3em 0 0.3em 0.3em;
+}
+
+#textbox-prompt-colon
+{
+    background-color: @input-background;
+    text-color: @input-foreground;
+
+    expand: false;
+    str: ":";
+
+    padding: 0.3em 0.3em 0.3em 0;
+}
+
+#entry
+{
+    background-color: @input-background;
+    text-color: @input-foreground;
+
+    padding: 0.3em 0 0.3em 0;
+}
+
+#inputbar
+{
+    text-color: @normal-foreground;
+
+    spacing: 0;
+
+    padding: 1px ;
+}
+
+#listview
+{
+    scrollbar: true;
+}
+
+#element
+{
+    border:  0;
+    padding: 3;
+}
+
+#element.normal.active
+{
+    background-color: @active-background;
+    text-color: @active-foreground;
+}
+
+#element.normal.normal
+{
+    background-color: @normal-background;
+    text-color: @normal-foreground;
+}
+
+#element.normal.urgent
+{
+    background-color: @urgent-background;
+    text-color: @urgent-foreground;
+}
+
+#element.selected.active
+{
+    background-color: @selected-active-background;
+    text-color: @selected-active-foreground;
+}
+
+#element.selected.normal
+{
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+#element.selected.urgent
+{
+    background-color: @selected-urgent-background;
+    text-color: @selected-urgent-foreground;
+}
+
+#element.alternate.active
+{
+    background-color: @alternate-active-background;
+    text-color: @alternate-active-foreground;
+}
+
+#element.alternate.normal
+{
+    background-color: @alternate-normal-background;
+    text-color: @alternate-normal-foreground;
+}
+
+#element.alternate.urgent
+{
+    background-color: @alternate-urgent-background;
+    text-color: @alternate-urgent-foreground;
+}

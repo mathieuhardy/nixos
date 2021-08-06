@@ -1,0 +1,28 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: feh
+# Description: Script used to start feh (meant to be used by window managers).
+# Dependencies: feh
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+if ! command -v feh >/dev/null
+then
+    echo "Missing 'feh'" 1>&2
+    exit 1
+fi
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+feh --bg-fill "${WALLPAPER}"

@@ -1,0 +1,9 @@
+# Colors
+lightgreen = #8fbcbb
+pink = #f9d5e5
+
+# Global colors
+background = #272727
+background-alt = ${self.background}
+foreground = #f8f8f8
+foreground-alt = ${self.foreground}

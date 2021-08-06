@@ -1,0 +1,239 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+#
+# Script name: rofi-wifi-menu
+# Description: Display the list of WiFi networks in a Rofi menu.
+# Dependencies: rice
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Dependencies
+# ------------------------------------------------------------------------------
+
+command -v awk >/dev/null || exit 1
+command -v nmcli >/dev/null || exit 1
+command -v rofi >/dev/null || exit 1
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+get_wifi_list()
+{
+    nmcli \
+        --fields "${fields}" \
+        device wifi list \
+        --rescan ${1} \
+        | sed '/^--/d'
+}
+
+get_max_width()
+{
+    width=$(echo "${1}" | head -n 1 | awk '{print length($0); }')
+
+    # Add 2 for the scrollbar)
+    width=$(( width + 2 ))
+
+    echo ${width}
+}
+
+get_current_connection_position()
+{
+    if [ -z "${1}" ] || [ -z "${2}" ] || [ -z "${3}" ]
+    then
+        return
+    fi
+
+    highlight_line=$(echo "${1}" \
+        | grep -n "${2}.* ${3}[0-9]\+ MHz" \
+        | cut -d ':' -f 1)
+
+    if [ -z "${highlight_line}" ] || [ ${highlight_line} -le 0 ]
+    then
+        return
+    fi
+
+    # Remove header but add offset of 2 (toggle and manual entries)
+    highlight_line=$(( highlight_line - 1 + 2 ))
+
+    echo ${highlight_line}
+}
+
+get_known_connections()
+{
+    nmcli connection show
+}
+
+get_current_connection()
+{
+    nmcli connection show --active \
+        | grep "wifi" \
+        | sed 's/\s\{2,\}/\|/g' \
+        | cut -d '|' -f 1
+}
+
+# ------------------------------------------------------------------------------
+# Variables
+# ------------------------------------------------------------------------------
+
+manual_entry="Manual"
+toggle_on="Toggle on"
+toggle_off="Toggle off"
+fields="SSID,BARS,FREQ,SECURITY"
+
+# ------------------------------------------------------------------------------
+# Entry point
+# ------------------------------------------------------------------------------
+
+# Check if enabled
+status=$(nmcli radio wifi)
+
+if [ "${status}" = "disabled" ]
+then
+    selection=$(echo -e "${toggle_on}\nCancel" \
+        | rofi -dmenu -p "Action:" -lines 2)
+
+    if [ "${selection}" = "${toggle_on}" ]
+    then
+        nmcli radio wifi on 1>/dev/null 2>&1
+    fi
+
+    exit 0
+fi
+
+# Get Wifi list
+wifi_list=$(get_wifi_list "auto")
+
+#if [ -z "${wifi_list}" ]
+#then
+    #wifi_list=$(get_wifi_list "yes")
+#fi
+
+wifi_count=$(echo "${wifi_list}" | wc -l)
+
+# Compute width to display
+width=$(get_max_width "${wifi_list}")
+
+# Get position of the connected SSID to highlight it
+current_connection=$(get_current_connection)
+current_ssid=$(echo "${current_connection}" | cut -d '@' -f 1)
+current_freq=$(echo "${current_connection}" | cut -d '@' -f 2)
+
+if [ "${current_freq}" = "5GHz" ]
+then
+    current_ghz="5"
+else
+    current_ghz="2"
+fi
+
+highlight_line=$(get_current_connection_position \
+    "${wifi_list}" \
+    "${current_ssid}" \
+    "${current_ghz}")
+
+# Compute rows count to be displayed
+rows_count=${wifi_count}
+
+if [ ${rows_count} -gt 10 ]
+then
+    rows_count=10
+fi
+
+# Run Rofi
+selection=$(echo -e "${toggle_off}\n${manual_entry}\n${wifi_list}" \
+    | rofi \
+        -dmenu \
+        -p "SSID:" \
+        -lines "${rows_count}" \
+        -a "${highlight_line}" \
+        -width -"${width}")
+
+# Handles "Manual" selection
+if [ "${selection}" = "${manual_entry}" ]
+then
+    # Ask for SSID
+    ssid=$(echo "Enter the SSID of the network (password@SSID)" \
+        | rofi -dmenu -p "Manual Entry:" -lines 1)
+
+    # Get password
+    password=$(echo "${ssid}" | awk -F "@" '{print $2}')
+
+    # Try to connect with or without password
+    if [ -z "${password}" ]
+    then
+        nmcli dev wifi con "${ssid}" 1>/dev/null 2>&1
+    else
+        nmcli dev wifi con "${ssid}" password "${password}" 1>/dev/null 2>&1
+    fi
+
+    exit 0
+fi
+
+# Handle toggle off
+if [ "${selection}" = "${toggle_off}" ]
+then
+    nmcli radio wifi off 1>/dev/null 2>&1
+    exit 0
+fi
+
+# Handle active connection
+is_active=""
+if [ -n "${current_ssid}" ] && [ -n "${current_ghz}" ]
+then
+    is_active=$(echo "${selection}" \
+        | grep "${current_ssid}.* ${current_ghz}[0-9]\+ MHz")
+fi
+
+if [ -n "${is_active}" ]
+then
+    exit 0
+fi
+
+# Get SSID of the selection
+formatted=$(echo "${selection}" | sed 's/\s\{2,\}/\|/g')
+ssid=$(echo "${formatted}" | cut -d '|' -f 1)
+freq=$(echo "${formatted}" | cut -d '|' -f 3 | cut -d ' ' -f 1)
+is_5ghz=$(echo "${freq}" | grep "^5")
+
+if [ -n "${is_5ghz}" ]
+then
+    band="a"
+    ghz="5"
+else
+    band="bg"
+    ghz="2"
+fi
+
+connection_name="${ssid}@${ghz}GHz"
+
+# Enable it if already known
+known_connections=$(get_known_connections)
+
+is_known=$(echo "${known_connections}" | grep "${connection_name}")
+if [ -n "${is_known}" ]
+then
+    nmcli con up "${connection_name}" 1>/dev/null 2>&1
+    exit 0
+fi
+
+# Check if it's a secured Wifi
+if [[ "${selection}" =~ "WPA2" ]] || [[ "${selection}" =~ "WEP" ]]
+then
+    password=$(rofi -dmenu -p "Password:" -lines 0)
+fi
+
+nmcli \
+    dev wifi con "${ssid}" \
+    password "${password}" \
+    name "${connection_name}" \
+    1>/dev/null 2>&1
+
+nmcli \
+    con modify "${connection_name}" \
+    802-11-wireless.band ${band} \
+    1>/dev/null 2>&1

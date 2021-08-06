@@ -1,0 +1,410 @@
+{
+    "icons":
+    {
+        "applications": "F1105",
+
+        "battery":
+        {
+            "unknown": "F0091",
+
+            "100": "F0079",
+            "90": "F0082",
+            "80": "F0081",
+            "70": "F0080",
+            "60": "F007F",
+            "50": "F007E",
+            "40": "F007D",
+            "30": "F007C",
+            "20": "F007B",
+            "10": "F007A",
+            "0": "F008E",
+
+            "ac":
+            {
+                "100": "F0085",
+                "90": "F008B",
+                "80": "F008A",
+                "70": "F089E",
+                "60": "F0089",
+                "50": "F089D",
+                "40": "F0088",
+                "30": "F0087",
+                "20": "F0086",
+                "10": "F089C",
+                "0": "F089F"
+            },
+
+            "eco": "F032A"
+        },
+
+        "bluetooth":
+        {
+            "enabled": "F00AF",
+            "disabled": "F00B2"
+        },
+
+        "brightness": "F00E0",
+
+        "calendar": "F0E17",
+
+        "cpu": "F035B",
+
+        "error": "F06BD",
+
+        "ethernet":
+        {
+            "enabled": "F0C54",
+            "disabled": "F0C5F"
+        },
+
+        "fan":
+        {
+            "normal": "F0210",
+            "unknown": "F146C"
+        },
+
+        "microphone":
+        {
+            "unmuted": "F036C",
+            "muted":"F036D"
+        },
+
+        "power": "F0425",
+
+        "ram": "F061A",
+
+        "swap": "F0BCD",
+
+        "system_stats": "F085E",
+
+        "temperature":
+        {
+            "normal": "F050F",
+            "unknown": "F0E01"
+        },
+
+        "terminal": "F0174",
+
+        "trash":
+        {
+            "empty": "F0A7A",
+            "full": "F0A79"
+        },
+
+        "volume":
+        {
+            "unmuted": "F057E",
+            "muted": "F0581"
+        },
+
+        "vpn":
+        {
+            "enabled": "F0498",
+            "disabled": "F099E"
+        },
+
+        "weather":
+        {
+            "temperature": "F050F",
+            "wind": "F059D",
+            "precipitation": "F058C",
+
+            "condition":
+            {
+                "cloudy": "F0590",
+                "cloudy_alert": "F0F2F",
+                "cloudy_arrow_right": "F0E6E",
+                "fog": "F0591",
+                "hail": "F0592",
+                "hazy": "F0F30",
+                "hurricane": "F0898",
+                "lightning": "F0593",
+                "lightning_rainy": "F067E",
+                "night": "F0594",
+                "night_partly_cloudy": "F0F31",
+                "partly_cloudy": "F0595",
+                "partly_cloudy_lightning": "F0F32",
+                "partly_cloudy_rainy": "F0F33",
+                "partly_cloudy_snowy": "F0F34",
+                "partly_cloudy_snowy_rainy": "F0F35",
+                "pouring": "F0596",
+                "rainy": "F0597",
+                "snowy": "F0598",
+                "snowy_heavy": "F0F36",
+                "snowy_rainy": "F067F",
+                "sunny": "F0599",
+                "sunny_alert": "F0F37",
+                "sunset": "F059A",
+                "sunset_down": "F059B",
+                "sunset_up": "F059C",
+                "tornado": "F0F38",
+                "windy": "F059D",
+                "windy_variant": "F059E"
+            }
+        },
+
+        "wifi":
+        {
+            "enabled": "F05A9",
+            "disabled": "F05AA"
+        },
+
+        "workspaces":
+        {
+            "1": "F03A4",
+            "2": "F03A7",
+            "3": "F03AA",
+            "4": "F03AD",
+            "5": "F03B1",
+            "6": "F03B3",
+            "7": "F03B6",
+            "8": "F03B9",
+            "9": "F03BC",
+            "10": "F03A1",
+
+            "empty":
+            {
+                "1": "F03A6",
+                "2": "F03A9",
+                "3": "F03AC",
+                "4": "F03AE",
+                "5": "F03B0",
+                "6": "F03B5",
+                "7": "F03B8",
+                "8": "F03BB",
+                "9": "F03BE",
+                "10": "F03A3"
+            }
+        }
+    },
+
+    "colors":
+    {
+        "applications":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#272727"
+        },
+
+        "battery":
+        {
+            "fg":
+            {
+                "high": "#272727",
+                "low": "#900000"
+            },
+
+            "bg":
+            {
+                "high": "#a3be8c",
+                "low": "#a3be8c"
+            }
+        },
+
+        "bluetooth":
+        {
+            "enabled":
+            {
+                "fg": "#f8f8f8",
+                "bg": "#81a1c1"
+            },
+
+            "disabled":
+            {
+                "fg": "#272727",
+                "bg": "#dcdcdc"
+            }
+        },
+
+        "brightness":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#5e81ac"
+        },
+
+        "cpu_temp":
+        {
+            "fg":
+            {
+                "high": "#900000",
+                "low": "#272727"
+            },
+
+            "bg":
+            {
+                "high": "#e1e6fa",
+                "low": "#e1e6fa"
+            }
+        },
+
+        "datetime":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#b48ead"
+        },
+
+        "ethernet":
+        {
+            "enabled":
+            {
+                "fg": "#272727",
+                "bg": "#ebcb8b"
+            },
+
+            "disabled":
+            {
+                "fg": "#272727",
+                "bg": "#dcdcdc"
+            }
+        },
+
+        "micro":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#d08770"
+        },
+
+        "power":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#272727"
+        },
+
+        "sys_usage":
+        {
+            "fg":
+            {
+                "high": "#900000",
+                "low": "#272727"
+            },
+
+            "bg":
+            {
+                "high": "#e1e6fa",
+                "low": "#e1e6fa"
+            }
+        },
+
+        "terminal":
+        {
+            "fg": "#2e3440",
+            "bg": "#f8f8f8"
+        },
+
+        "trash":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#bf616a"
+        },
+
+        "volume":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#d08770"
+        },
+
+        "vpn":
+        {
+            "enabled":
+            {
+                "fg": "#272727",
+                "bg": "#ebcb8b"
+            },
+
+            "disabled":
+            {
+                "fg": "#272727",
+                "bg": "#dcdcdc"
+            }
+        },
+
+        "weather":
+        {
+            "fg": "#f8f8f8",
+            "bg": "#262626",
+
+            "icon_condition":
+            {
+                "fg": "#ffda8c",
+                "bg": "#262626"
+            },
+
+            "icon_temperature":
+            {
+                "fg": "#ab4642",
+                "bg": "#262626"
+            },
+
+            "icon_wind":
+            {
+                "fg": "#a1b56c",
+                "bg": "#262626"
+            },
+
+            "icon_precipitation":
+            {
+                "fg": "#7cafc2",
+                "bg": "#262626"
+            }
+        },
+
+        "wifi":
+        {
+            "enabled":
+            {
+                "fg": "#272727",
+                "bg": "#ebcb8b"
+            },
+
+            "disabled":
+            {
+                "fg": "#272727",
+                "bg": "#dcdcdc"
+            }
+        },
+
+        "workspaces":
+        {
+            "fg":
+            {
+                "default": "#f8f8f8",
+                "current": "#262626"
+            },
+
+            "bg":
+            {
+                "default": "#262626",
+                "current": "#f8f8f8"
+            }
+        }
+    },
+
+    "config":
+    {
+        "battery":
+        {
+            "threshold": 40
+        },
+
+        "bluetooth":
+        {
+            "refresh_rate_s": 3
+        },
+
+        "brightness":
+        {
+            "refresh_rate_s": 1
+        },
+
+        "cpu_temp":
+        {
+            "refresh_rate_s": 3,
+            "threshold": 80
+        },
+
+        "sys_usage":
+        {
+            "threshold": 80
+        }
+    }
+}

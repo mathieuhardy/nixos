@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+# ==============================================================================
+#
+# Script name: xprofile
+# Description: profile for the X server.
+# Dependencies:
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+if [ -d ${HOME}/.config/X11/xprofile.d ]
+then
+    for f in ${HOME}/.config/X11/xprofile.d/*
+    do
+        echo "loading ${f}"
+        . "${f}"
+    done
+
+    unset f
+fi

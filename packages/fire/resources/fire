@@ -1,0 +1,49 @@
+#!/usr/bin/env sh
+
+# ==============================================================================
+#
+# Script name: fire
+# Description: Run an action for a specified program or daemon.
+# Dependencies:
+# GitHub: https://www.github.com/mathieuhardy/nixos
+# License: https://www.github.com/mathieuhardy/nixos/LICENSE
+# Contributors: Mathieu Hardy
+#
+# ==============================================================================
+
+# Get arguments
+if [ ${#} -lt 2 ]
+then
+    echo "Error: missing parameter"
+    exit 1
+fi
+
+action=${1}
+shift
+
+module_name=${1}
+shift
+
+args=${*}
+
+# Check first if a global executable is available
+bin=_${action}_${module_name}
+
+if command -v ${bin} >/dev/null
+then
+    ${bin} ${args}
+    exit 0
+fi
+
+# Fallback to .config/fire directory
+bin=${HOME}/.config/fire/${module_name}/${action}
+echo $bin
+
+if [ -x ${bin} ]
+then
+    ${bin} ${args}
+    exit 0
+fi
+
+echo "No suitable executable to ${action} ${module_name}"
+exit 1
