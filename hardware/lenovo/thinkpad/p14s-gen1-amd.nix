@@ -24,7 +24,7 @@
   # Kernel
   # ----------------------------------------------------------------------------
 
-  #boot.kernelParams = [ "boot.shell_on_fail" ];
+  boot.kernelParams = [ "boot.shell_on_fail" ];
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # ----------------------------------------------------------------------------
