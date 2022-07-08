@@ -1,0 +1,147 @@
+#!/bin/sh
+
+# ------------------------------------------------------------------------------
+# Functions
+# ------------------------------------------------------------------------------
+
+has_action()
+{
+  echo "${1}" | grep "${2}" >/dev/null
+}
+
+# ------------------------------------------------------------------------------
+# Command line
+# ------------------------------------------------------------------------------
+
+if [ ${#} -eq 1 ]
+then
+  if [ "${1}" = "-h" ] || [ "${1}" = "--help" ]
+  then
+    echo "${0} <password> <salt> <device> [ actions... ]"
+    echo "  - password      The password used to encrypt the disks"
+    echo "  - salt          A string used as salt for disk encryption"
+    echo "  - device        The device where NixOS must be installed"
+    echo ""
+    echo "[Actions]"
+    echo "  - all           Perform all below actions"
+    echo "  - env           Create environment file"
+    echo "  - salt          Create a salt file"
+    echo "  - keyfile       Create a key file for the disks encryption"
+    echo "  - partition     Create partitioning"
+    echo "  - secrets       Install secrets on boot partition"
+    echo "  - hardware      Generate hardware configuration"
+    echo "  - filesystems   Generate filesystems configuration"
+    echo "  - install       Install NixOS"
+    echo ""
+    echo "[Examples]"
+    echo "${0} \"password\" \"salt\" \"/dev/sda\" all"
+
+    exit 0
+  fi
+fi
+
+if [ ${#} -lt 3 ]
+then
+  echo "Missing disk password, salt string or target device"
+  exit 1
+fi
+
+setup_tool=nixos-setup
+hardware="lenovo_thinkpad_p14s-gen1-amd"
+host="oz"
+key_name="keyfile"
+key_path=/tmp
+salt_file=/tmp/salt
+current_dir=$(dirname $PWD)
+nixos_dir="${current_dir}/../"
+disk_password="${1}"
+salt="${2}"
+device="${3}"
+
+shift
+shift
+
+if [ "${1}" = "all" ]
+then
+  inputs="env salt keyfile partition secrets hardware filesystems install"
+else
+  inputs=${*}
+fi
+
+# ------------------------------------------------------------------------------
+# Environment
+# ------------------------------------------------------------------------------
+
+# Setup command
+if [ ! $(command -v ${setup_tool}) ]
+then
+  echo "Missing ${setup_tool}: consider adding it to the PATH"
+  exit 1
+fi
+
+# Git
+if [ ! $(command -v git) ]
+then
+  nix-env -iA nixos.git
+fi
+
+# Channels
+sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
+sudo nix-channel --update
+
+# ------------------------------------------------------------------------------
+# Actions
+# ------------------------------------------------------------------------------
+
+# Environment
+has_action "${inputs}" "env" && (
+  sudo ${setup_tool} env \
+    --hardware ${hardware} \
+    --host ${host} \
+    --key-name ${key_name} \
+    --key-path ${key_path}
+)
+
+# Salt
+has_action "${inputs}" "salt" && (
+  echo "${salt}" > ${salt_file}
+)
+
+# Key file
+has_action "${inputs}" "keyfile" && (
+  ${setup_tool} luks \
+    --iterations 13 \
+    --key-size 4096 \
+    --password "${disk_password}" \
+    --salt "${salt_file}"
+)
+
+# Partitions
+has_action "${inputs}" "partition" && (
+  sudo ${setup_tool} partitioning \
+    --device "disk_1=${device}" \
+    --password "${disk_password}"
+)
+
+# Install secrets
+has_action "${inputs}" "secrets" && (
+  sudo ${setup_tool} secrets \
+    --password "${disk_password}"
+)
+
+# Generate hardware configuration
+has_action "${inputs}" "hardware" && (
+  sudo ${setup_tool} hardware
+)
+
+# Generate filesystems configuration
+has_action "${inputs}" "filesystems" && (
+  sudo ${setup_tool} filesystems
+)
+
+# Install
+has_action "${inputs}" "install" && (
+  sudo ${setup_tool} install \
+    --password "${disk_password}" \
+    --repository "${nixos_dir}"
+)
