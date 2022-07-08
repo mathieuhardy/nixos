@@ -48,7 +48,7 @@ in
     shellcheck
     silver-searcher
     sysstat
-    typora
+    #typora
     tusk
     unstable.mkchromecast
   ];
