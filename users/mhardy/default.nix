@@ -43,6 +43,7 @@ in
 
     cerebro = {
       enable = true;
+      logFile = "/tmp/cerebro.log"; #TODO: remove as soon as cerebro is working
 
       cpu = {
         enable = true;
