@@ -18,3 +18,12 @@ For example:
 ├───── p14s-gen1-intel.nix
 ├───── p14s-gen1-amd.nix
 ```
+
+These files must include the readonly version that will be automatically
+generated during the setup process. This can be done like this:
+
+foo.nix
+
+```
+imports = lib.optional (builtins.pathExists ./foo-readonly.nix) ./foo-readonly.nix
+```
