@@ -52,12 +52,13 @@ host="oz"
 key_name="keyfile"
 key_path=/tmp
 salt_file=/tmp/salt
-current_dir=$(dirname $PWD)
-nixos_dir="${current_dir}/../"
+script_dir=$(dirname ${0})
+nixos_dir=$(realpath ${script_dir}/../)
 disk_password="${1}"
 salt="${2}"
 device="${3}"
 
+shift
 shift
 shift
 
