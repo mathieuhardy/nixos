@@ -90,6 +90,9 @@ fi
 sudo nix-channel --add https://nixos.org/channels/nixos-unstable nixos-unstable
 sudo nix-channel --update
 
+# IPV6 disabling
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+
 # ------------------------------------------------------------------------------
 # Actions
 # ------------------------------------------------------------------------------
