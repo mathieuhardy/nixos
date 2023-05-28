@@ -1,5 +1,3 @@
-command! -nargs=1 WrappingToggle call wrapping#toggle(<f-args>)
-
 " Wrapping
 function! wrapping#toggle(...)
     let l:disabled = 0

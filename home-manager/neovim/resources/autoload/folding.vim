@@ -1,5 +1,3 @@
-command! -nargs=1 FoldingToggle call folding#toggle(<f-args>)
-
 function! folding#toggle(...)
     if a:0 >= 1
         return s:Folding(a:1)

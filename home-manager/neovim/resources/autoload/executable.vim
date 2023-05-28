@@ -1,5 +1,3 @@
-command! ExecutableDetect call executable#detect()
-
 " Detect executable files
 function! executable#detect()
     if getline(1) =~ "^#!"

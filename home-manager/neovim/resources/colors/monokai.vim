@@ -13,27 +13,28 @@ endif
 " ------------------------------------------------------------------------------
 
 let s:palette = {
-    \ 'bg':           ['#262626', '235'],
-    \ 'fg':           ['#f8f8f8', '15'],
-    \ 'black':        ['#000000', '0'],
-    \ 'red':          ['#ff0000', '9'],
-    \ 'dark_red':     ['#a52a2a', '124'],
-    \ 'yellow':       ['#ffff00', '11'],
-    \ 'light_yellow': ['#fff799', '228'],
-    \ 'dark_yellow':  ['#e8cc06', '220'],
-    \ 'purple':       ['#ae81ff', '140'],
-    \ 'light_purple': ['#d7d7ff', '189'],
-    \ 'light_blue':   ['#afd7ff', '153'],
-    \ 'blue':         ['#66d9ef', '14'],
-    \ 'dark_blue':    ['#66858D', '66'],
-    \ 'grey':         ['#767676', '243'],
-    \ 'light_grey':   ['#bbbbbb', '249'],
-    \ 'dark_grey':    ['#494949', '238'],
-    \ 'pink':         ['#f92672', '197'],
-    \ 'light_pink':   ['#ffb6b8', '217'],
-    \ 'green':        ['#00ff00', '10'],
-    \ 'light_green':  ['#a6e22e', '148'],
-    \ 'orange':       ['#fd971f', '208'],
+    \ 'bg':             ['#262626', '235'],
+    \ 'fg':             ['#f8f8f8', '15'],
+    \ 'black':          ['#000000', '0'],
+    \ 'red':            ['#ff0000', '9'],
+    \ 'dark_red':       ['#a52a2a', '124'],
+    \ 'yellow':         ['#ffff00', '11'],
+    \ 'light_yellow':   ['#fff799', '228'],
+    \ 'dark_yellow':    ['#e8cc06', '220'],
+    \ 'purple':         ['#ae81ff', '140'],
+    \ 'light_purple':   ['#d7d7ff', '189'],
+    \ 'light_blue':     ['#afd7ff', '153'],
+    \ 'blue':           ['#66d9ef', '14'],
+    \ 'dark_blue':      ['#66858D', '66'],
+    \ 'grey':           ['#767676', '243'],
+    \ 'light_grey':     ['#bbbbbb', '249'],
+    \ 'dark_grey':      ['#494949', '238'],
+    \ 'very_dark_grey': ['#3e3e3e', '238'],
+    \ 'pink':           ['#f92672', '197'],
+    \ 'light_pink':     ['#ffb6b8', '217'],
+    \ 'green':          ['#00ff00', '10'],
+    \ 'light_green':    ['#a6e22e', '148'],
+    \ 'orange':         ['#fd971f', '208'],
     \ }
 
 " ------------------------------------------------------------------------------
@@ -175,10 +176,10 @@ call s:bind('DiffText',   'bg', 'orange',       'none')
 "   PmenuThumb => popup menu: thumb of the scrollbar
 " ------------------------------------------------------------------------------
 
-call s:bind('Pmenu',      'bg', 'light_yellow', 'bold')
-call s:bind('PmenuSbar',  'fg', 'light_purple', 'none')
-call s:bind('PmenuSel',   'fg', 'dark_red',     'none')
-call s:bind('PmenuThumb', 'fg', 'dark_blue',    'none')
+call s:bind('Pmenu',      'fg', 'very_dark_grey', 'none')
+call s:bind('PmenuSbar',  'fg', 'light_purple',   'none')
+call s:bind('PmenuSel',   'fg', 'dark_red',       'none')
+call s:bind('PmenuThumb', 'fg', 'dark_blue',      'none')
 
 " ------------------------------------------------------------------------------
 " Spelling
@@ -924,6 +925,283 @@ call s:bind('rustCommentLineDoc', 'bg', 'light_blue', 'none')
 call s:bind('CtrlPNoEntries', 'bg',          'light_pink', 'none')
 call s:bind('CtrlPMatch',     'bg',          'blue',       'none')
 call s:bind('CtrlPPrtBase',   'light_green', 'bg',         'none')
+
+" ------------------------------------------------------------------------------
+" Any-jump specific highlight groups
+"
+" - AnyjumpPlainText      : Default text
+" - AnyjumpPreview        : In preview: the normal text
+" - AnyjumpPreviewKeyword : In preview: the keyword searched
+" - AnyjumpHeadingText    : In heading section: the text
+" - AnyjumpHeadingKeyword : In heading section: the keywork searched
+" - AnyjumpGroupText      : In group mode: the arrow symbol at the beginning
+" - AnyjumpGroupName      : In group mode: the path of the file
+" - AnyjumpMoreButton     : Button used to show more entries
+" - AnyjumpMoreExplain    : Text explaining how to show more entries
+" - AnyjumpLineNumber     : Line number
+" - AnyjumpResultText     : Line of code where the symbol appears
+" - AnyjumpResultPath     : In normal mode: the path of the file
+" - AnyjumpHelp           : Help text at the end
+" ------------------------------------------------------------------------------
+
+call s:bind('AnyjumpPlainText',      'fg',          'very_dark_grey', 'none')
+call s:bind('AnyjumpPreview',        'light_grey',  'bg',             'none')
+call s:bind('AnyjumpPreviewKeyword', 'orange',      'bg',             'bold')
+call s:bind('AnyjumpHeadingText',    'purple',      'very_dark_grey', 'bold')
+call s:bind('AnyjumpHeadingKeyword', 'purple',      'very_dark_grey', 'bold')
+call s:bind('AnyjumpGroupText',      'light_pink',  'very_dark_grey', 'bold')
+call s:bind('AnyjumpGroupName',      'light_pink',  'very_dark_grey', 'bold')
+call s:bind('AnyjumpMoreButton',     'light_green', 'very_dark_grey', 'bold')
+call s:bind('AnyjumpMoreExplain',    'light_green', 'very_dark_grey', 'none')
+call s:bind('AnyjumpLineNumber',     'light_green', 'very_dark_grey', 'bold')
+call s:bind('AnyjumpResultText',     'fg',          'very_dark_grey', 'none')
+call s:bind('AnyjumpResultPath',     'light_pink',  'very_dark_grey', 'bold')
+call s:bind('AnyjumpHelp',           'orange',      'very_dark_grey', 'none')
+
+" ------------------------------------------------------------------------------
+" COC
+" ------------------------------------------------------------------------------
+
+call s:bind('CocFloating', 'fg', 'very_dark_grey', 'none')
+call s:bind('CocMenuSel', 'bg', 'light_green', 'none')
+call s:bind('CocSearch', 'bg', 'light_yellow', 'none')
+
+"CocWarningHighlight xxx cterm=underline ctermfg=3 gui=undercurl guifg=#EBCB8B
+"CocErrorHighlight xxx cterm=underline ctermfg=1 gui=undercurl guifg=#BF616A
+"CocWarningSign xxx ctermfg=3 guifg=#d08770
+"CocErrorSign   xxx ctermfg=1 guifg=#bf616a
+"CocInfoSign    xxx ctermfg=6 guifg=#88C0D0
+"CocHintSign    xxx ctermfg=12 guifg=#5E81AC
+"
+"CocHighlightText xxx guifg=#d8dee9 guibg=#516f7a
+"CocFadeOut     xxx links to Comment
+"
+"CocErrorVirtualText xxx guifg=#bf616a
+"CocWarningVirtualText xxx guifg=#d08770
+"
+"CocMenuSel     xxx ctermbg=8 guibg=#4C566A
+"CocListLine    xxx ctermbg=17 guibg=#3e434e
+"CocTreeSelected xxx links to CursorLine
+"CocSelectedText xxx ctermfg=12 guifg=#fb4934
+"CocCodeLens    xxx ctermfg=7 guifg=#999999
+"CocUnderline   xxx term=underline cterm=underline gui=underline guisp=#ebdbb2
+"CocBold        xxx term=bold cterm=bold gui=bold
+"CocItalic      xxx term=italic cterm=italic gui=italic
+"CocStrikeThrough xxx term=strikethrough cterm=strikethrough gui=strikethrough
+"CocMarkdownLink xxx ctermfg=9 guifg=#15aabf
+"CocDisabled    xxx ctermfg=7 guifg=#999999
+"CocSearch      xxx ctermfg=9 guifg=#15aabf
+"CocLink        xxx term=underline cterm=underline gui=underline guisp=#15aabf
+"CocFloating    xxx links to Pmenu
+"CocFloatThumb  xxx links to PmenuThumb
+"CocFloatSbar   xxx links to PmenuSbar
+"CocFloatActive xxx links to CocSearch
+"CocMarkdownCode xxx links to markdownCode
+"CocMarkdownHeader xxx links to markdownH1
+"CocDeprecatedHighlight xxx links to CocStrikeThrough
+"CocUnusedHighlight xxx links to CocFadeOut
+"CocListSearch  xxx links to CocSearch
+"CocListMode    xxx links to ModeMsg
+"CocListPath    xxx links to Comment
+"CocHoverRange  xxx links to Search
+"CocCursorRange xxx links to Search
+"CocLinkedEditing xxx links to CocCursorRange
+"CocHighlightRead xxx links to CocHighlightText
+"CocHighlightWrite xxx links to CocHighlightText
+"CocNotificationProgress xxx ctermfg=9 guifg=#15aabf
+"CocNotificationButton xxx links to CocUnderline
+"CocNotificationError xxx links to CocErrorFloat
+"CocErrorFloat  xxx ctermfg=1 ctermbg=0 guifg=#bf616a guibg=#434C5E
+"CocNotificationWarning xxx links to CocWarningFloat
+"CocWarningFloat xxx ctermfg=3 ctermbg=0 guifg=#d08770 guibg=#434C5E
+"CocNotificationInfo xxx links to CocInfoFloat
+"CocInfoFloat   xxx ctermfg=6 ctermbg=0 guifg=#88C0D0 guibg=#434C5E
+"CocSnippetVisual xxx links to Visual
+"CocTreeTitle   xxx links to Title
+"CocTreeDescription xxx links to Comment
+"CocTreeOpenClose xxx links to CocBold
+"CocSelectedRange xxx links to CocHighlightText
+"CocSymbolDefault xxx links to MoreMsg
+"CocPumSearch   xxx links to CocSearch
+"CocPumDetail   xxx links to Comment
+"CocPumMenu     xxx links to CocFloating
+"CocPumShortcut xxx links to Comment
+"CocPumDeprecated xxx links to CocStrikeThrough
+"CocVirtualText xxx ctermfg=12 guifg=#504945
+"CocPumVirtualText xxx links to CocVirtualText
+"CocInputBoxVirtualText xxx links to CocVirtualText
+"CocFloatDividingLine xxx links to CocVirtualText
+"CocInfoHighlight xxx links to CocUnderline
+"CocInfoVirtualText xxx ctermfg=6 ctermbg=16 guifg=#88C0D0 guibg=#2E3440
+"CocHintHighlight xxx links to CocUnderline
+"CocHintVirtualText xxx ctermfg=12 ctermbg=16 guifg=#5E81AC guibg=#2E3440
+"CocHintFloat   xxx ctermfg=12 ctermbg=0 guifg=#5E81AC guibg=#434C5E
+"CocInlayHint   xxx ctermfg=12 ctermbg=16 guifg=#5E81AC guibg=#2E3440
+"CocInlayHintParameter xxx links to CocInlayHint
+"CocInlayHintType xxx links to CocInlayHint
+"CocListBlackBlack xxx guifg=#3B4252 guibg=#3B4252
+"CocListBlackBlue xxx guifg=#3B4252 guibg=#81A1C1
+"CocListBlackGreen xxx guifg=#3B4252 guibg=#A3BE8C
+"CocListBlackGrey xxx guifg=#3B4252 guibg=#4C566A
+"CocListBlackWhite xxx guifg=#3B4252 guibg=#E5E9F0
+"CocListBlackCyan xxx guifg=#3B4252 guibg=#88C0D0
+"CocListBlackYellow xxx guifg=#3B4252 guibg=#EBCB8B
+"CocListBlackMagenta xxx guifg=#3B4252 guibg=#B48EAD
+"CocListBlackRed xxx guifg=#3B4252 guibg=#BF616A
+"CocListFgBlack xxx ctermfg=0 guifg=#3B4252
+"CocListBgBlack xxx ctermbg=0 guibg=#3B4252
+"CocListBlueBlack xxx guifg=#81A1C1 guibg=#3B4252
+"CocListBlueBlue xxx guifg=#81A1C1 guibg=#81A1C1
+"CocListBlueGreen xxx guifg=#81A1C1 guibg=#A3BE8C
+"CocListBlueGrey xxx guifg=#81A1C1 guibg=#4C566A
+"CocListBlueWhite xxx guifg=#81A1C1 guibg=#E5E9F0
+"CocListBlueCyan xxx guifg=#81A1C1 guibg=#88C0D0
+"CocListBlueYellow xxx guifg=#81A1C1 guibg=#EBCB8B
+"CocListBlueMagenta xxx guifg=#81A1C1 guibg=#B48EAD
+"CocListBlueRed xxx guifg=#81A1C1 guibg=#BF616A
+"CocListFgBlue  xxx ctermfg=9 guifg=#81A1C1
+"CocListBgBlue  xxx ctermbg=9 guibg=#81A1C1
+"CocListGreenBlack xxx guifg=#A3BE8C guibg=#3B4252
+"CocListGreenBlue xxx guifg=#A3BE8C guibg=#81A1C1
+"CocListGreenGreen xxx guifg=#A3BE8C guibg=#A3BE8C
+"CocListGreenGrey xxx guifg=#A3BE8C guibg=#4C566A
+"CocListGreenWhite xxx guifg=#A3BE8C guibg=#E5E9F0
+"CocListGreenCyan xxx guifg=#A3BE8C guibg=#88C0D0
+"CocListGreenYellow xxx guifg=#A3BE8C guibg=#EBCB8B
+"CocListGreenMagenta xxx guifg=#A3BE8C guibg=#B48EAD
+"CocListGreenRed xxx guifg=#A3BE8C guibg=#BF616A
+"CocListFgGreen xxx ctermfg=10 guifg=#A3BE8C
+"CocListBgGreen xxx ctermbg=10 guibg=#A3BE8C
+"CocListGreyBlack xxx guifg=#4C566A guibg=#3B4252
+"CocListGreyBlue xxx guifg=#4C566A guibg=#81A1C1
+"CocListGreyGreen xxx guifg=#4C566A guibg=#A3BE8C
+"CocListGreyGrey xxx guifg=#4C566A guibg=#4C566A
+"CocListGreyWhite xxx guifg=#4C566A guibg=#E5E9F0
+"CocListGreyCyan xxx guifg=#4C566A guibg=#88C0D0
+"CocListGreyYellow xxx guifg=#4C566A guibg=#EBCB8B
+"CocListGreyMagenta xxx guifg=#4C566A guibg=#B48EAD
+"CocListGreyRed xxx guifg=#4C566A guibg=#BF616A
+"CocListFgGrey  xxx ctermfg=7 guifg=#4C566A
+"CocListBgGrey  xxx ctermbg=7 guibg=#4C566A
+"CocListWhiteBlack xxx guifg=#E5E9F0 guibg=#3B4252
+"CocListWhiteBlue xxx guifg=#E5E9F0 guibg=#81A1C1
+"CocListWhiteGreen xxx guifg=#E5E9F0 guibg=#A3BE8C
+"CocListWhiteGrey xxx guifg=#E5E9F0 guibg=#4C566A
+"CocListWhiteWhite xxx guifg=#E5E9F0 guibg=#E5E9F0
+"CocListWhiteCyan xxx guifg=#E5E9F0 guibg=#88C0D0
+"CocListWhiteYellow xxx guifg=#E5E9F0 guibg=#EBCB8B
+"CocListWhiteMagenta xxx guifg=#E5E9F0 guibg=#B48EAD
+"CocListWhiteRed xxx guifg=#E5E9F0 guibg=#BF616A
+"CocListFgWhite xxx ctermfg=15 guifg=#E5E9F0
+"CocListBgWhite xxx ctermbg=15 guibg=#E5E9F0
+"CocListCyanBlack xxx guifg=#88C0D0 guibg=#3B4252
+"CocListCyanBlue xxx guifg=#88C0D0 guibg=#81A1C1
+"CocListCyanGreen xxx guifg=#88C0D0 guibg=#A3BE8C
+"CocListCyanGrey xxx guifg=#88C0D0 guibg=#4C566A
+"CocListCyanWhite xxx guifg=#88C0D0 guibg=#E5E9F0
+"CocListCyanCyan xxx guifg=#88C0D0 guibg=#88C0D0
+"CocListCyanYellow xxx guifg=#88C0D0 guibg=#EBCB8B
+"CocListCyanMagenta xxx guifg=#88C0D0 guibg=#B48EAD
+"CocListCyanRed xxx guifg=#88C0D0 guibg=#BF616A
+"CocListFgCyan  xxx ctermfg=11 guifg=#88C0D0
+"CocListBgCyan  xxx ctermbg=11 guibg=#88C0D0
+"CocListYellowBlack xxx guifg=#EBCB8B guibg=#3B4252
+"CocListYellowBlue xxx guifg=#EBCB8B guibg=#81A1C1
+"CocListYellowGreen xxx guifg=#EBCB8B guibg=#A3BE8C
+"CocListYellowGrey xxx guifg=#EBCB8B guibg=#4C566A
+"CocListYellowWhite xxx guifg=#EBCB8B guibg=#E5E9F0
+"CocListYellowCyan xxx guifg=#EBCB8B guibg=#88C0D0
+"CocListYellowYellow xxx guifg=#EBCB8B guibg=#EBCB8B
+"CocListYellowMagenta xxx guifg=#EBCB8B guibg=#B48EAD
+"CocListYellowRed xxx guifg=#EBCB8B guibg=#BF616A
+"CocListFgYellow xxx ctermfg=14 guifg=#EBCB8B
+"CocListBgYellow xxx ctermbg=14 guibg=#EBCB8B
+"CocListMagentaBlack xxx guifg=#B48EAD guibg=#3B4252
+"CocListMagentaBlue xxx guifg=#B48EAD guibg=#81A1C1
+"CocListMagentaGreen xxx guifg=#B48EAD guibg=#A3BE8C
+"CocListMagentaGrey xxx guifg=#B48EAD guibg=#4C566A
+"CocListMagentaWhite xxx guifg=#B48EAD guibg=#E5E9F0
+"CocListMagentaCyan xxx guifg=#B48EAD guibg=#88C0D0
+"CocListMagentaYellow xxx guifg=#B48EAD guibg=#EBCB8B
+"CocListMagentaMagenta xxx guifg=#B48EAD guibg=#B48EAD
+"CocListMagentaRed xxx guifg=#B48EAD guibg=#BF616A
+"CocListFgMagenta xxx ctermfg=13 guifg=#B48EAD
+"CocListBgMagenta xxx ctermbg=13 guibg=#B48EAD
+"CocListRedBlack xxx guifg=#BF616A guibg=#3B4252
+"CocListRedBlue xxx guifg=#BF616A guibg=#81A1C1
+"CocListRedGreen xxx guifg=#BF616A guibg=#A3BE8C
+"CocListRedGrey xxx guifg=#BF616A guibg=#4C566A
+"CocListRedWhite xxx guifg=#BF616A guibg=#E5E9F0
+"CocListRedCyan xxx guifg=#BF616A guibg=#88C0D0
+"CocListRedYellow xxx guifg=#BF616A guibg=#EBCB8B
+"CocListRedMagenta xxx guifg=#BF616A guibg=#B48EAD
+"CocListRedRed  xxx guifg=#BF616A guibg=#BF616A
+"CocListFgRed   xxx ctermfg=12 guifg=#BF616A
+"CocListBgRed   xxx ctermbg=12 guibg=#BF616A
+"CocSemNumber   xxx links to Number
+"CocSemFunction xxx links to Function
+"CocSemKeyword  xxx links to Keyword
+"CocSemParameter xxx links to Identifier
+"CocSemEvent    xxx links to Keyword
+"CocSemModifier xxx links to StorageClass
+"CocSemMacro    xxx links to Define
+"CocSemDeprecated xxx links to CocDeprecatedHighlight
+"CocSemClass    xxx links to Special
+"CocSemDecorator xxx links to Identifier
+"CocSemOperator xxx links to Operator
+"CocSemStruct   xxx links to Identifier
+"CocSemRegexp   xxx links to String
+"CocSemMethod   xxx links to Function
+"CocSemComment  xxx links to Comment
+"CocSemEnum     xxx links to Type
+"CocSemInterface xxx links to Type
+"CocSemType     xxx links to Type
+"CocSemProperty xxx links to Identifier
+"CocSemTypeParameter xxx links to Identifier
+"CocSemEnumMember xxx links to Constant
+"CocSemBoolean  xxx links to Boolean
+"CocSemNamespace xxx links to Include
+"CocSemString   xxx links to String
+"CocSemVariable xxx links to Identifier
+"CocSymbolUnit  xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolNumber xxx ctermfg=5 guifg=#B48EAD
+"CocSymbolFunction xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolKey   xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolKeyword xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolReference xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolFolder xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolVariable xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolNull  xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolValue xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolConstant xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolText  xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolModule xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolPackage xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolClass xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolOperator xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolStruct xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolObject xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolMethod xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolArray xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolEnum  xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolField xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolInterface xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolProperty xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolColor xxx ctermfg=5 guifg=#B48EAD
+"CocSymbolFile  xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolEvent xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolTypeParameter xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolConstructor xxx ctermfg=223 guifg=#D8DEE9
+"CocSymbolSnippet xxx ctermfg=6 guifg=#88C0D0
+"CocSymbolBoolean xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolNamespace xxx ctermfg=4 guifg=#81A1C1
+"CocSymbolString xxx ctermfg=2 guifg=#A3BE8C
+"CocSymbolEnumMember xxx ctermfg=223 guifg=#D8DEE9
+"CocSelectedLine xxx cleared
+"CocErrorLine   xxx cleared
+"CocWarningLine xxx cleared
+"CocInfoLine    xxx cleared
+"CocHintLine    xxx cleared
 
 " ------------------------------------------------------------------------------
 " Xterm colors:

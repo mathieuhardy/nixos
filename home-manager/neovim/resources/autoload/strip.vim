@@ -1,5 +1,3 @@
-command! StripRun call strip#run()
-
 " Delete trailing whitespaces
 function! strip#run()
     " Save last search and cursor position

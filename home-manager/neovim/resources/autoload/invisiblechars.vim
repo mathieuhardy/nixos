@@ -1,5 +1,3 @@
-command! -nargs=? InvisibleCharsToggle call invisiblechars#toggle(<f-args>)
-
 " Toggle invisible characters
 :function! invisiblechars#toggle(...)
     let l:disabled = 0
@@ -25,7 +23,7 @@ command! -nargs=? InvisibleCharsToggle call invisiblechars#toggle(<f-args>)
     " Apply configuration
     if g:ic_toggle == l:enabled
         set list
-        let &colorcolumn=g:max_width
+        let &colorcolumn=g:max_width+1
     else
         set nolist
         set colorcolumn=

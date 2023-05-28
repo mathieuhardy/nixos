@@ -114,8 +114,8 @@ function __prompt_git -d "Display the git branch and status"
     set --local count_deleted   0
     set --local count_stashed   (command git rev-list --walk-reflogs --count refs/stash 2>/dev/null)
     set --local count_diverged  0
-    set --local count_ahead     (command git log --oneline @\{u\}.. 2>/dev/null | wc -l)
-    set --local count_behind    (command git log --oneline ..@\{u\} 2>/dev/null | wc -l)
+    set --local count_ahead     (command git log --oneline @\{u\}.. 2>/dev/null | wc -l | sed 's/^ *//')
+    set --local count_behind    (command git log --oneline ..@\{u\} 2>/dev/null | wc -l | sed 's/^ *//')
     set --local count_conflict  0
 
     if [ $count_ahead -gt 0 -a $count_behind -gt 0 ]
@@ -123,12 +123,12 @@ function __prompt_git -d "Display the git branch and status"
     end
 
     if [ -n "$status_str" ]
-        set count_untracked   (string match --all --regex "^\?\?" $status_str | wc -l)
-        set count_modified    (string match --all --regex "^[ M]M.*" $status_str | wc -l)
-        set count_added       (string match --all --regex "^A.*" $status_str | wc -l)
-        set count_renamed     (string match --all --regex "^R.*" $status_str | wc -l)
-        set count_deleted     (string match --all --regex "^D.*" $status_str | wc -l)
-        set count_conflict    (string match --all --regex "^U.*" $status_str | wc -l)
+        set count_untracked   (string match --all --regex "^\?\?" $status_str | wc -l | sed 's/^ *//')
+        set count_modified    (string match --all --regex "^[ M]M.*" $status_str | wc -l | sed 's/^ *//')
+        set count_added       (string match --all --regex "^A.*" $status_str | wc -l | sed 's/^ *//')
+        set count_renamed     (string match --all --regex "^R.*" $status_str | wc -l | sed 's/^ *//')
+        set count_deleted     (string match --all --regex "^D.*" $status_str | wc -l | sed 's/^ *//')                        
+        set count_conflict    (string match --all --regex "^U.*" $status_str | wc -l | sed 's/^ *//')
     end
 
     for i in $c_git_prompt_order

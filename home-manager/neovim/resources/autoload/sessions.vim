@@ -1,5 +1,3 @@
-command! -nargs=1 Session call sessions#load(<f-args>)
-
 " Open session
 function! sessions#load(name)
     if !exists('g:sessions_dir') || empty(g:sessions_dir)

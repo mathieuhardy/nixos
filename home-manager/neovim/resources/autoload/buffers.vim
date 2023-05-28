@@ -1,5 +1,3 @@
-command! BuffersClean call buffers#clean()
-
 " Delete all hidden buffers
 function! buffers#clean()
     let list=[]

@@ -34,6 +34,17 @@ let s:backup_dir = s:vim_dir . '/backup'
 let s:undo_dir = s:vim_dir . '/undo'
 let g:local_plugins_dir = expand('$HOME') . '/.config/nvim/local-plugged'
 
+" Leader key
+if has('macunix')
+    let mapleader=","
+endif
+
+" Text to be displayed in tabs
+:set guitablabel=%t
+
+" Rust format options
+let g:rustfmt_options = '--edition 2021'
+
 " ------------------------------------------------------------------------------
 " Plugins
 " ------------------------------------------------------------------------------
@@ -41,36 +52,25 @@ let g:local_plugins_dir = expand('$HOME') . '/.config/nvim/local-plugged'
 call plug#begin()
 
 " Scrollbar
-"Plug 'dstein64/nvim-scrollview'
+Plug 'dstein64/nvim-scrollview'
 
 " CSS colors
 Plug 'ap/vim-css-color'
 
-" Auto complete
-"   https://github.com/ncm2/ncm2/wiki for a list of plugins per language.
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-
-Plug 'ncm2/ncm2-bufword'     " Words from current buffer
-Plug 'fgrsnau/ncm2-otherbuf' " Words from other buffers
-
-Plug 'ncm2/ncm2-cssomni' " CSS
-Plug 'ncm2/ncm2-jedi'    " Python (needs pip3 install jedi)
-Plug 'ncm2/ncm2-pyclang' " C++
-Plug 'ncm2/ncm2-tern'    " Javascript
-Plug 'ncm2/ncm2-vim'     " Vimscript
+" Auto completion
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Auto close tags
 Plug 'tmsvg/pear-tree'
 
-" Open file a specified position
+" Open file at a specified position
 Plug 'vim-scripts/file-line'
 
 " Fuzzy file search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Indent guides
+" Indent guides (mostly for Python)
 Plug 'ntpeters/vim-indent-guides'
 
 " Status bar
@@ -109,13 +109,13 @@ Plug 'tpope/vim-fugitive'
 " MD5
 Plug 'vim-scripts/md5.vim'
 
-" Distractionn free mode
+" Distraction free mode
 Plug 'junegunn/goyo.vim'
 
 " Limited view
 Plug 'junegunn/limelight.vim'
 
-" Quick menu
+" Quick menu (for displaying mappings)
 Plug 'skywind3000/quickmenu.vim'
 
 " Start menu
@@ -130,9 +130,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 " Underline word under cursor
 Plug 'itchyny/vim-cursorword'
 
+" Jump to definitions
+Plug 'pechorin/any-jump.vim'
+
 " Local plugins
 Plug g:local_plugins_dir . '/buffers'
-Plug g:local_plugins_dir . '/cscope'
 Plug g:local_plugins_dir . '/executable'
 Plug g:local_plugins_dir . '/folding'
 Plug g:local_plugins_dir . '/invisiblechars'
@@ -185,12 +187,6 @@ endif
 autocmd FileType html let b:AutoPairs = AutoPairsDefine(
     \ {'<!--' : '-->'},
     \ ['{'] )
-
-" ------------------------------------------------------------------------------
-" Plugin: cscope
-" ------------------------------------------------------------------------------
-
-let g:cscope_dir = expand('$HOME') . '/.cscope'
 
 " ------------------------------------------------------------------------------
 " Plugin: fugitive
@@ -329,25 +325,10 @@ let g:lightline = {
 let g:mapping_uid = s:get_uid()
 
 " ------------------------------------------------------------------------------
-" Plugin: ncm2
+" Plugin: coc
 " ------------------------------------------------------------------------------
 
-" Enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
-" :help Ncm2PopupOpen for more information
-set completeopt=noinsert,menuone,noselect
-
-" Remove annoying message on status bar
-set shortmess+=c
-
-" Use tab key to move around results
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Run popup on-demand
-let g:ncm2#auto_popup=0
-let g:ncm2#manual_complete_length = [[5,0]]
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<TAB>"
 
 " ------------------------------------------------------------------------------
 " Plugin: nerdtree
@@ -359,7 +340,7 @@ endfunction
 
 let NERDTreeIgnore          = ['CVS\C']
 let NERDTreeMouseMode       = 2 " open files by double clicking
-let NERDTreeWinSize         = 64
+let NERDTreeWinSize         = 30
 let NERDTreeMapActivateNode = '<right>'
 
 let g:NERDTreeIndicatorMapCustom = {
@@ -401,7 +382,7 @@ let g:sessions_dir = s:vim_dir . '/sessions'
 " ------------------------------------------------------------------------------
 
 function! SessionCallback(name)
-    execute 'Session ' . a:name
+    execute ":call sessions#load('" . a:name . "')"
 
     if exists('*NERDTreeCWD')
         NERDTreeCWD
@@ -466,6 +447,21 @@ hi default link TagbarAccessPrivate   Statement
 " Tmux Navigator
 let g:tmux_navigator_no_mappings = 1 " No default mapping
 
+" Rust specifics
+ let g:tagbar_type_rust = {
+    \ 'ctagstype' : 'rust',
+    \ 'kinds' : [
+        \'T:types,type definitions',
+        \'f:functions,function definitions',
+        \'g:enum,enumeration names',
+        \'s:structure names',
+        \'m:modules,module names',
+        \'c:consts,static constants',
+        \'t:traits',
+        \'i:impls,trait implementations',
+    \]
+    \}
+
 " ------------------------------------------------------------------------------
 " Plugin: markdown-preview
 " ------------------------------------------------------------------------------
@@ -474,6 +470,50 @@ let g:mkdp_refresh_slow = 0
 "TODO: create custom CSS style for markdown preview
 "let g:mkdp_markdown_css = '~/markdown.css'
 "let g:mkdp_highlight_css = ''
+
+" ------------------------------------------------------------------------------
+" Plugin: any-jump
+" ------------------------------------------------------------------------------
+
+" Show line numbers
+let g:any_jump_list_numbers = 0
+
+" Normal mode: Jump to definition under cursor
+nnoremap <C-s> :AnyJump<CR>
+
+" Visual mode: jump to selected text in visual mode
+xnoremap <C-s> :AnyJumpVisual<CR>
+
+" Normal mode: open previous opened file (after jump)
+nnoremap <C-BS> :AnyJumpBack<CR>
+
+" Normal mode: open last closed search window again
+nnoremap <C-p> :AnyJumpLastResults<CR>
+
+" Auto group results by filename
+let g:any_jump_grouping_enabled = 1
+
+" Size of popup
+let g:any_jump_window_width_ratio  = 0.9
+let g:any_jump_window_height_ratio = 0.9
+let g:any_jump_window_top_offset   = 1
+
+" Colors
+let g:any_jump_colors = {
+      \"plain_text":         "AnyjumpPlainText",
+      \"preview":            "AnyjumpPreview",
+      \"preview_keyword":    "AnyjumpPreviewKeyword",
+      \"heading_text":       "AnyjumpHeadingText",
+      \"heading_keyword":    "AnyjumpHeadingKeyword",
+      \"group_text":         "AnyjumpGroupText",
+      \"group_name":         "AnyjumpGroupName",
+      \"more_button":        "AnyjumpMoreButton",
+      \"more_explain":       "AnyjumpMoreExplain",
+      \"result_line_number": "AnyjumpLineNumber",
+      \"result_text":        "AnyjumpResultText",
+      \"result_path":        "AnyjumpResultPath",
+      \"help":               "AnyjumpHelp"
+      \}
 
 " ------------------------------------------------------------------------------
 " General
@@ -539,8 +579,10 @@ if has('mouse')
 endif
 
 " Cursor shape
-let &t_SI = '\<Esc>[6 q'
-let &t_EI = '\<Esc>[2 q'
+if has('gui_running')
+    let &t_SI = '\<Esc>[6 q'
+    let &t_EI = '\<Esc>[2 q'
+endif
 
 " Sizes
 set cmdheight=1   " height of the command bar
@@ -606,31 +648,6 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     set mousehide                     " hide the mouse cursor when typing
 endif
 
-" DEPRECATED
-
-" Autocomplete wild menu
-"set wildmode=longest,full " turn on wild mode huge list
-"set suffixes=.bak,.log,~  " give lower precedence for these extensions
-
-"if has('wildmenu')
-   "set wildmenu " enable graphical menu when autocomplete
-"endif
-
-"if has("wildignore")
-   "set wildignore=*.gif,*.jpg,*.png                " ignore images
-   "set wildignore+=*.pdf                           " ignore documents
-   "set wildignore+=*.a,*.o,*.dll,*.obj,*.exe,*.pyc " ignore build objects
-   "set wildignore+=*.bz,*.gz,*.tar,*.tgz,*.zip     " ignore archives
-"endif
-
-" Autocomplete insert mode
-"set complete=.,w,t " . = current buffer
-                   " w = buffers from other windows
-                   " b = buffers from buffer list
-                   " u = buffers unloaded from buffer list
-                   " t = tag completetion
-                   " i = current and included files
-
 " ------------------------------------------------------------------------------
 " Files, backups and undo
 " ------------------------------------------------------------------------------
@@ -665,7 +682,7 @@ let &backupdir=s:backup_dir " directory of backup files
 set undolevels=1000 " undo levels
 
 " Persistent undo
-if has('persistent_undo')
+if has('persistent_undo') && !&diff
     let &undodir=s:undo_dir " set undo directory
     set undofile            " enable undo files
 endif
@@ -738,11 +755,24 @@ map <kPlus>  <Plug>nextvalInc
 map - <Plug>nextvalDec
 map + <Plug>nextvalInc
 
-" alt-<arrow>: tmux up/down/left/right
-nmap <silent> <A-Up>    :TmuxNavigateUp<CR>
-nmap <silent> <A-Down>  :TmuxNavigateDown<CR>
-nmap <silent> <A-Left>  :TmuxNavigateLeft<CR>
-nmap <silent> <A-Right> :TmuxNavigateRight<CR>
+" alt-<arrow>|ctrl-<arrow>: tmux up/down/left/right
+if has('macunix')
+    if &diff
+        nmap <silent><expr> <C-Up>   '[c'
+        nmap <silent><expr> <C-Down> ']c'
+        " TODO
+    else
+        nmap <silent> <C-Up>    :TmuxNavigateUp<CR>
+        nmap <silent> <C-Down>  :TmuxNavigateDown<CR>
+        nmap <silent> <C-Left>  :TmuxNavigateLeft<CR>
+        nmap <silent> <C-Right> :TmuxNavigateRight<CR>
+    endif
+else
+    nmap <silent> <A-Up>    :TmuxNavigateUp<CR>
+    nmap <silent> <A-Down>  :TmuxNavigateDown<CR>
+    nmap <silent> <A-Left>  :TmuxNavigateLeft<CR>
+    nmap <silent> <A-Right> :TmuxNavigateRight<CR>
+endif
 
 " shift-v: visual block mode
 nnoremap <S-v> <C-v>
@@ -750,7 +780,7 @@ nnoremap <S-v> <C-v>
 " ctrl-x: cut
 vnoremap <silent> <C-X> "+x
 
-" crl-c: copy
+" ctrl-c: copy
 map <silent> <C-c> "+y
 
 " ctrl-v: paste
@@ -758,11 +788,15 @@ map  <silent> <C-v> "+gP
 imap <silent> <C-v> <ESC>"+gpa
 
 " ?: show mapping
-nmap <silent> ? :MappingToggle<CR>
+nmap <silent> ? :call mapping#toggle()<CR>
 
 if has('gui_running') || $COLORTERM == 'truecolor'
     " ctrl-Space: auto completion
-    imap <C-Space> <Plug>(ncm2_manual_trigger)
+    if !has('macunix')
+        imap <C-Space> <Plug>(ncm2_manual_trigger)
+    else
+        inoremap <silent><expr> <C-Space> coc#refresh()
+    endif
 
     " \\: open previous file
     map <Leader><Leader> :e#<CR>
@@ -774,7 +808,7 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     :map <silent> <C-f> :call <SID>FzfDevicons($pwd)<CR>
 
     " ctrl-d => drop all hidden buffers
-    map <silent> <C-d> :BuffersClean<CR>
+    map <silent> <C-d> :call buffers#clean()<CR>
 
     " ctrl-k: comment/uncomment
     map  <silent> <C-k> <Leader>c<space>
@@ -790,11 +824,13 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     imap <silent> <C-m> <Plug>MarkdownPreviewToggle
     vmap <silent> <C-m> <Plug>MarkdownPreviewToggle
 
-    " ctrl-PageUp: previous tab
-    map <silent> <C-PageUp> gT
+    if !has('macunix')
+        " ctrl-PageUp: previous tab
+        map <silent> <C-PageUp> gT
 
-    " ctrl-PageDown: next tab
-    map <silent> <C-PageDown> gt
+        " ctrl-PageDown: next tab
+        map <silent> <C-PageDown> gt
+    endif
 
     " F1: save
     :map  <F1> :w<CR>
@@ -816,29 +852,10 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     imap <silent> <F4> <ESC>:vsplit<CR>a
     vmap <silent> <F4> <ESC>:vsplit<CR>
 
-    " F6: cscope
-    map  <F6> :CscopeUpdate<CR>
-    imap <F6> <ESC>:CscopeUpdate<CR>
-    vmap <F6> <ESC>:CscopeUpdate<CR>
-
-    " ctrl-F6 => rebuild cscope
-    map  <C-F6> :CscopeRebuild<CR>
-    imap <C-F6> <ESC>CscopeRebuild<CR>
-    vmap <C-F6> <ESC>CscopeRebuild<CR>
-
-    map  <F30> :CscopeRebuild<CR>
-    imap <F30> <ESC>:CscopeRebuild<CR>
-    vmap <F30> <ESC>:CscopeRebuild<CR>
-
     " F7: no highlight
     map  <silent> <F7> :nohlsearch<CR>
     imap <silent> <F7> <ESC>:nohlsearch<CR>a
     vmap <silent> <F7> <ESC>:nohlsearch<CR>
-
-    " F8: indent all file
-    map  <silent> <F8> gg=G
-    imap <silent> <F8> <ESC>gg=G
-    vmap <silent> <F8> <ESC>gg=G
 
     " F9: symbols list
     map  <silent> <F9> :TagbarToggle<CR>
@@ -851,9 +868,9 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     vmap <silent> <F10> <ESC>:NERDTreeToggle<CR>
 
     " F11: toggle invisible characters
-    map  <silent> <F11> :InvisibleCharsToggle<CR>
-    imap <silent> <F11> <ESC>:InvisibleCharsToggle<CR>a
-    vmap <silent> <F11> <ESC>:InvisibleCharsToggle<CR>
+    map  <silent> <F11> :call invisiblechars#toggle()<CR>
+    imap <silent> <F11> <ESC>:call invisiblechars#toggle()<CR>a
+    vmap <silent> <F11> <ESC>:call invisiblechars#toggle()<CR>
 
     " F12: distraction free mode
     map  <silent> <F12> :Goyo<CR>
@@ -875,9 +892,9 @@ endif
 " ------------------------------------------------------------------------------
 
 if has('autocmd')
-    autocmd VimEnter * :InvisibleCharsToggle 1
-    autocmd VimEnter * :WrappingToggle 0
-    autocmd VimEnter * :FoldingToggle 0
+    autocmd VimEnter * :call invisiblechars#toggle(0)
+    autocmd VimEnter * :call wrapping#toggle(0)
+    autocmd VimEnter * :call folding#toggle(0)
 
     " Remap double click in NERDTree
     autocmd VimEnter * :call NERDTreeAddKeyMap({
@@ -888,13 +905,15 @@ if has('autocmd')
         \ })
 
     " Remove trailing spaces for these kinds of files
-    autocmd BufWrite *.c    :StripRun
-    autocmd BufWrite *.cpp  :StripRun
-    autocmd BufWrite *.h    :StripRun
-    autocmd BufWrite *.hpp  :StripRun
+    autocmd BufWrite *.c   :call strip#run()
+    autocmd BufWrite *.cpp :call strip#run()
+    autocmd BufWrite *.h   :call strip#run()
+    autocmd BufWrite *.hpp :call strip#run()
+    autocmd BufWrite *.py  :call strip#run()
+    autocmd BufWrite *.rs  :call strip#run()
 
     " Detect which files are executables
-    autocmd BufWritePost * ExecutableDetect
+    autocmd BufWritePost * :call executable#detect()
 
     " Set PRO files detected as make files
     autocmd BufNewFile,BufRead *.pro set filetype=make
@@ -904,26 +923,9 @@ if has('autocmd')
         autocmd!
         autocmd FileType python :IndentGuidesEnable
     augroup END
-endif
 
-" ------------------------------------------------------------------------------
-" Cscope
-" ------------------------------------------------------------------------------
-
-if has('cscope')
-    " Configurations
-    set cscopetag     " use both cscope and ctag for 'ctrl-]', ':ta', and
-                      " 'vim -t'
-    set csto=0        " check cscope for definition of a symbol before checking
-                      " ctags (1 for inverse order)
-    set cscopeverbose " show msg when any other cscope db added
-    set notimeout     " remove 1 second timeout for each keystroke
-
-    " Key mappings
-    nmap <C-j> :cs find f <C-R>=expand("<cword>")<CR><CR>
-    nmap <C-s> :cs find s <C-R>=expand("<cword>")<CR><CR>
-
-    vmap <C-LeftRelease> :cs find g <C-R>=expand("<cword>")<CR><CR>
+    " Rust
+    autocmd BufWrite *.rs :RustFmt
 endif
 
 " ------------------------------------------------------------------------------
