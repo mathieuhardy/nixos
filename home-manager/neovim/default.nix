@@ -21,6 +21,7 @@ let
     "name" = username;
     "value" = lib.mkIf config.hm."${username}".neovim.enable {
       home.file."${configDir}/init.vim".source = ./resources/init.vim;
+      home.file."${configDir}/book.vim".source = ./resources/book.vim;
       home.file."${configDir}/colors".source = ./resources/colors;
       home.file."${configDir}/local-plugged".source = ./resources/plugins;
     };

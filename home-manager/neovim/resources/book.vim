@@ -1,7 +1,7 @@
 " ==============================================================================
 "
-" Script name: init.vim
-" Description: Configuration for neovim.
+" Script name: book.vim
+" Description: Configuration for neovim (book mode).
 " Dependencies:
 " GitHub: https://www.github.com/mathieuhardy/nixos
 " License: https://www.github.com/mathieuhardy/nixos/LICENSE
@@ -26,8 +26,6 @@ endif
 " Variables
 " ------------------------------------------------------------------------------
 
-let g:max_width = 80
-
 let s:vim_dir = expand('$HOME') . '/.vim'
 let s:templates_dir = s:vim_dir . '/templates'
 let s:backup_dir = s:vim_dir . '/backup'
@@ -48,51 +46,18 @@ endif
 
 call plug#begin()
 
-" Scrollbar
-Plug 'dstein64/nvim-scrollview'
-
-" CSS colors
-Plug 'ap/vim-css-color'
-
 " Auto completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Auto close tags
-Plug 'tmsvg/pear-tree'
-
-" Open file at a specified position
-Plug 'wsdjeg/vim-fetch'
 
 " Fuzzy file search
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Indent guides (mostly for Python)
-Plug 'ntpeters/vim-indent-guides'
-
-" Status bar
-Plug 'itchyny/lightline.vim'
-
-" Manpages
-Plug 'vim-utils/vim-man'
-
-" Commenter
-Plug 'scrooloose/nerdcommenter'
-
 " File tree
 Plug 'scrooloose/nerdtree'
 
-" Value toggler
-Plug 'qwertologe/nextval.vim'
-
 " Syntax highlighter
 Plug 'sheerun/vim-polyglot'
-
-" Alignement
-Plug 'godlygeek/tabular'
-
-" Symbols viewer
-Plug 'preservim/tagbar'
 
 " Navigate through buffers
 Plug 'christoomey/vim-tmux-navigator'
@@ -100,46 +65,18 @@ Plug 'christoomey/vim-tmux-navigator'
 " Devicons
 Plug 'ryanoasis/vim-devicons'
 
-" Git
-Plug 'tpope/vim-fugitive'
-
-" MD5
-Plug 'vim-scripts/md5.vim'
-
 " Distraction free mode
 Plug 'junegunn/goyo.vim'
 
 " Limited view
 Plug 'junegunn/limelight.vim'
 
-" Quick menu (for displaying mappings)
-Plug 'skywind3000/quickmenu.vim'
-
-" Start menu
-Plug 'mhinz/vim-startify'
-
-" Digraphs
-Plug 'vim-scripts/unicycle'
-
-" Markdown viewer
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-
-" Underline word under cursor
-Plug 'itchyny/vim-cursorword'
-
 " Jump to definitions
 Plug 'pechorin/any-jump.vim'
 
 " Local plugins
-Plug g:local_plugins_dir . '/buffers'
-Plug g:local_plugins_dir . '/executable'
-Plug g:local_plugins_dir . '/folding'
-Plug g:local_plugins_dir . '/invisiblechars'
 Plug g:local_plugins_dir . '/mapping'
-Plug g:local_plugins_dir . '/sessions'
-Plug g:local_plugins_dir . '/strip'
 Plug g:local_plugins_dir . '/theme'
-Plug g:local_plugins_dir . '/wrapping'
 
 call plug#end()
 
@@ -159,12 +96,6 @@ endfunction
 
 
 " ------------------------------------------------------------------------------
-" Scrollbar
-" ------------------------------------------------------------------------------
-
-let g:scrollview_signs_on_startup = []
-
-" ------------------------------------------------------------------------------
 " Setup
 " ------------------------------------------------------------------------------
 
@@ -180,29 +111,6 @@ endif
 if !isdirectory(s:undo_dir)
     call mkdir(s:undo_dir, '', 0770)
 endif
-
-" ------------------------------------------------------------------------------
-" Plugin: pear-tree
-" ------------------------------------------------------------------------------
-
-" HTML
-"   - add auto completes: <!-- -->
-autocmd FileType html let g:pear_tree_pairs = {
-            \ '<!--': {'closer': '-->'}
-            \ }
-
-" ------------------------------------------------------------------------------
-" Plugin: fugitive
-" ------------------------------------------------------------------------------
-
-" Toggle display of git blame buffer
-function! s:ToggleBlame()
-    if &l:filetype ==# 'fugitiveblame'
-        close
-    else
-        :Git blame
-    endif
-endfunction
 
 " ------------------------------------------------------------------------------
 " Plugin: fzf
@@ -249,7 +157,7 @@ function! s:FzfDevicons(qargs)
 
         let l:cmd = get({
             \ 'ctrl-x': 'split',
-            \ 'ctrl-v': 'vertical split',
+            \ 'atrl-v': 'vertical split',
             \ 'ctrl-t': 'tabe'
             \ },
             \ a:lines[0], 'e')
@@ -296,6 +204,8 @@ let g:fzf_colors = {
 " ------------------------------------------------------------------------------
 
 function! s:goyo_enter()
+    :Limelight
+
     let b:quitting = 0
     let b:quitting_bang = 0
     autocmd QuitPre <buffer> let b:quitting = 1
@@ -312,6 +222,7 @@ function! s:goyo_leave()
         endif
     endif
 
+    :Limelight!
     :call theme#apply()
 endfunction
 
@@ -324,26 +235,6 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 " ------------------------------------------------------------------------------
 
 let g:limelight_conceal_ctermfg = 'gray'
-
-" ------------------------------------------------------------------------------
-" Plugin: lightline
-" ------------------------------------------------------------------------------
-
-let g:lightline = {
-    \ 'colorscheme': 'Tomorrow',
-    \ 'active': {
-    \   'left':  [
-    \              ['mode', 'paste'],
-    \              ['gitbranch', 'readonly', 'filename', 'modified']
-    \            ],
-    \
-    \   'right': [
-    \              ['lineinfo'],
-    \              ['percent'],
-    \              ['filetype', 'fileformat', 'fileencoding']
-    \            ],
-    \ },
-    \ }
 
 " ------------------------------------------------------------------------------
 " Plugin: mapping
@@ -399,106 +290,6 @@ hi NERDTreeGitStatusIgnored     guifg=fg      gui=bold
 let g:cpp_no_function_highlight = 1
 
 " ------------------------------------------------------------------------------
-" Plugin: sessions
-" ------------------------------------------------------------------------------
-
-let g:sessions_dir = s:vim_dir . '/sessions'
-
-" ------------------------------------------------------------------------------
-" Plugin: startify
-" ------------------------------------------------------------------------------
-
-function! SessionCallback(name)
-    execute ":call sessions#load('" . a:name . "')"
-
-    if exists('*NERDTreeCWD')
-        NERDTreeCWD
-    endif
-endfunction
-
-function! s:get_sessions()
-    let l:list = []
-
-    for l:dir in split(globpath(g:sessions_dir, '*'), '\n')
-        let l:name = substitute(l:dir, g:sessions_dir . '/', '', '')
-        let l:name = substitute(l:name, '.vim', '', '')
-        let l:cmd = ":call SessionCallback('" . l:name . "')"
-        call add(l:list, {'line': l:name, 'cmd': l:cmd})
-    endfor
-
-    return l:list
-endfunction
-
-let g:startify_lists = [
-    \ { 'type': function('s:get_sessions'), 'header': ['   Sessions'] },
-    \ ]
-
-let g:startify_custom_header = [
-    \ '   ███╗   ██╗██╗   ██╗██╗███╗   ███╗',
-    \ '   ████╗  ██║██║   ██║██║████╗ ████║',
-    \ '   ██╔██╗ ██║██║   ██║██║██╔████╔██║',
-    \ '   ██║╚██╗██║╚██╗ ██╔╝██║██║╚██╔╝██║',
-    \ '   ██║ ╚████║ ╚████╔╝ ██║██║ ╚═╝ ██║',
-    \ '   ╚═╝  ╚═══╝  ╚═══╝  ╚═╝╚═╝     ╚═╝'
-    \ ]
-
-" ------------------------------------------------------------------------------
-" Plugin: tabular
-" ------------------------------------------------------------------------------
-
-nmap <silent> <Leader>t= :Tab /=<CR>
-vmap <silent> <Leader>t= :Tab /=<CR>
-
-nmap <silent> <Leader>t: :Tab /:<CR>
-vmap <silent> <Leader>t: :Tab /:<CR>
-
-nmap <silent> <Leader>t\| :Tab /\|<CR>
-vmap <silent> <Leader>t\| :Tab /\|<CR>
-
-" ------------------------------------------------------------------------------
-" Plugin: tagbar
-" ------------------------------------------------------------------------------
-
-let g:tagbar_left        = 1  " opens on left
-let g:tagbar_singleclick = 1  " singleclick for jumping
-let g:tagbar_width       = 50 " width of window
-let g:tagbar_autofocus   = 1  " move cursor to tagbar
-let g:tagbar_sort        = 0  " no sort by default
-let g:tagbar_silent      = 1  " be silent
-
-hi default link TagbarSignature       Folded
-hi default link TagbarAccessPublic    Identifier
-hi default link TagbarAccessProtected PreProc
-hi default link TagbarAccessPrivate   Statement
-
-" Tmux Navigator
-let g:tmux_navigator_no_mappings = 1 " No default mapping
-
-" Rust specifics
- let g:tagbar_type_rust = {
-    \ 'ctagstype' : 'rust',
-    \ 'kinds' : [
-        \'T:types,type definitions',
-        \'f:functions,function definitions',
-        \'g:enum,enumeration names',
-        \'s:structure names',
-        \'m:modules,module names',
-        \'c:consts,static constants',
-        \'t:traits',
-        \'i:impls,trait implementations',
-    \]
-    \}
-
-" ------------------------------------------------------------------------------
-" Plugin: markdown-preview
-" ------------------------------------------------------------------------------
-
-let g:mkdp_refresh_slow = 0
-"TODO: create custom CSS style for markdown preview
-"let g:mkdp_markdown_css = '~/markdown.css'
-"let g:mkdp_highlight_css = ''
-
-" ------------------------------------------------------------------------------
 " Plugin: any-jump
 " ------------------------------------------------------------------------------
 
@@ -551,41 +342,6 @@ set noexrc        " don't use local version of .(g)vimrc, .exrc
 
 if has("cmdline_hist")
     set history=1000 " keep 1000 lines of command line
-endif
-
-" ------------------------------------------------------------------------------
-" Templates
-" ------------------------------------------------------------------------------
-
-if has('autocmd')
-    augroup templates
-        autocmd!
-        autocmd BufNewFile *.html,*.htm  call Template('html')
-        autocmd BufNewFile *.py          call Template('py')
-        autocmd BufNewFile *.sh          call Template('sh')
-        autocmd BufNewFile *.c,*.cpp     call Template('c')
-        autocmd BufNewFile *.h,*.hpp     call Template('h')
-    augroup END
-
-    function! Template(type)
-        if has('unix')
-            let l:file     = expand('%:t')
-            let l:author   = expand('$USER')
-            let l:date     = strftime('%d-%m-%Y')
-            let l:skeleton = s:templates_dir . '/skeleton.' . a:type
-
-            " Load template
-            execute 'silent! 0r ' . l:skeleton
-
-            " Replace patterns
-            execute 'silent! %s/%FILE%/'   . l:file   . '/ge'
-            execute 'silent! %s/%AUTHOR%/' . l:author . '/ge'
-            execute 'silent! %s/%DATE%/'   . l:date   . '/ge'
-
-            " Place cursor at end
-            execute 'normal! G'
-        endif
-    endfunction
 endif
 
 " ------------------------------------------------------------------------------
@@ -744,6 +500,13 @@ endif
 " Text
 set conceallevel=0 " show `` characters
 
+" Wrapping
+set wrap
+set linebreak
+set nolist
+set spell
+setlocal spell spelllang=fr_fr
+
 " ------------------------------------------------------------------------------
 " Searching
 " ------------------------------------------------------------------------------
@@ -757,8 +520,10 @@ set incsearch  " do incremental searching
 " Abbreviations
 " ------------------------------------------------------------------------------
 
-iabbrev #i #include
-iabbrev #d #define
+iabbrev -- —
+iabbrev oe œ
+iabbrev << «
+iabbrev >> »
 
 " ------------------------------------------------------------------------------
 " Mappings
@@ -775,25 +540,12 @@ iabbrev #d #define
 "     file generated by doing: $ nvim -V3log
 " ------------------------------------------------------------------------------
 
-" +/-: increment/decrement value under cursor
-map <kMinus> <Plug>nextvalDec
-map <kPlus>  <Plug>nextvalInc
-
-map - <Plug>nextvalDec
-map + <Plug>nextvalInc
-
 " alt-<arrow>|ctrl-<arrow>: tmux up/down/left/right
 if has('macunix')
-    if &diff
-        nmap <silent><expr> <C-Up>   '[c'
-        nmap <silent><expr> <C-Down> ']c'
-        " TODO
-    else
-        nmap <silent> <C-Up>    :TmuxNavigateUp<CR>
-        nmap <silent> <C-Down>  :TmuxNavigateDown<CR>
-        nmap <silent> <C-Left>  :TmuxNavigateLeft<CR>
-        nmap <silent> <C-Right> :TmuxNavigateRight<CR>
-    endif
+    nmap <silent> <C-Up>    :TmuxNavigateUp<CR>
+    nmap <silent> <C-Down>  :TmuxNavigateDown<CR>
+    nmap <silent> <C-Left>  :TmuxNavigateLeft<CR>
+    nmap <silent> <C-Right> :TmuxNavigateRight<CR>
 else
     nmap <silent> <A-Up>    :TmuxNavigateUp<CR>
     nmap <silent> <A-Down>  :TmuxNavigateDown<CR>
@@ -814,9 +566,6 @@ map <silent> <C-c> "+y
 map  <silent> <C-v> "+gP
 imap <silent> <C-v> <ESC>"+gpa
 
-" ?: show mapping
-nmap <silent> ? :call mapping#toggle()<CR>
-
 if has('gui_running') || $COLORTERM == 'truecolor'
     " ctrl-Space: auto completion
     if !has('macunix')
@@ -828,28 +577,8 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     " \\: open previous file
     map <Leader><Leader> :e#<CR>
 
-    " ctrl-b: git blame
-    map <silent> <C-b> :call <SID>ToggleBlame()<CR>
-
     " ctrl-f: search files
     :map <silent> <C-f> :call <SID>FzfDevicons($pwd)<CR>
-
-    " ctrl-d => drop all hidden buffers
-    map <silent> <C-d> :call buffers#clean()<CR>
-
-    " ctrl-k: comment/uncomment
-    map  <silent> <C-k> <Leader>c<space>
-    imap <silent> <C-k> <ESC><Leader>c<space>
-    vmap <silent> <C-k> <Leader>c<space>
-
-    " ctrl-o: sorting
-    nnoremap <silent> <C-o> Vip:sort i<CR>
-    vnoremap <silent> <C-o> :sort i<CR>
-
-    " ctrl-m: markdown preview toggle
-    nmap <silent> <C-m> <Plug>MarkdownPreviewToggle
-    imap <silent> <C-m> <Plug>MarkdownPreviewToggle
-    vmap <silent> <C-m> <Plug>MarkdownPreviewToggle
 
     if !has('macunix')
         " ctrl-PageUp: previous tab
@@ -884,34 +613,15 @@ if has('gui_running') || $COLORTERM == 'truecolor'
     imap <silent> <F7> <ESC>:nohlsearch<CR>a
     vmap <silent> <F7> <ESC>:nohlsearch<CR>
 
-    " F9: symbols list
-    map  <silent> <F9> :TagbarToggle<CR>
-    imap <silent> <F9> <ESC>:TagbarToggle<CR>a
-    vmap <silent> <F9> <ESC>:TagbarToggle<CR>
-
     " F10: tree file explorer
     map  <silent> <F10> :NERDTreeToggle<CR>
     imap <silent> <F10> <ESC>:NERDTreeToggle<CR>a
     vmap <silent> <F10> <ESC>:NERDTreeToggle<CR>
 
-    " F11: toggle invisible characters
-    map  <silent> <F11> :call invisiblechars#toggle()<CR>
-    imap <silent> <F11> <ESC>:call invisiblechars#toggle()<CR>a
-    vmap <silent> <F11> <ESC>:call invisiblechars#toggle()<CR>
-
-    " F12: distraction free mode
-    map  <silent> <F12> :Goyo<CR>
-    imap <silent> <F12> <ESC>:Goyo<CR>a
-    vmap <silent> <F12> <ESC>:Goyo<CR>
-
-    " ctrl-F12 => limited view mode
-    map  <C-F12> :Limelight!!<CR>
-    imap <C-F12> <ESC>:Limelight!!<CR>
-    vmap <C-F12> <ESC>:Limelight!!<CR>
-
-    map  <F36> :Limelight!!<CR>
-    imap <F36> <ESC>:Limelight!!<CR>
-    vmap <F36> <ESC>:Limelight!!<CR>
+    " Book mode
+    map  <F12> :Goyo<CR>
+    imap <F12> <ESC>:Goyo<CR>
+    vmap <F12> <ESC>:Goyo<CR>
 endif
 
 " ------------------------------------------------------------------------------
@@ -919,9 +629,7 @@ endif
 " ------------------------------------------------------------------------------
 
 if has('autocmd')
-    autocmd VimEnter * :call invisiblechars#toggle(0)
-    autocmd VimEnter * :call wrapping#toggle(0)
-    autocmd VimEnter * :call folding#toggle(0)
+    autocmd VimEnter * :silent! Goyo
 
     " Remap double click in NERDTree
     autocmd VimEnter * :call NERDTreeAddKeyMap({
@@ -930,29 +638,6 @@ if has('autocmd')
         \ 'callback': "NERDTreeDoubleClickCbk",
         \ 'override':1
         \ })
-
-    " Remove trailing spaces for these kinds of files
-    autocmd BufWrite *.c   :call strip#run()
-    autocmd BufWrite *.cpp :call strip#run()
-    autocmd BufWrite *.h   :call strip#run()
-    autocmd BufWrite *.hpp :call strip#run()
-    autocmd BufWrite *.py  :call strip#run()
-    autocmd BufWrite *.rs  :call strip#run()
-
-    " Detect which files are executables
-    autocmd BufWritePost * :call executable#detect()
-
-    " Set PRO files detected as make files
-    autocmd BufNewFile,BufRead *.pro set filetype=make
-
-    " Python
-    augroup au_python
-        autocmd!
-        autocmd FileType python :IndentGuidesEnable
-    augroup END
-
-    " Rust
-    autocmd BufWrite *.rs :RustFmt
 endif
 
 " ------------------------------------------------------------------------------
