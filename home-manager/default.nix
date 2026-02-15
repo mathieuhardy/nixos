@@ -1,56 +1,57 @@
-{ ... }:
+{ pkgs, ... }:
 
-let
-  home-manager = builtins.fetchGit {
-    url = "https://github.com/rycee/home-manager.git";
-    rev = "63f299b3347aea183fc5088e4d6c4a193b334a41";
-    ref = "release-20.09";
-  };
-in
+# TODO: clean
 {
-  # ----------------------------------------------------------------------------
+  # ────────────────────────────────────────────────────────────────────────────
   # Imports
-  # ----------------------------------------------------------------------------
+  # ────────────────────────────────────────────────────────────────────────────
 
   imports = [
-    (import "${home-manager}/nixos")
-
-    ./add
-    ./alacritty
-    ./bspwm
-    ./cerebro
-    ./dunst
-    ./easier
-    ./feh
-    ./fish
-    ./git
-    ./gsimplecal
-    ./gtk
-    ./inputs/trackballs/elecom-deft-pro
-    ./inputs/trackballs/mte
-    ./iwd
-    ./lightdm
-    ./lok
-    ./nautilus
-    ./neovim
-    ./nixpkgs
-    ./override
-    ./polybar
-    ./rice
-    ./rofi
-    ./sddm
-    ./sxhkd
-    ./thunar
-    ./vlc
-    ./xserver
+    ./fish.nix
+    ./git.nix
+    ./input-remapper.nix
+    ./lsd.nix
+    ./mpv.nix
+    ./neovim.nix
+    ./zed.nix
   ];
 
-  # ----------------------------------------------------------------------------
-  # Configuration
-  # ----------------------------------------------------------------------------
+  home.username = "mhardy";
+  home.homeDirectory = "/home/mhardy";
 
-  home-manager = {
-    useUserPackages = true;
-    useGlobalPkgs = true;
-  };
+  home.packages = [
+    # pkgs.nerd-fonts.commit-mono
+
+    # pkgs.arc-kde-theme      # le thème Arc pour KDE/Kvantum
+    # pkgs.papirus-icon-theme # icons recommandés avec Arc
+  ];
+
+  # Configure Qt pour utiliser Kvantum
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "breeze";
+  #   style.name = "breeze";
+  # };
+
+  # programs.plasma = {
+  #   enable = true;
+  #
+  #   workspace = {
+  #     lookAndFeel = "com.github.varlesh.arc-darker";  # Global Theme => ArcDarker
+  #     colorScheme = "ArcDark";                         # Colors => Arc Dark
+  #     theme = "arc-dark";                              # Plasma Style => Arc Dark
+  #     iconTheme = "Papirus";                           # Icons => Papirus
+  #     cursor.theme = "breeze_cursors";                 # Cursors => Breeze
+  #   };
+  #
+  #   window-decorations = {
+  #     theme = "Arc Dark";                              # Window Decorations => Arc Dark
+  #     library = "org.kde.kdecoration2";
+  #   };
+  # };
+
+  xdg.userDirs.enable = true;
+  xdg.userDirs.createDirectories = true;
+
+  home.stateVersion = "25.11";
 }

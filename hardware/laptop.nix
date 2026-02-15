@@ -1,10 +1,8 @@
-# Laptop generic configuration
-
-{ config, lib, pkgs, ... }:
+{ ... }:
 
 {
   # Touchpad
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     #tapping = false;
   };

@@ -1,0 +1,7 @@
+{
+    "version": "2.1.1",
+    "autoload": {
+        "Keychron Keychron Q6": "Keychron",
+        "ELECOM TrackBall Mouse DEFT Pro TrackBall": "Elecom"
+    }
+}
