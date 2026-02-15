@@ -77,6 +77,12 @@ in
     xarchiver
     xdg-user-dirs
     zip
+
+    # Themes
+    arc-theme
+    arc-kde-theme
+    papirus-icon-theme
+    kdePackages.qtstyleplugin-kvantum
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

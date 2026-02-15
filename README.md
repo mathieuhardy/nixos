@@ -1,4 +1,4 @@
 # TODO
 
-- ssh: hm ssh-config
-- android: file exchange
+- ? ssh: hm ssh-config
+- ?arc-theme
