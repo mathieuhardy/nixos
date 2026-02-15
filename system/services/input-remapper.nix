@@ -1,19 +1,20 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # Apply config at startup
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    # ./blueman.nix
-    ./desktop-manager.nix
-    ./display-manager.nix
-    ./filesystem.nix
-    ./input-remapper.nix
-    # ./keyd.nix
-    ./openssh.nix
-    ./printing.nix
-    ./xserver.nix
-  ];
+  systemd.user.services.input-remapper-autoload = {
+    description = "input-remapper autoload";
+    wantedBy = [ "graphical-session.target" ];
+    after = [
+      "graphical-session.target"
+      "input-remapper.service"
+    ];
+    serviceConfig = {
+      Type = "oneshot";
+      ExecStart = "${pkgs.input-remapper}/bin/input-remapper-control --command autoload";
+    };
+  };
 }
