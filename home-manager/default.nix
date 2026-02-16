@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 
 # TODO: clean
 {
@@ -13,6 +13,8 @@
     ./lsd.nix
     ./mpv.nix
     ./neovim.nix
+    ./secrets.nix
+    ./ssh.nix
     ./zed.nix
   ];
 

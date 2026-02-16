@@ -59,6 +59,7 @@ in
     tomb
 
     # System utilities
+    age
     bash
     bottom
     curl
@@ -69,6 +70,7 @@ in
     lsd
     qalculate-qt
     ripgrep
+    sops
     starship
     trashy
     unzip

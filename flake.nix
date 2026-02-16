@@ -10,8 +10,11 @@
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-      # Use the same nixpkgs
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -25,6 +28,7 @@
       self,
       nixpkgs,
       home-manager,
+      sops-nix,
       ...
     }:
     {
@@ -42,7 +46,14 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mhardy = import ./home-manager/default.nix;
+            home-manager.users.mhardy = {
+              imports = [
+                # SOPS must be declared before home-manager
+                sops-nix.homeManagerModules.sops
+
+                ./home-manager/default.nix
+              ];
+            };
           }
         ];
       };
