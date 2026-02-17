@@ -31,3 +31,21 @@ sops --age <age_public_key> -i -e secrets/mistral/api_key.json
 ```
 
 - Apply NixOS configuration
+
+# Todo
+
+- fish abbr
+
+- begin to split packages: KDE, common, Hyprland
+
+- hardware config
+```nix
+inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
+# Dans nixosConfigurations.modules :
+nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen1
+```
+
+- treefmt.nix
+[https://github.com/numtide/treefmt-nix](https://github.com/numtide/treefmt-nix)
+[https://nixos.asia/en/treefmt](ttps://nixos.asia/en/treefmt)

@@ -1,4 +1,4 @@
-{ ... }:
+{ config, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -10,7 +10,7 @@
 
     autoLogin = {
       enable = true;
-      user = "mhardy";
+      user = "${config.settings.userLogin}";
     };
   };
 }

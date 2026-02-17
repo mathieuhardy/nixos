@@ -1,6 +1,12 @@
 { config, pkgs, ... }:
 
 {
+  # ────────────────────────────────────────────────────────────────────────────
+  # Decrypt secrets with SOPS and install them
+  #   - Mistral API key
+  #   - GitHub SSH keys
+  # ────────────────────────────────────────────────────────────────────────────
+
   sops = {
     defaultSopsFile = ./secrets.toml;
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";

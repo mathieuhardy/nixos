@@ -10,8 +10,8 @@
 
     settings = {
       user = {
-        name = "Mathieu Hardy";
-        email = "mhardy2008@gmail.com";
+        name = "${osConfig.settings.gitUserName}";
+        email = "${osConfig.settings.gitUserEmail}";
       };
 
       core = {

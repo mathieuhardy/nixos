@@ -1,6 +1,11 @@
-{ config, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  osConfig,
+  ...
+}:
 
-# TODO: clean
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Imports
@@ -15,60 +20,16 @@
     ./neovim.nix
     ./secrets.nix
     ./ssh.nix
+    ./xdg.nix
     ./zed.nix
   ];
 
-  home.username = "mhardy";
-  home.homeDirectory = "/home/mhardy";
+  # ────────────────────────────────────────────────────────────────────────────
+  # Global home-manager configuration
+  # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.userDirs.enable = true;
-  xdg.userDirs.createDirectories = true;
+  home.username = "${osConfig.settings.userLogin}";
+  home.homeDirectory = "/home/${osConfig.settings.userLogin}";
 
-  home.stateVersion = "25.11";
-
-  # ── Thème GTK (applications Firefox, Nautilus, etc.) ──────────────────
-  # gtk = {
-  #   enable = true;
-  #
-  #   theme = {
-  #     name = "Arc-Dark"; # ou "Arc", "Arc-Darker"
-  #     package = pkgs.arc-theme;
-  #   };
-  #
-  #   iconTheme = {
-  #     name = "Papirus-Dark";
-  #     package = pkgs.papirus-icon-theme;
-  #   };
-  #
-  #   cursorTheme = {
-  #     name = "Adwaita";
-  #     size = 24;
-  #   };
-  #
-  #   gtk3.extraConfig = {
-  #     gtk-application-prefer-dark-theme = true;
-  #   };
-  #
-  #   gtk4.extraConfig = {
-  #     gtk-application-prefer-dark-theme = true;
-  #   };
-  # };
-
-  # ── Thème Qt/KDE via Kvantum ───────────────────────────────────────────
-  #   qt = {
-  #     enable = true;
-  #     platformTheme.name = "kvantum"; # Home Manager >= 23.11
-  #     # Pour les versions plus anciennes : platformTheme = "kvantum";
-  #     style.name = "kvantum";
-  #   };
-  #
-  #   # Lier le thème Arc-Dark dans la config Kvantum
-  #   xdg.configFile = {
-  #     "Kvantum/ArcDark".source = "${pkgs.arc-kde-theme}/share/Kvantum/ArcDark";
-  #
-  #     "Kvantum/kvantum.kvconfig".text = ''
-  #       [General]
-  #       theme=ArcDark
-  #     '';
-  #   };
+  home.stateVersion = lib.trivial.release;
 }

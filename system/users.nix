@@ -1,20 +1,21 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  ...
+}:
 
 {
-  users.users.mhardy = {
+  users.users."${config.settings.userLogin}" = {
     isNormalUser = true;
-    description = "Mathieu Hardy";
+    description = "${config.settings.userName}";
+
     extraGroups = [
       "audio"
       "networkmanager"
       "video"
       "wheel"
     ];
-    shell = pkgs.fish;
 
-    # TODO: move
-    packages = with pkgs; [
-      kdePackages.kate
-    ];
+    shell = pkgs.fish;
   };
 }

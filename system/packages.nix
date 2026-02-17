@@ -17,20 +17,18 @@ in
     gvfs
 
     # Development
-    calibre
     cargo
     cargo-llvm-cov
     cargo-nextest
     clang
     dbeaver-bin
     devcontainer
-    eloquent
     fnm
     gitg
     go
     meld
     nodejs
-    oxker
+    oxker # Docker TUI
     python3
     rustc
     rustup
@@ -43,15 +41,15 @@ in
     vivaldi
 
     # Multimedia
-    gthumb
+    gthumb # Image viewer
     mpv
     qbittorrent
-    shotcut
+    shotcut # Video editor
     vlc
 
     # Office
-    calibre
-    eloquent
+    calibre # Ebooks
+    eloquent # Spell checker
     libreoffice-qt
 
     # Security
@@ -59,18 +57,18 @@ in
     tomb
 
     # System utilities
-    age
+    age # For secrets encryption in NixOS configuration
     bash
     bottom
     curl
     fd
     input-remapper
-    kdePackages.spectacle
-    loglit
+    kdePackages.spectacle # Screenshots
+    loglit # Logs highlighting
     lsd
     qalculate-qt
     ripgrep
-    sops
+    sops # For secrets encryption in NixOS configuration
     starship
     trashy
     unzip
@@ -83,8 +81,8 @@ in
     # Themes
     arc-theme
     arc-kde-theme
-    papirus-icon-theme
     kdePackages.qtstyleplugin-kvantum
+    papirus-icon-theme
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

@@ -34,27 +34,36 @@
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+
         modules = [
           # Settings
           ./common/settings.nix
 
-          # Entry point
+          # System entry point
           ./main.nix
 
           # Home manager
           home-manager.nixosModules.home-manager
+
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.mhardy = {
-              imports = [
-                # SOPS must be declared before home-manager
-                sops-nix.homeManagerModules.sops
-
-                ./home-manager/default.nix
-              ];
-            };
           }
+
+          (
+            { config, ... }:
+            {
+              home-manager.users."${config.settings.userLogin}" = {
+                imports = [
+                  # SOPS must be declared before home-manager
+                  sops-nix.homeManagerModules.sops
+
+                  # Home manager entry point
+                  ./home-manager/default.nix
+                ];
+              };
+            }
+          )
         ];
       };
     };
