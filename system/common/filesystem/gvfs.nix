@@ -2,26 +2,8 @@
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Networking
+  # Service for mount, trash, etc
   # ────────────────────────────────────────────────────────────────────────────
 
-  networking = {
-    # Hostname
-    hostName = "nixos";
-
-    # IPV6
-    enableIPv6 = false;
-
-    # NetworkManager
-    networkmanager.enable = true;
-
-    # Firewall
-    firewall = {
-      enable = true;
-      allowPing = true;
-    };
-  };
-
-  # Connman
-  #services.connman.enable = true;
+  services.gvfs.enable = true;
 }

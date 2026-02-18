@@ -1,13 +1,13 @@
-{ ... }:
+{ config, lib, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Security
+  # Imports
   # ────────────────────────────────────────────────────────────────────────────
 
-  # Disable password for sudo commands for users in group `wheel`
-  security.sudo.wheelNeedsPassword = false;
-
-  # RealtimeKit system service
-  security.rtkit.enable = true;
+  imports = [
+    ./desktop-manager
+    ./display-manager
+    ./xserver
+  ];
 }

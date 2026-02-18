@@ -34,10 +34,6 @@ sops --age <age_public_key> -i -e secrets/mistral/api_key.json
 
 # Todo
 
-- fish abbr
-
-- begin to split packages: KDE, common, Hyprland
-
 - hardware config
 ```nix
 inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";

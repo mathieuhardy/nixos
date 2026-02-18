@@ -6,17 +6,10 @@
   # ────────────────────────────────────────────────────────────────────────────
 
   imports = [
-    ./audio.nix
-    ./boot.nix
-    ./fonts.nix
-    ./garbage-collector.nix
-    ./i18n.nix
-    ./networking.nix
-    ./packages.nix
-    ./security.nix
-    ./users.nix
+    ./common
 
-    ./services
+    ./hyprland
+    ./kde
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

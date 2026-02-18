@@ -1,15 +1,16 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Fonts
+  # Imports
   # ────────────────────────────────────────────────────────────────────────────
 
-  fonts = {
-    packages = with pkgs; [
-      dejavu_fonts
-      nerd-fonts.commit-mono
-      source-code-pro
-    ];
-  };
+  imports = [
+    # ./display-manager
+    # ./env
+    ./window-manager
+    # ./xdg
+
+    # ./packages.nix
+  ];
 }

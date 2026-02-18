@@ -1,9 +1,16 @@
-{ ... }:
+{ config, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Bluetooth manager
+  # SDDM with auto login
   # ────────────────────────────────────────────────────────────────────────────
 
-  services.blueman.enable = true;
+  services.displayManager = {
+    sddm.enable = true;
+
+    autoLogin = {
+      enable = true;
+      user = "${config.settings.userLogin}";
+    };
+  };
 }

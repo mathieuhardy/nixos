@@ -1,16 +1,9 @@
-{ config, ... }:
+{ config, lib, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Login
+  # Blueman
   # ────────────────────────────────────────────────────────────────────────────
 
-  services.displayManager = {
-    sddm.enable = true;
-
-    autoLogin = {
-      enable = true;
-      user = "${config.settings.userLogin}";
-    };
-  };
+  services.blueman.enable = true;
 }
