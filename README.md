@@ -32,7 +32,19 @@ sops --age <age_public_key> -i -e secrets/mistral/api_key.json
 
 - Apply NixOS configuration
 
+```shell
+rm -rf /etc/nixos
+ln -sf ~/dev/nixos /etc/nixos
+cd /etc/nixos
+sudo nixos-rebuild switch --flake .#nixos
+```
+
 # Todo
+
+- hyprland full config
+- theme https://github.com/sainnhe/sonokai for hyprland/sway
+- remove kde
+- check .config/kde* stuff to be removed
 
 - hardware config
 ```nix
@@ -41,6 +53,8 @@ inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 # Dans nixosConfigurations.modules :
 nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen1
 ```
+
+Voir ce qu'on peut récupérer comme config.
 
 - treefmt.nix
 [https://github.com/numtide/treefmt-nix](https://github.com/numtide/treefmt-nix)
