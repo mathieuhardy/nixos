@@ -4,13 +4,14 @@ let
   # Thème SDDM Catppuccin — paquet nixpkgs
   sddm-catppuccin = pkgs.catppuccin-sddm.override {
     flavor = "mocha";
-    font = "JetBrains Mono Nerd Font";
+    font = "Commit Mono Nerd Font";
     fontSize = "14";
+    # TODO:
     # background = "${config.users.users.${autologinUser}.home}/.local/share/backgrounds/sddm.jpg";
     loginBackground = true;
   };
 
-  autologinUser = "mhardy"; # TODO
+  autologinUser = "mhardy"; # TODO:
 in
 {
   # ────────────────────────────────────────────────────────────────────────────

@@ -7,6 +7,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
@@ -27,13 +28,21 @@
     {
       self,
       nixpkgs,
+      nixpkgs-unstable,
       home-manager,
       sops-nix,
       ...
     }:
+    let
+      system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable { inherit system; };
+    in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
+        # system = "x86_64-linux";
+        inherit system;
+
+        specialArgs = { inherit pkgs-unstable; };
 
         modules = [
           # Settings

@@ -1,0 +1,283 @@
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Global
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+* {
+    font-family: Commit Mono Nerd Font;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+    padding: 1px;
+    margin: 0;
+}
+
+window#waybar {
+    background-color: #1e1e2e;
+    color: #ffffff;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Workspaces
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#workspaces button {
+    color: #a6adc8;
+    padding: 0 8px;
+    margin: 4px 2px;
+    border-radius: 4px;
+    background-color: #313244;
+}
+
+/* TODO: */
+#workspaces button:hover {
+    background-color: #45475a;
+    color: #cdd6f4;
+}
+
+/* TODO: */
+#workspaces button.active {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Application launchers
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#custom-vivaldi {
+    background-color: #313244;
+    color: #f38ba8;
+    padding: 0 12px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+/* TODO: */
+#custom-vivaldi:hover {
+    background-color: #f38ba8;
+    color: #1e1e2e;
+}
+
+/* TODO: */
+#custom-firefox {
+    background-color: #313244;
+    color: #cba6f7;
+    padding: 0 12px;
+    margin: 4px 4px 4px 4px;
+    border-radius: 4px;
+}
+
+/* TODO: */
+#custom-firefox:hover {
+    background-color: #cba6f7;
+    color: #1e1e2e;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Date / time
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#clock
+ {
+    background-color: #45475a;
+    color: #cdd6f4;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+/* TODO: */
+#clock:hover
+#clock:active {
+    color: #cba6f7;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Notifications
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#custom-swaync {
+    background-color: #45475a;
+    color: #cdd6f4;
+    padding: 0 10px;
+    margin: 4px 2px;
+    border-radius: 4px;
+}
+
+/* TODO: */
+#custom-swaync:hover {
+    color: #cba6f7;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * System: battery, backlight, displays
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#group-system {
+    background-color: #313244;
+    border-radius: 4px;
+    margin: 4px 2px;
+    padding: 0;
+}
+
+/* TODO: */
+#battery {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #cba6f7;
+}
+
+/* TODO: */
+#battery.warning {
+    color: #f9e2af; /* jaune */
+    animation: blink 2s ease-in-out infinite;
+}
+
+/* TODO: */
+#battery.critical {
+    color: #f38ba8; /* rouge */
+    animation: blink 0.5s ease-in-out infinite;
+}
+
+/* TODO: */
+#backlight {
+    padding: 0 8px;
+    color: #cdd6f4;
+    border-bottom: 2px solid #cba6f7;
+}
+
+/* TODO: */
+#backlight:hover {
+    color: #cba6f7;
+}
+
+/* TODO: */
+#custom-displays {
+    padding: 0 8px;
+    color: #cdd6f4;
+    border-bottom: 2px solid #cba6f7;
+}
+
+/* TODO: */
+#custom-displays:hover {
+    color: #cba6f7;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Connectivity: bluetooth, network,
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+#group-connectivity {
+    background-color: #313244;
+    border-radius: 4px;
+    margin: 4px 2px;
+}
+
+/* TODO: */
+#bluetooth {
+    padding: 0 8px;
+    color: #cdd6f4;
+    margin-left: 4px;
+    border-bottom: 2px solid #89b4fa;
+}
+
+/* TODO: */
+#bluetooth:hover {
+    color: #89b4fa;
+}
+
+/* TODO: */
+#bluetooth.off {
+    color: #585b70;
+}
+
+/* TODO: */
+#network {
+    padding: 0 8px;
+    color: #cdd6f4;
+    margin-right: 4px;
+    border-bottom: 2px solid #a6e3a1;
+}
+
+/* TODO: */
+#network:hover {
+    color: #a6e3a1;
+}
+
+/* TODO: */
+#network.disconnected {
+    color: #f38ba8;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Multimedia
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+/* TODO: */
+#group-media {
+    background-color: #313244;
+    border-radius: 4px;
+    margin: 4px 2px;
+}
+
+/* TODO: */
+#pulseaudio-microphone {
+    padding: 0 8px;
+    color: #cdd6f4;
+    border-bottom: 2px solid #e7c664;
+}
+
+/* TODO: */
+#pulseaudio-microphone:hover {
+    color: #e7c664;
+}
+
+/* TODO: */
+#pulseaudio {
+    padding: 0 8px;
+    color: #cdd6f4;
+    border-bottom: 2px solid #e7c664;
+}
+
+/* TODO: */
+#pulseaudio:hover {
+    color: #e7c664;
+}
+
+/* TODO: */
+#mpris {
+    padding: 0 8px;
+    color: #cdd6f4;
+    border-bottom: 2px solid #e7c664;
+}
+
+/* TODO: */
+#mpris:hover {
+    color: #e7c664;
+}
+
+/* TODO: */
+#mpris.paused {
+    color: #585b70;
+}

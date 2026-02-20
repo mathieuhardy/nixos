@@ -1,0 +1,155 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 15,
+    "spacing": 4,
+
+    "modules-left": ["custom/vivaldi", "custom/firefox"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": [
+        "group/media",
+        "group/connectivity",
+        "group/system",
+        "custom/swaync",
+        "clock"
+    ],
+
+    "custom/vivaldi": {
+        "format": "󰖟",
+        "on-click": "vivaldi",
+        "tooltip": false
+    },
+
+    "custom/firefox": {
+        "format": "󰈹",
+        "on-click": "firefox",
+        "tooltip": false
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}",
+        "on-click": "activate",
+        "persistent-workspaces": {
+            "DP-2": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        }
+    },
+
+    "clock": {
+        "format": "{:%H:%M | %a %d %b}",
+        "format-alt": "{:%H:%M | %a %d %b}",
+        "tooltip": false,
+        "on-click": "gsimplecal"
+    },
+
+    "custom/swaync": {
+        "format": "󰂚",
+        "on-click": "swaync-client -t -sw",
+        "tooltip": false
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": ["custom/displays", "backlight", "battery"]
+    },
+
+    "battery": {
+        "states": {
+          "warning": 40,
+          "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "swayosd-client --brightness raise",
+        "on-scroll-down": "swayosd-client --brightness lower",
+        "tooltip": false
+    },
+
+    "custom/displays": {
+        "format": "󰍹 ",
+        "on-click": "nwg-displays",
+        "tooltip": false
+    },
+
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "modules": ["network", "bluetooth"]
+    },
+
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-connected": "󰂱 {device_alias}",
+        "on-click": "~/.config/hypr/scripts/toggle_window.sh toggle .blueman-manager-wrapped blueman-manager",
+    },
+
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰤭",
+        "on-click": "nm-connection-editor",
+        "tooltip-format-wifi": "{signalStrength}%",
+        "tooltip-format-ethernet": "{ipaddr}",
+        "tooltip": true
+    },
+
+    "group/media": {
+        "orientation": "horizontal",
+        "modules": ["mpris", "pulseaudio", "pulseaudio#microphone"]
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "<span color='#f38ba8'>󰍭</span>",
+        "on-click": "pwvucontrol -t 3",
+        "on-click-right": "swayosd-client --input-volume mute-toggle",
+        "on-scroll-up": "swayosd-client --input-volume raise",
+        "on-scroll-down": "swayosd-client --input-volume lower",
+        "tooltip": false
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "<span color='#f38ba8'>󰝟</span>",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset": "󰋎",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pwvucontrol -t 0",
+        "on-scroll-up": "swayosd-client --output-volume raise",
+        "on-scroll-down": "swayosd-client --output-volume lower",
+        "on-click-right": "swayosd-client --output-volume mute-toggle",
+        "tooltip": false
+    },
+
+    "mpris": {
+        "format": "{player_icon} {title} - {artist}",
+        "format-paused": "{status_icon} {title} - {artist}",
+        "player-icons": {
+            "default": "󰎇",
+            "vivaldi": "󰖟",
+            "firefox": "󰈹"
+        },
+        "status-icons": {
+            "paused": "󰝟"
+        },
+        "max-length": 30,
+        "tooltip": false,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-scroll-up": "playerctl previous",
+        "on-scroll-down": "playerctl next"
+    }
+}

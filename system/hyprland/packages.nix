@@ -5,6 +5,7 @@
   # Specific packages for Hyprland
   # ────────────────────────────────────────────────────────────────────────────
 
+  # TODO: sort
   environment.systemPackages = with pkgs; [
     # Hyprland ecosystem
     hyprpolkitagent
@@ -16,28 +17,22 @@
     # Barre de statut
     waybar
 
-    # App menu & settings (style KDE)
-    nwg-menu # menu applications type KDE
-    nwg-drawer # app drawer en grille
-    nwg-look # GTK theme settings (équiv. System Settings KDE)
-
     # Gestion écrans multi-output
     nwg-displays # GUI pour layout multi-écrans sous Wayland
-    wdisplays # alternative légère (fallback)
+    # wdisplays # alternative légère (fallback)
 
     # Qt6 Wayland
-    qt6.qtwayland
-    qt6Packages.qt6ct
-    libsForQt5.qt5ct
-    kdePackages.breeze
-    kdePackages.breeze-icons
+    # qt6.qtwayland
+    # qt6Packages.qt6ct
+    # libsForQt5.qt5ct
+    # kdePackages.breeze
+    # kdePackages.breeze-icons
 
     # Notifications
     swaynotificationcenter
     libnotify
 
     # Audio
-    pavucontrol
     pwvucontrol
 
     # Media player control (MPRIS)
@@ -48,20 +43,19 @@
 
     # Réseau
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
-    networkmanager
 
     # Lock screen & idle
     hyprlock
     hypridle
 
     # Thème GTK + curseur
-    catppuccin-gtk # thème GTK Mocha Mauve
-    catppuccin-cursors # curseur Catppuccin Mocha Dark
-    libsForQt5.qtstyleplugins
-    kdePackages.breeze # thème Qt fallback
+    # catppuccin-gtk # thème GTK Mocha Mauve
+    # catppuccin-cursors # curseur Catppuccin Mocha Dark
+    # libsForQt5.qtstyleplugins
+    # kdePackages.breeze # thème Qt fallback
 
     # Kanshi — profils multi-écrans auto
-    kanshi
+    # kanshi
 
     # Wallpaper
     swaybg
@@ -73,17 +67,24 @@
     wofi
 
     # Color picker
-    hyprpicker # hyprpicker --autocopy --format hex
+    # hyprpicker # hyprpicker --autocopy --format hex
 
     # Emoji picker
-    smile # GTK4, recherche, récents
-
-    # Clipboard
-    wl-clipboard
-    cliphist # historique clipboard (texte + images)
-    wtype # typing dans le champ actif (utilisé par smile)
+    # smile # GTK4, recherche, récents
 
     # Terminal
-    kitty
+    alacritty
+
+    # On screen display
+    swayosd
+
+    # Screenshot
+    hyprshot
+
+    # Calendar
+    gsimplecal
+
+    # Tools
+    jq
   ];
 }
