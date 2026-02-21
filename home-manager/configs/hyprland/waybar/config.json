@@ -90,7 +90,7 @@
         "format-on": "󰂯",
         "format-off": "󰂲",
         "format-connected": "󰂱 {device_alias}",
-        "on-click": "~/.config/hypr/scripts/toggle_window.sh toggle .blueman-manager-wrapped blueman-manager",
+        "on-click": "~/.config/hypr/scripts/toggle-window.sh toggle .blueman-manager-wrapped blueman-manager",
     },
 
     "network": {

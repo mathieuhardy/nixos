@@ -41,10 +41,21 @@ sudo nixos-rebuild switch --flake .#nixos
 
 # Todo
 
-- hyprland full config
 - theme https://github.com/sainnhe/sonokai for hyprland/sway
 - remove kde
 - check .config/kde* stuff to be removed
+
+- hyprland:
+    * finish config
+    * dark mode by default
+    * theme wofi
+    * theme waybar
+    * theme swaync
+    * theme hyprlock
+    * choose background image
+    * symbolic link to configurations
+    * kanshi
+    * sddm
 
 - hardware config
 ```nix
