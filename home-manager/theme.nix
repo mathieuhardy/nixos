@@ -1,37 +1,45 @@
-{
-  config,
-  lib,
-  pkgs,
-  osConfig,
-  ...
-}:
+{ ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # GTK
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    ./alacritty.nix
-    ./fish.nix
-    ./git.nix
-    ./input-remapper.nix
-    ./lsd.nix
-    ./mpv.nix
-    ./neovim.nix
-    ./secrets.nix
-    ./ssh.nix
-    ./theme.nix
-    ./xdg.nix
-    ./zed.nix
-  ];
+  gtk = {
+    enable = true;
+
+    theme = {
+      name = "catppuccin-mocha-sapphire-standard";
+      package = pkgs.catppuccin-gtk;
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    cursorTheme = {
+      name = "catppuccin-frappe-sapphire-cursors";
+      package = pkgs.catppuccin-cursors.frappeSapphire;
+    };
+  };
+
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark"; # GTK4 + Electron
+    gtk-theme = "catppuccin-mocha-sapphire-standard"; # Some apps may use this
+  };
+
+  environment.sessionVariables = {
+    GTK_THEME = "catppuccin-mocha-sapphire-standard"; # Fallback
+  };
 
   # ────────────────────────────────────────────────────────────────────────────
-  # Global home-manager configuration
+  # Qt
   # ────────────────────────────────────────────────────────────────────────────
 
-  home.username = "${osConfig.settings.userLogin}";
-  home.homeDirectory = "/home/${osConfig.settings.userLogin}";
-
-  home.stateVersion = lib.trivial.release;
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk"; # Follow Gtk theme
+    style.name = "kvantum";
+  };
 }

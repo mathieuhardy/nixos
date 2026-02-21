@@ -8,9 +8,9 @@
   imports = [
     ./battery
     # ./display-manager
-    # ./env
+    ./env
     ./window-manager
-    # ./xdg
+    ./xdg
 
     ./packages.nix
   ];

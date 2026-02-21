@@ -55,7 +55,10 @@ sudo nixos-rebuild switch --flake .#nixos
     * choose background image
     * symbolic link to configurations
     * kanshi
+    * hyprpicker
+    * smile
     * sddm
+    * clean generations
 
 - hardware config
 ```nix
