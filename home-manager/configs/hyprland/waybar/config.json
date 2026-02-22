@@ -5,11 +5,11 @@
     "spacing": 4,
 
     "modules-left": [
+        "group/apps",
         "group/monitoring",
     ],
 
     "modules-center": [
-        "group/apps",
         "hyprland/workspaces"
     ],
 
