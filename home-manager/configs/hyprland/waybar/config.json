@@ -10,6 +10,7 @@
         "group/media",
         "group/connectivity",
         "group/system",
+        "custom/trash",
         "custom/swaync",
         "clock"
     ],
@@ -45,6 +46,15 @@
         "format": "󰂚",
         "on-click": "swaync-client -t -sw",
         "tooltip": false
+    },
+
+    "custom/trash": {
+        "exec": "~/.config/hypr/scripts/trash.sh",
+        "interval": 5,
+        "return-type": "json",
+        "on-click": "thunar trash:///",
+        "on-click-right": "trash empty --force --all && notify-send '🗑 Trash' 'Trash empty'",
+        "tooltip": true
     },
 
     "group/system": {

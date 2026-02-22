@@ -41,13 +41,10 @@ sudo nixos-rebuild switch --flake .#nixos
 
 # Todo
 
-- lower time to select generation at boot
-- check .config/kde* stuff to be removed
 - hyprland:
     * finish config
     * dark mode by default
     * theme catpuccin qt/gtk
-    * trash icon in waybar
     * theme wofi
     * theme waybar
     * theme swaync
