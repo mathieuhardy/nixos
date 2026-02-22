@@ -125,6 +125,16 @@ window#waybar {
     padding: 0;
 }
 
+#language {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #cba6f7;
+}
+
+#language:hover {
+    color: #cba6f7;
+}
+
 #disk {
     color: #cdd6f4;
     padding: 0 8px;
