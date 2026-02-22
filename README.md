@@ -42,6 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * waybar: tray à gauche et notifications à droites ne sont plus là
     * choose background image
     * finish config
         * sddm not working
@@ -54,7 +55,6 @@ sudo nixos-rebuild switch --flake .#nixos
     * kanshi
     * smile
     * clean generations
-    * app like gparted
 
 - hardware config
 ```nix

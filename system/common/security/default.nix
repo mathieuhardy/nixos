@@ -13,4 +13,16 @@
 
   # Polkit
   security.polkit.enable = true;
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # Custom rules
+  # ────────────────────────────────────────────────────────────────────────────
+
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 }

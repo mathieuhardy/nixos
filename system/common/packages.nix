@@ -84,6 +84,7 @@ in
     bottom
     curl
     fd
+    gparted
     input-remapper
     kdePackages.spectacle # Screenshots
     loglit # Logs highlighting
@@ -143,8 +144,6 @@ in
     enable = true;
     libraries = [ ];
   };
-
-  programs.partition-manager.enable = true;
 
   programs.thunar = {
     enable = true;
