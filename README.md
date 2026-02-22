@@ -41,7 +41,7 @@ sudo nixos-rebuild switch --flake .#nixos
 
 # Todo
 
-- remove kde
+- lower time to select generation at boot
 - check .config/kde* stuff to be removed
 - hyprland:
     * finish config

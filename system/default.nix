@@ -7,10 +7,7 @@
 
   imports = [
     ./common
-
     ./hyprland
-    # TODO: remove
-    # ./kde
     ./xserver
   ];
 
