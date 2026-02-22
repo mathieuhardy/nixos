@@ -42,19 +42,18 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * choose background image
     * finish config
+        * sddm not working
+        * symbolic link to configurations
     * dark mode by default
     * theme catpuccin qt/gtk
     * theme waybar
     * theme swaync
     * theme hyprlock
-    * choose background image
-    * symbolic link to configurations
+    * theme sddm
     * kanshi
-    * temperature in waybar: no icon ?
     * smile
-    * sherlock (theme)
-    * sddm
     * clean generations
 
 - hardware config
