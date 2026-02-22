@@ -95,7 +95,7 @@
     },
 
     "custom/displays": {
-        "format": "󰍹 ",
+        "format": "󰍹",
         "on-click": "nwg-displays",
         "tooltip": false
     },
