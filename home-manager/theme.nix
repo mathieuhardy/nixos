@@ -26,8 +26,8 @@ in
     };
 
     cursorTheme = {
-      name = "catppuccin-frappe-sapphire-cursors";
-      package = pkgs.catppuccin-cursors.frappeSapphire;
+      name = "catppuccin-frappe-mauve-cursors";
+      package = pkgs.catppuccin-cursors.frappeMauve;
     };
   };
 
