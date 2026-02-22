@@ -95,7 +95,9 @@
     },
 
     "custom/swaync": {
-        "format": "󰂚",
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/notifications-count.sh",
+        "format": "{}",
         "on-click": "swaync-client -t -sw",
         "tooltip": false
     },
