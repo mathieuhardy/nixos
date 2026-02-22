@@ -1,0 +1,34 @@
+[
+  {
+    "label": "Lock",
+    "label_alt": "",
+    "icon": "system-lock-screen",
+    "exec": "hyprlock",
+    "icon_size": 48,
+    "image_width": 0
+  },
+  {
+    "label": "Logout",
+    "label_alt": "",
+    "icon": "system-log-out",
+    "exec": "hyprctl dispatch exit",
+    "icon_size": 48,
+    "image_width": 0
+  },
+  {
+    "label": "Reboot",
+    "label_alt": "",
+    "icon": "system-reboot",
+    "exec": "systemctl reboot",
+    "icon_size": 48,
+    "image_width": 0
+  },
+  {
+    "label": "Shutdown",
+    "label_alt": "",
+    "icon": "system-shutdown",
+    "exec": "systemctl poweroff",
+    "icon_size": 48,
+    "image_width": 0
+  }
+]
