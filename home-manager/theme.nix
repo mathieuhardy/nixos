@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -29,8 +29,8 @@
     gtk-theme = "catppuccin-mocha-sapphire-standard"; # Some apps may use this
   };
 
-  environment.sessionVariables = {
-    GTK_THEME = "catppuccin-mocha-sapphire-standard"; # Fallback
+  home.sessionVariables = {
+    GTK_THEME = "catppuccin-mocha-sapphire-standard";
   };
 
   # ────────────────────────────────────────────────────────────────────────────
