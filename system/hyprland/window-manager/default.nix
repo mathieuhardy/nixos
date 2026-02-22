@@ -8,7 +8,7 @@
   programs.hyprland = {
     enable = true;
 
-    # Use "Universal Wayland Session Manager)"
+    # Use "Universal Wayland Session Manager"
     withUWSM = true;
 
     # XServer for compatibility

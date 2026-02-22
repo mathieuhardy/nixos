@@ -31,7 +31,16 @@
 
   home.sessionVariables = {
     GTK_THEME = "catppuccin-mocha-sapphire-standard";
+
+    # Force dark mode in libadwaita/GTK4
+    ADW_DISABLE_PORTAL = "1";
   };
+
+  # Force dark mode for GTK4 using settings.ini
+  xdg.configFile."gtk-4.0/settings.ini".text = ''
+    [Settings]
+    gtk-application-prefer-dark-theme=true
+  '';
 
   # ────────────────────────────────────────────────────────────────────────────
   # Qt

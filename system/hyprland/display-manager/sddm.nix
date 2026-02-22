@@ -19,15 +19,19 @@ in
   # ────────────────────────────────────────────────────────────────────────────
 
   services.displayManager = {
+    defaultSession = "hyprland-uwsm";
+
     sddm = {
       enable = true;
 
       wayland.enable = true;
 
+      theme = "catppuccin-frappe";
+
       settings = {
         Autologin = {
           User = "${config.settings.userLogin}";
-          Session = "hyprland";
+          Session = "hyprland-uwsm";
           Relogin = false;
         };
 
