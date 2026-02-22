@@ -125,10 +125,24 @@ window#waybar {
     padding: 0;
 }
 
+#disk {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #cba6f7;
+}
+
+#disk:hover {
+    color: #cba6f7;
+}
+
 #battery {
     color: #cdd6f4;
     padding: 0 8px;
     border-bottom: 2px solid #cba6f7;
+}
+
+#battery:hover {
+    color: #cba6f7;
 }
 
 #battery.warning {

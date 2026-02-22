@@ -49,7 +49,14 @@
 
     "group/system": {
         "orientation": "horizontal",
-        "modules": ["custom/displays", "backlight", "battery"]
+        "modules": ["custom/displays", "backlight", "battery", "disk"]
+    },
+
+    "disk": {
+        "interval": 60,
+        "format": " {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "{used} out of {total}"
     },
 
     "battery": {
