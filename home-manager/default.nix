@@ -13,6 +13,7 @@
 
   imports = [
     ./alacritty.nix
+    ./bat.nix
     ./fish.nix
     ./git.nix
     ./input-remapper.nix
