@@ -65,7 +65,3 @@ nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen1
 ```
 
 Voir ce qu'on peut récupérer comme config.
-
-- treefmt.nix
-[https://github.com/numtide/treefmt-nix](https://github.com/numtide/treefmt-nix)
-[https://nixos.asia/en/treefmt](ttps://nixos.asia/en/treefmt)
