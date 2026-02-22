@@ -54,6 +54,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * kanshi
     * hyprpicker
     * smile
+    * sherlock (sort applications + theme)
     * sddm
     * clean generations
 
