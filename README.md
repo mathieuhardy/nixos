@@ -52,7 +52,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * choose background image
     * symbolic link to configurations
     * kanshi
-    * hyprpicker
+    * hyprpicker: ajouter un fichier desktop pour le trouver dans wofi
     * smile
     * sherlock (sort applications + theme)
     * sddm

@@ -63,15 +63,9 @@
             "custom/displays",
             "backlight",
             "battery",
-            "disk",
-            "hyprland/language"
+            "hyprland/language",
+            "disk"
         ]
-    },
-
-    "hyprland/language": {
-        "format": "󰗊 {}",
-        "format-fr": "FR",
-        "format-en": "EN"
     },
 
     "disk": {
@@ -79,6 +73,12 @@
         "format": " {percentage_used}%",
         "tooltip": true,
         "tooltip-format": "{used} out of {total}"
+    },
+
+    "hyprland/language": {
+        "format": "󰗊 {}",
+        "format-fr": "FR",
+        "format-en": "EN"
     },
 
     "battery": {

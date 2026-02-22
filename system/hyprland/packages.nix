@@ -67,6 +67,7 @@
     blueman # GUI to manage bluetooth
     brightnessctl # Control of the brightness
     gsimplecal # GUI to show calendar
+    hyprpicker # Color picker
     jq # Used in scripts to parse JSON outputs
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
     nwg-displays # GUI to manage displays
