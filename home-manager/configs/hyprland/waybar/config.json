@@ -1,11 +1,18 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 15,
+    "height": 38,
     "spacing": 4,
 
-    "modules-left": ["custom/vivaldi", "custom/firefox"],
-    "modules-center": ["hyprland/workspaces"],
+    "modules-left": [
+        "group/monitoring",
+    ],
+
+    "modules-center": [
+        "group/apps",
+        "hyprland/workspaces"
+    ],
+
     "modules-right": [
         "group/media",
         "group/connectivity",
@@ -15,16 +22,52 @@
         "clock"
     ],
 
+    "group/apps": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/vivaldi"
+        ]
+    },
+
     "custom/vivaldi": {
-        "format": "󰖟",
+        "format": "󰖟" ,
         "on-click": "vivaldi",
         "tooltip": false
     },
 
-    "custom/firefox": {
-        "format": "󰈹",
-        "on-click": "firefox",
-        "tooltip": false
+    "group/monitoring": {
+        "orientation": "horizontal",
+        "modules": [
+            "disk",
+            "temperature",
+            "cpu",
+            "memory"
+        ]
+    },
+
+    "disk": {
+        "interval": 60,
+        "format": " {percentage_used}%",
+        "tooltip": true,
+        "tooltip-format": "{used} out of {total}"
+    },
+
+    "temperature": {
+"       format": " {temperatureC}°C"
+    },
+
+    "cpu": {
+        "interval": 10,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "wezterm start --class floating-term -- btm"
+    },
+
+    "memory": {
+        "interval": 30,
+        "format": " {}%",
+        "max-length": 10,
+        "on-click": "wezterm start --class floating-term -- btm"
     },
 
     "hyprland/workspaces": {
@@ -63,22 +106,26 @@
             "custom/displays",
             "backlight",
             "battery",
-            "hyprland/language",
-            "disk"
+            "idle_inhibitor",
+            "hyprland/language"
         ]
-    },
-
-    "disk": {
-        "interval": 60,
-        "format": " {percentage_used}%",
-        "tooltip": true,
-        "tooltip-format": "{used} out of {total}"
     },
 
     "hyprland/language": {
         "format": "󰗊 {}",
         "format-fr": "FR",
         "format-en": "EN"
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Idle forbidden",
+        "tooltip-format-deactivated": "Idle allowed"
     },
 
     "battery": {
@@ -134,7 +181,11 @@
 
     "group/media": {
         "orientation": "horizontal",
-        "modules": ["mpris", "pulseaudio", "pulseaudio#microphone"]
+        "modules": [
+            "mpris",
+            "pulseaudio",
+            "pulseaudio#microphone"
+        ]
     },
 
     "pulseaudio#microphone": {

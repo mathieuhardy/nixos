@@ -44,9 +44,69 @@ window#waybar {
 
 /*
  * ─────────────────────────────────────────────────────────────────────────────
+ * Monitoring
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+#group-monitoring {
+    background-color: #313244;
+    border-radius: 4px;
+    margin: 4px 2px;
+    padding: 0;
+}
+
+#disk {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #f38ba8;
+}
+
+#disk:hover {
+    color: #f38ba8;
+}
+
+#temperature {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #f38ba8;
+}
+
+#temperature:hover {
+    color: #f38ba8;
+}
+
+#cpu {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #f38ba8;
+}
+
+#cpu:hover {
+    color: #f38ba8;
+}
+
+#memory {
+    color: #cdd6f4;
+    padding: 0 8px;
+    border-bottom: 2px solid #f38ba8;
+}
+
+#memory:hover {
+    color: #f38ba8;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
  * Application launchers
  * ─────────────────────────────────────────────────────────────────────────────
  */
+
+#group-apps {
+    background-color: #313244;
+    border-radius: 4px;
+    margin: 4px 2px;
+    padding: 0;
+}
 
 #custom-vivaldi {
     background-color: #313244;
@@ -58,19 +118,6 @@ window#waybar {
 
 #custom-vivaldi:hover {
     background-color: #f38ba8;
-    color: #1e1e2e;
-}
-
-#custom-firefox {
-    background-color: #313244;
-    color: #cba6f7;
-    padding: 0 12px;
-    margin: 4px 4px 4px 4px;
-    border-radius: 4px;
-}
-
-#custom-firefox:hover {
-    background-color: #cba6f7;
     color: #1e1e2e;
 }
 
@@ -132,7 +179,7 @@ window#waybar {
 
 /*
  * ─────────────────────────────────────────────────────────────────────────────
- * System: battery, backlight, displays
+ * System: battery, backlight, displays, etc
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
@@ -153,13 +200,13 @@ window#waybar {
     color: #cba6f7;
 }
 
-#disk {
+#idle_inhibitor {
     color: #cdd6f4;
     padding: 0 8px;
     border-bottom: 2px solid #cba6f7;
 }
 
-#disk:hover {
+#idle_inhibitor:hover {
     color: #cba6f7;
 }
 
