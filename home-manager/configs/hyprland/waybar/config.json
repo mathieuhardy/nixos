@@ -5,8 +5,8 @@
     "spacing": 4,
 
     "modules-left": [
-        "group/apps",
-        "group/monitoring",
+        "group/g-apps",
+        "group/g-monitoring",
     ],
 
     "modules-center": [
@@ -14,18 +14,16 @@
     ],
 
     "modules-right": [
-        "group/media",
-        "group/connectivity",
-        "group/system",
-        "custom/trash",
-        "custom/swaync",
-        "clock"
+        "group/g-media",
+        "group/g-network",
+        "group/g-bluetooth",
+        "group/g-system",
+        "group/g-various",
     ],
 
-    "group/apps": {
+    "group/g-apps": {
         "orientation": "horizontal",
         "modules": [
-            "custom/vivaldi",
             "tray",
         ]
     },
@@ -37,13 +35,7 @@
         "ignored-items": ["blueman"]
     },
 
-    "custom/vivaldi": {
-        "format": "󰖟" ,
-        "on-click": "vivaldi",
-        "tooltip": false
-    },
-
-    "group/monitoring": {
+    "group/g-monitoring": {
         "orientation": "horizontal",
         "modules": [
             "disk",
@@ -86,6 +78,15 @@
         }
     },
 
+    "group/g-various": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/trash",
+            "custom/swaync",
+            "clock",
+        ]
+    },
+
     "clock": {
         "format": "{:%H:%M | %a %d %b}",
         "format-alt": "{:%H:%M | %a %d %b}",
@@ -108,7 +109,7 @@
         "tooltip": true
     },
 
-    "group/system": {
+    "group/g-system": {
         "orientation": "horizontal",
         "modules": [
             "custom/displays",
@@ -165,9 +166,9 @@
         "tooltip": false
     },
 
-    "group/connectivity": {
+    "group/g-bluetooth": {
         "orientation": "horizontal",
-        "modules": ["network", "bluetooth"]
+        "modules": ["bluetooth"]
     },
 
     "bluetooth": {
@@ -175,6 +176,11 @@
         "format-off": "󰂲",
         "format-connected": "󰂱 {device_alias}",
         "on-click": "~/.config/hypr/scripts/toggle-window.sh toggle .blueman-manager-wrapped blueman-manager",
+    },
+
+    "group/g-network": {
+        "orientation": "horizontal",
+        "modules": ["network"]
     },
 
     "network": {
@@ -187,7 +193,7 @@
         "tooltip": true
     },
 
-    "group/media": {
+    "group/g-media": {
         "orientation": "horizontal",
         "modules": [
             "mpris",

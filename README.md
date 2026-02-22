@@ -50,6 +50,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * theme catpuccin qt/gtk
     * theme waybar
     * theme sddm
+    * BT toggle on right click
     * kanshi
     * smile
     * clean generations
