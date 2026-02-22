@@ -47,7 +47,7 @@
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
     catppuccin-gtk
-    catppuccin-cursors.frappeSapphire
+    catppuccin-cursors.frappeMauve
     kdePackages.qtstyleplugin-kvantum
     libsForQt5.qt5ct # For Qt5 applications theme configuration
     # libsForQt5.qtstyleplugins
