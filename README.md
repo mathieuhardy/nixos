@@ -49,8 +49,6 @@ sudo nixos-rebuild switch --flake .#nixos
     * dark mode by default
     * theme catpuccin qt/gtk
     * theme waybar
-    * theme swaync
-    * theme hyprlock
     * theme sddm
     * kanshi
     * smile
