@@ -7,7 +7,7 @@
 
   imports = [
     ./battery
-    # ./display-manager
+    ./display-manager
     ./env
     ./window-manager
     ./xdg

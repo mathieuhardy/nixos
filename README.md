@@ -41,14 +41,13 @@ sudo nixos-rebuild switch --flake .#nixos
 
 # Todo
 
-- theme https://github.com/sainnhe/sonokai for hyprland/sway
 - remove kde
 - check .config/kde* stuff to be removed
-
 - hyprland:
     * finish config
     * dark mode by default
     * theme catpuccin qt/gtk
+    * trash icon in waybar
     * theme wofi
     * theme waybar
     * theme swaync
@@ -60,11 +59,6 @@ sudo nixos-rebuild switch --flake .#nixos
     * smile
     * sddm
     * clean generations
-    * clean
-févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-4.0/settings.ini' would be clobbered
-févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-4.0/gtk.css' would be clobbered
-févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-3.0/settings.ini' would be clobbered
-févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.gtkrc-2.0' would be clobbered
 
 - hardware config
 ```nix
