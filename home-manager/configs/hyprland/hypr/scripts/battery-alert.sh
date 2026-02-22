@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 BATTERY_PATH="/sys/class/power_supply/BAT0"
+NOTIFIED_40=false
 NOTIFIED_10=false
 NOTIFIED_5=false
 
@@ -27,14 +28,25 @@ do
       notify-send \
         -u critical \
         -i battery-low \
-        "🔋 Low battery" \
+        "🔋 Very low battery" \
         "Level: ${CAPACITY}% — Plug the charger." \
         -t 10000 # 10 seconds
 
       NOTIFIED_10=true
+    elif [[ ${CAPACITY} -le 40 && "${NOTIFIED_40}" == false ]]
+    then
+      notify-send \
+        -u normal \
+        -i battery-low \
+        "🔋 Low battery" \
+        "Level: ${CAPACITY}% — Plug the charger." \
+        -t 10000 # 10 seconds
+
+      NOTIFIED_40=true
     fi
   else
-    # Reset when chargin or full
+    # Reset when charging or full
+    NOTIFIED_40=false
     NOTIFIED_10=false
     NOTIFIED_5=false
   fi
