@@ -53,7 +53,8 @@
     },
 
     "temperature": {
-        "format": " {temperatureC}°C"
+        "format": " {temperatureC}°C",
+        "tooltip": false,
     },
 
     "cpu": {

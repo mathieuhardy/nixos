@@ -54,6 +54,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * kanshi
     * smile
     * clean generations
+    * app like gparted
 
 - hardware config
 ```nix

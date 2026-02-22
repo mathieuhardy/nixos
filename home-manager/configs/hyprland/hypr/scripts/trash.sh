@@ -10,7 +10,7 @@ fi
 if [ "${COUNT}" -gt 0 ]; then
     TOOLTIP="${COUNT} items in trash"
     CLASS="not-empty"
-    ICON="󰩹"
+    ICON="󰩹 ${COUNT}"
 else
     TOOLTIP="Empty"
     CLASS="empty"
