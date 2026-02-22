@@ -48,6 +48,7 @@ sudo nixos-rebuild switch --flake .#nixos
 - hyprland:
     * finish config
     * dark mode by default
+    * theme catpuccin qt/gtk
     * theme wofi
     * theme waybar
     * theme swaync
@@ -59,6 +60,11 @@ sudo nixos-rebuild switch --flake .#nixos
     * smile
     * sddm
     * clean generations
+    * clean
+févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-4.0/settings.ini' would be clobbered
+févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-4.0/gtk.css' would be clobbered
+févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.config/gtk-3.0/settings.ini' would be clobbered
+févr. 22 10:40:17 nixos hm-activate-mhardy[29728]: Existing file '/home/mhardy/.gtkrc-2.0' would be clobbered
 
 - hardware config
 ```nix
