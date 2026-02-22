@@ -26,6 +26,15 @@
     ./zed.nix
   ];
 
+  # TODO: move to dedicated file
+  # Filter some entries in sherlock:
+  #   - thunar
+  xdg.configFile."sherlock/sherlockignore".text = ''
+    Bulk rename
+    Removable Drives and Media
+    Thunar Preferences
+  '';
+
   # ────────────────────────────────────────────────────────────────────────────
   # Global home-manager configuration
   # ────────────────────────────────────────────────────────────────────────────

@@ -45,7 +45,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * finish config
     * dark mode by default
     * theme catpuccin qt/gtk
-    * theme wofi
+    * remove wofi
     * theme waybar
     * theme swaync
     * theme hyprlock
@@ -54,7 +54,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * kanshi
     * hyprpicker: ajouter un fichier desktop pour le trouver dans wofi
     * smile
-    * sherlock (sort applications + theme)
+    * sherlock (theme)
     * sddm
     * clean generations
 
