@@ -25,8 +25,16 @@
     "group/apps": {
         "orientation": "horizontal",
         "modules": [
-            "custom/vivaldi"
+            "custom/vivaldi",
+            "tray",
         ]
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 4,
+        "show-passive-items": false,
+        "ignored-items": ["blueman"]
     },
 
     "custom/vivaldi": {
