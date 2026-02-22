@@ -3,7 +3,7 @@
 let
   # Thème SDDM Catppuccin — paquet nixpkgs
   sddm-catppuccin = pkgs.catppuccin-sddm.override {
-    flavor = "mocha";
+    flavor = "frappe";
     font = "Commit Mono Nerd Font";
     fontSize = "14";
     # TODO:
@@ -27,8 +27,8 @@ in
       settings = {
         Autologin = {
           User = "${config.settings.userLogin}";
-          Session = "hyprland"; # fichier .desktop dans /share/wayland-sessions/
-          Relogin = false; # ne pas re-autologin après logout manuel
+          Session = "hyprland";
+          Relogin = false;
         };
 
         General = {
