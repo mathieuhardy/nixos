@@ -43,5 +43,5 @@
   home.username = "${osConfig.settings.userLogin}";
   home.homeDirectory = "/home/${osConfig.settings.userLogin}";
 
-  home.stateVersion = lib.trivial.release;
+  home.stateVersion = osConfig.settings.stateVersion;
 }

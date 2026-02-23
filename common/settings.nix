@@ -5,6 +5,18 @@ with lib;
 {
   options = {
     settings = {
+      # State version (installed version)
+      stateVersion = mkOption {
+        type = with types; uniq str;
+        default = "25.11";
+        description = ''
+          The version of the file stored on disk.
+        '';
+        example = ''
+          config.settings.stateVersion = "25.11";
+        '';
+      };
+
       # User full name
       userName = mkOption {
         type = with types; uniq str;

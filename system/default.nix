@@ -19,5 +19,5 @@
   nixpkgs.config.allowUnfree = true;
 
   # Global version
-  system.stateVersion = lib.trivial.release;
+  system.stateVersion = config.settings.stateVersion;
 }
