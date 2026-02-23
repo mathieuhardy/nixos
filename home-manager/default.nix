@@ -16,6 +16,7 @@
     ./bat.nix
     ./fish.nix
     ./git.nix
+    ./hypridle.nix
     ./input-remapper.nix
     ./lsd.nix
     ./mpv.nix
@@ -23,6 +24,7 @@
     ./secrets.nix
     ./ssh.nix
     ./theme.nix
+    ./waybar.nix
     ./xdg.nix
     ./zed.nix
   ];
