@@ -43,7 +43,6 @@ sudo nixos-rebuild switch --flake .#nixos
 
 - hyprland:
     * hypridle ne marche pas (user/root ?)
-    * hyprland binds pour touches &, é, ...
     * https://github.com/catppuccin/catppuccin/issues/2849
     * choose background image
     * finish config
