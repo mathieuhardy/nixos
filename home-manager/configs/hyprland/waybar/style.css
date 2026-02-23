@@ -34,7 +34,7 @@ window#waybar {
 
 /* Default and non-empty buttons */
 #workspaces button {
-    color: #99d1db;
+    color: #f4b8e4;
     background-color: transparent;
     border: none;
     margin: 0 2px 0 2px;
@@ -61,7 +61,7 @@ window#waybar {
 
 /* Current */
 #workspaces button.active {
-    color: #cba6f7;
+    color: #99d1db;
     background-color: transparent;
 }
 
@@ -204,7 +204,7 @@ window#waybar {
 }
 
 #bluetooth.off {
-    color: #585b70;
+    color: #f38ba8;
 }
 
 /*

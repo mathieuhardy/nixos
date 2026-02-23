@@ -1,31 +1,28 @@
 {
+    // ─────────────────────────────────────────────────────────────────────────
+    // Global
+    // ─────────────────────────────────────────────────────────────────────────
+
     // TODO: add comments
     "layer": "top",
     "position": "top",
     "height": 38,
     "spacing": 4,
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // Left modules
+    // ─────────────────────────────────────────────────────────────────────────
+
     "modules-left": [
         "group/g-apps",
-        "group/g-monitoring",
+        "group/g-monitoring"
     ],
 
-    "modules-center": [
-        "group/g-workspaces"
-    ],
-
-    "modules-right": [
-        "group/g-media",
-        "group/g-network",
-        "group/g-bluetooth",
-        "group/g-system",
-        "group/g-various",
-    ],
-
+    // Tray and other applications related
     "group/g-apps": {
         "orientation": "horizontal",
         "modules": [
-            "tray",
+            "tray"
         ]
     },
 
@@ -35,6 +32,7 @@
         "show-passive-items": false
     },
 
+    // Various system monitoring
     "group/g-monitoring": {
         "orientation": "horizontal",
         "modules": [
@@ -55,7 +53,7 @@
 
     "temperature": {
         "format": " {temperatureC}°C",
-        "tooltip": false,
+        "tooltip": false
     },
 
     "cpu": {
@@ -72,10 +70,18 @@
         "on-click": "wezterm start --class floating-term -- btm"
     },
 
+    // ─────────────────────────────────────────────────────────────────────────
+    // Center modules
+    // ─────────────────────────────────────────────────────────────────────────
+
+    "modules-center": [
+        "group/g-workspaces"
+    ],
+
     "group/g-workspaces": {
         "orientation": "horizontal",
         "modules": [
-            "hyprland/workspaces",
+            "hyprland/workspaces"
         ]
     },
 
@@ -87,123 +93,19 @@
         }
     },
 
-    "group/g-various": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/trash",
-            "custom/swaync",
-            "clock",
-        ]
-    },
+    // ─────────────────────────────────────────────────────────────────────────
+    // Right modules
+    // ─────────────────────────────────────────────────────────────────────────
 
-    "clock": {
-        "format": "{:%H:%M | %a %d %b}",
-        "format-alt": "{:%H:%M | %a %d %b}",
-        "tooltip": false,
-        "on-click": "gsimplecal"
-    },
+    "modules-right": [
+        "group/g-media",
+        "group/g-network",
+        "group/g-bluetooth",
+        "group/g-system",
+        "group/g-various"
+    ],
 
-    "custom/swaync": {
-        "interval": 2,
-        "exec": "~/.config/hypr/scripts/notifications-count.sh",
-        "format": "{}",
-        "on-click": "swaync-client -t -sw",
-        "tooltip": false
-    },
-
-    "custom/trash": {
-        "exec": "~/.config/hypr/scripts/trash.sh",
-        "interval": 5,
-        "return-type": "json",
-        "on-click": "thunar trash:///",
-        "on-click-right": "trash empty --force --all && notify-send '🗑 Trash' 'Trash empty'",
-        "tooltip": true
-    },
-
-    "group/g-system": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/displays",
-            "backlight",
-            "battery",
-            "idle_inhibitor",
-            "hyprland/language"
-        ]
-    },
-
-    "hyprland/language": {
-        "format": "󰗊 {}",
-        "format-fr": "FR",
-        "format-en": "EN"
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        },
-        "tooltip": true,
-        "tooltip-format-activated": "Idle forbidden",
-        "tooltip-format-deactivated": "Idle allowed"
-    },
-
-    "battery": {
-        "states": {
-          "warning": 40,
-          "critical": 10
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-full": "󰁹 {capacity}%",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "{timeTo}",
-        "on-scroll-up": "",
-        "on-scroll-down": ""
-    },
-
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "swayosd-client --brightness raise",
-        "on-scroll-down": "swayosd-client --brightness lower",
-        "tooltip": false
-    },
-
-    "custom/displays": {
-        "format": "󰍹",
-        "on-click": "nwg-displays",
-        "tooltip": false
-    },
-
-    "group/g-bluetooth": {
-        "orientation": "horizontal",
-        "modules": ["bluetooth"]
-    },
-
-    "bluetooth": {
-        "format-on": "󰂯",
-        "format-off": "󰂲",
-        "format-connected": "󰂱 {device_alias}",
-        "on-click": "~/.config/hypr/scripts/toggle-window.sh toggle .blueman-manager-wrapped blueman-manager",
-    },
-
-    "group/g-network": {
-        "orientation": "horizontal",
-        "modules": ["network"]
-    },
-
-    "network": {
-        "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󰈀 {ifname}",
-        "format-disconnected": "󰤭",
-        "on-click": "nm-connection-editor",
-        "tooltip-format-wifi": "{signalStrength}%",
-        "tooltip-format-ethernet": "{ipaddr}",
-        "tooltip": true
-    },
-
+    // Multimedia
     "group/g-media": {
         "orientation": "horizontal",
         "modules": [
@@ -211,32 +113,6 @@
             "pulseaudio",
             "pulseaudio#microphone"
         ]
-    },
-
-    "pulseaudio#microphone": {
-        "format": "{format_source}",
-        "format-source": "󰍬 {volume}%",
-        "format-source-muted": "<span color='#f38ba8'>󰍭</span>",
-        "on-click": "pwvucontrol -t 3",
-        "on-click-right": "swayosd-client --input-volume mute-toggle",
-        "on-scroll-up": "swayosd-client --input-volume raise",
-        "on-scroll-down": "swayosd-client --input-volume lower",
-        "tooltip": false
-    },
-
-    "pulseaudio": {
-        "format": "{icon} {volume}%",
-        "format-muted": "<span color='#f38ba8'>󰝟</span>",
-        "format-icons": {
-            "headphone": "󰋋",
-            "headset": "󰋎",
-            "default": ["󰕿", "󰖀", "󰕾"]
-        },
-        "on-click": "pwvucontrol -t 0",
-        "on-scroll-up": "swayosd-client --output-volume raise",
-        "on-scroll-down": "swayosd-client --output-volume lower",
-        "on-click-right": "swayosd-client --output-volume mute-toggle",
-        "tooltip": false
     },
 
     "mpris": {
@@ -256,5 +132,162 @@
         "on-click-right": "playerctl next",
         "on-scroll-up": "playerctl previous",
         "on-scroll-down": "playerctl next"
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-muted": "<span color='#f38ba8'>󰝟</span>",
+        "format-icons": {
+            "headphone": "󰋋",
+            "headset": "󰋎",
+            "default": ["󰕿", "󰖀", "󰕾"]
+        },
+        "on-click": "pwvucontrol -t 0",
+        "on-scroll-up": "swayosd-client --output-volume raise",
+        "on-scroll-down": "swayosd-client --output-volume lower",
+        "on-click-right": "swayosd-client --output-volume mute-toggle",
+        "tooltip": false
+    },
+
+    "pulseaudio#microphone": {
+        "format": "{format_source}",
+        "format-source": "󰍬 {volume}%",
+        "format-source-muted": "<span color='#f38ba8'>󰍭</span>",
+        "on-click": "pwvucontrol -t 3",
+        "on-click-right": "swayosd-client --input-volume mute-toggle",
+        "on-scroll-up": "swayosd-client --input-volume raise",
+        "on-scroll-down": "swayosd-client --input-volume lower",
+        "tooltip": false
+    },
+
+    // Network
+    "group/g-network": {
+        "orientation": "horizontal",
+        "modules": ["network"]
+    },
+
+    "network": {
+        "format-wifi": "󰤨 {essid}",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰤭",
+        "on-click": "nm-connection-editor",
+        "tooltip-format-wifi": "{signalStrength}%",
+        "tooltip-format-ethernet": "{ipaddr}",
+        "tooltip": true
+    },
+
+    // Bluetooth
+    "group/g-bluetooth": {
+        "orientation": "horizontal",
+        "modules": ["bluetooth"]
+    },
+
+    "bluetooth": {
+        "format-on": "󰂯",
+        "format-off": "󰂲",
+        "format-connected": "󰂱 {device_alias}",
+        "on-click": "~/.config/hypr/scripts/toggle-window.sh toggle .blueman-manager-wrapped blueman-manager",
+        "on-click-right": "~/.config/hypr/scripts/toggle-bluetooth.sh"
+    },
+
+    // System related
+    "group/g-system": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/displays",
+            "backlight",
+            "battery",
+            "idle_inhibitor",
+            "hyprland/language"
+        ]
+    },
+
+    "custom/displays": {
+        "format": "󰍹",
+        "on-click": "nwg-displays",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "swayosd-client --brightness raise",
+        "on-scroll-down": "swayosd-client --brightness lower",
+        "tooltip": false
+    },
+
+    "battery": {
+        "states": {
+          "warning": 40,
+          "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Idle forbidden",
+        "tooltip-format-deactivated": "Idle allowed"
+    },
+
+    "hyprland/language": {
+        "format": "󰗊 {}",
+        "format-fr": "FR",
+        "format-en": "EN"
+    },
+
+    // Various
+    "group/g-various": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/trash",
+            "custom/swaync",
+            "clock"
+        ]
+    },
+
+    "custom/trash": {
+        "exec": "~/.config/hypr/scripts/trash.sh",
+        "interval": 5,
+        "return-type": "json",
+        "on-click": "thunar trash:///",
+        "on-click-right": "trash empty --force --all && notify-send '🗑 Trash' 'Trash empty'",
+        "tooltip": true
+    },
+
+    "clock": {
+        "format": "{:%H:%M | %a %d %b}",
+        "format-alt": "{:%H:%M | %a %d %b}",
+        "tooltip": false,
+        "on-click": "gsimplecal"
+    },
+
+
+
+
+
+
+
+
+
+
+    "custom/swaync": {
+        "interval": 2,
+        "exec": "~/.config/hypr/scripts/notifications-count.sh",
+        "format": "{}",
+        "on-click": "swaync-client -t -sw",
+        "tooltip": false
     }
 }
