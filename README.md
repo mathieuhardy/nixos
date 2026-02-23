@@ -42,10 +42,8 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * swaync ne marche plus
-    * tester keymapper et enlever input-remapper (https://github.com/houmain/keymapper?tab=readme-ov-file#key-names)
+    * hypridle ne marche pas (user/root ?)
     * hyprland binds pour touches &, é, ...
-    * tester: bluetoothctl power <on/off> => si ok, plug le bouton droit sur l'icone dans la waybar
     * https://github.com/catppuccin/catppuccin/issues/2849
     * choose background image
     * finish config
@@ -55,7 +53,6 @@ sudo nixos-rebuild switch --flake .#nixos
     * theme catpuccin qt/gtk
     * theme waybar
     * theme sddm
-    * BT toggle on right click
     * smile
     * clean generations
 
@@ -108,8 +105,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://github.com/waycrate/wayshot
 - Zooming:
     * https://github.com/coffeeispower/woomer
-- Mouse remapping:
-    * https://github.com/houmain/keymapper?tab=readme-ov-file#key-names
 - Power menu:
     * https://github.com/AMNatty/wleave
 - Login screen:
