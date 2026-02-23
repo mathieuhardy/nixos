@@ -26,34 +26,43 @@ window#waybar {
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+#g-workspaces {
+    background-color: #1e1e2e;
+    margin: 0;
+    padding: 0;
+}
+
 /* Default and non-empty buttons */
 #workspaces button {
-    color: #a6adc8;
-    background-color: #313244;
-    padding: 0 8px;
-    margin: 2px 2px;
-    border-radius: 5px;
-    border: 1px solid #f8f8f8;
+    color: #99d1db;
+    background-color: transparent;
+    border: none;
+    margin: 0 2px 0 2px;
+    padding: 0;
+}
+
+#workspaces button label {
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
 }
 
 /* Empty buttons */
 #workspaces button.empty {
-    border: 1px solid #313244;
+    color: #313244;
+    background-color: transparent;
 }
 
 /* Hover */
 #workspaces button:hover {
-    background: #313244;
-    border: 1px solid #f8f8f8;
+    color: #f8f8f8;
+    background: transparent;
 }
-
 
 /* Current */
 #workspaces button.active {
-    font-weight: bold;
-    color: #1e1e2e;
-    background-color: #cba6f7;
-    border: 1px solid #cba6f7;
+    color: #cba6f7;
+    background-color: transparent;
 }
 
 /*
