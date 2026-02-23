@@ -267,27 +267,18 @@
         "tooltip": true
     },
 
-    "clock": {
-        "format": "{:%H:%M | %a %d %b}",
-        "format-alt": "{:%H:%M | %a %d %b}",
-        "tooltip": false,
-        "on-click": "gsimplecal"
-    },
-
-
-
-
-
-
-
-
-
-
     "custom/swaync": {
         "interval": 2,
         "exec": "~/.config/hypr/scripts/notifications-count.sh",
         "format": "{}",
         "on-click": "swaync-client -t -sw",
         "tooltip": false
+    },
+
+    "clock": {
+        "format": "{:%H:%M | %a %d %b}",
+        "format-alt": "{:%H:%M | %a %d %b}",
+        "tooltip": false,
+        "on-click": "gsimplecal"
     }
 }

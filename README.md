@@ -42,6 +42,8 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * home-manager for services.walker.enable
+    * home-manager for services.swayosd.enable
     * hypridle ne marche pas (user/root ?)
     * https://github.com/catppuccin/catppuccin/issues/2849
     * choose background image
@@ -52,6 +54,7 @@ sudo nixos-rebuild switch --flake .#nixos
     * theme catpuccin qt/gtk
     * theme waybar
     * theme sddm
+    * theme walker
     * smile
     * clean generations
 
