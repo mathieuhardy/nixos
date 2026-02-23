@@ -58,6 +58,7 @@
     pwvucontrol # GUI to control volume
     swaybg # Background manager
     swayosd # On-screen display for other tools
+    swayimg # Image viewer
     walker # Application launcher
     # wdisplays  # GUI to manage displays (alternative)
   ];
