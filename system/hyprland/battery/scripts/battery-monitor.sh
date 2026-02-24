@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 BATTERY_PATH="/sys/class/power_supply/BAT0"
+[[ -d "$BATTERY_PATH" ]] || exit 0
+
 NOTIFIED_40=false
 NOTIFIED_10=false
 NOTIFIED_5=false
