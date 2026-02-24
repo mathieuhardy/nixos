@@ -3,9 +3,9 @@
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Link to config:
-  #   ~/.config/fish/
+  #   ~/.config/swayimg/
   # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.configFile."fish".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/fish-config";
+  xdg.configFile."swayimg".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/swayimg";
 }

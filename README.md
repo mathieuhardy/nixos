@@ -42,31 +42,22 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * checker si hypridle fonctionne
+    * battery-alert ne marche pas (user/root ?)
     * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
-    * hypridle ne marche pas (user/root ?)
-    * https://github.com/catppuccin/catppuccin/issues/2849
-    * choose background image
-    * finish config
-        * sddm not working
-        * symbolic link to configurations
-    * dark mode by default
-    * theme catpuccin qt/gtk
-    * theme waybar
-    * theme sddm
-    * theme walker
-    * smile
+    * sddm not working
+    * symbolic link to configurations
+    * theme
+        * dark mode by default
+        * theme catpuccin qt/gtk
+        * theme waybar
+        * theme sddm
+        * theme walker
+    * smile: on ne voit pas les emoji
     * clean generations
 
-- hardware config
-```nix
-inputs.nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-# Dans nixosConfigurations.modules :
-nixos-hardware.nixosModules.lenovo-thinkpad-p14s-amd-gen1
-```
-
-Récupérer ça:
+- hardware config: récupérer ça:
 
 ```nix
 # Trim SSD
@@ -98,6 +89,7 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://github.com/MalpenZibo/ashell
     * https://github.com/elkowar/eww/
 - wallpaper (compare time to start):
+    * https://deepwiki.com/hyprwm/hyprland-wiki/5.3-hyprpaper
     * https://github.com/danyspin97/wpaperd
     * https://github.com/LGFae/swww
 - Automatic display configuration

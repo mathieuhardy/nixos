@@ -17,26 +17,23 @@
     ./fish.nix
     ./git.nix
     ./hypridle.nix
+    ./hyprland.nix
     ./input-remapper.nix
     ./lsd.nix
     ./mpv.nix
     ./neovim.nix
+    ./nwg-bar.nix
     ./secrets.nix
     ./ssh.nix
+    ./swaybg.nix
+    ./swayimg.nix
+    ./swaync.nix
     ./theme.nix
+    ./walker.nix
     ./waybar.nix
     ./xdg.nix
     ./zed.nix
   ];
-
-  # TODO: move to dedicated file
-  # Filter some entries in sherlock:
-  #   - thunar
-  xdg.configFile."sherlock/sherlockignore".text = ''
-    Bulk rename
-    Removable Drives and Media
-    Thunar Preferences
-  '';
 
   # ────────────────────────────────────────────────────────────────────────────
   # Global home-manager configuration

@@ -2,7 +2,9 @@
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Link to config
+  # Link to configs:
+  #   ~/.config/lsd/config.yaml
+  #   ~/.config/lsd/colors.yaml
   # ────────────────────────────────────────────────────────────────────────────
 
   xdg.configFile."lsd/config.yaml".source =
