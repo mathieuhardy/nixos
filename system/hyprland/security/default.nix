@@ -1,18 +1,9 @@
-{ pkgs, ... }:
+{ ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # Hyprlock accesses
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    ./battery
-    ./display-manager
-    ./env
-    ./security
-    ./window-manager
-    ./xdg
-
-    ./packages.nix
-  ];
+  security.pam.services.hyprlock = { };
 }
