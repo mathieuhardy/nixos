@@ -42,6 +42,8 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * tester: bind = ESC, MOD_NONE, closeactive, class:Nm-connection-editor
+    * tester: qalculate-gtk
     * checker si hypridle fonctionne
     * battery-alert ne marche pas (user/root ?)
     * home-manager for services.walker.enable
