@@ -12,8 +12,9 @@
 
     hyprpolkitagent
     wayland-utils
-    xdg-desktop-portal-hyprland # Screen sharing, file pickers, etc
+    xdg-desktop-portal
     xdg-desktop-portal-gtk # Fallback version
+    xdg-desktop-portal-hyprland # Screen sharing, file pickers, etc
     xdg-utils
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
@@ -33,14 +34,23 @@
     # Themes
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
+    # GTK theme
     catppuccin-gtk
-    catppuccin-cursors.frappeMauve
+
+    # Qt theming (use Kvantum)
+    catppuccin-kvantum
     kdePackages.qtstyleplugin-kvantum
-    libsForQt5.qt5ct # For Qt5 applications theme configuration
-    # libsForQt5.qtstyleplugins
+
+    # Qt6 specific
+    qt6.qtwayland
+    qt6Packages.qt6ct
+
+    # Qt5 specific
+    libsForQt5.qt5ct
+
+    # Icons
+    catppuccin-cursors.frappeMauve
     papirus-icon-theme
-    qt6.qtwayland # For Qt6 applications
-    qt6Packages.qt6ct # For Qt6 applications theme configuration
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
     # Utilities

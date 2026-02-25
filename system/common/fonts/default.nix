@@ -7,18 +7,35 @@
 
   fonts = {
     packages = with pkgs; [
-      nerd-fonts.commit-mono
-      noto-fonts
+      inter # For GUI
+      nerd-fonts.commit-mono # For development
+      noto-fonts # For the rest
       noto-fonts-cjk
       noto-fonts-color-emoji
     ];
 
     fontconfig = {
+      enable = true;
+
       defaultFonts = {
-        monospace = [ "CommitMono Nerd Font" ];
-        sansSerif = [ "Noto Sans" ];
-        serif = [ "Noto Serif" ];
-        emoji = [ "Noto Color Emoji" ];
+        monospace = [
+            "CommitMono Nerd Font"
+            "Noto Color Emoji"
+        ];
+
+        sansSerif = [
+            "Inter"
+            "Noto Color Emoji"
+        ];
+
+        serif = [
+            "Noto Serif"
+            "Noto Color Emoji"
+        ];
+
+        emoji = [
+            "Noto Color Emoji"
+        ];
       };
     };
   };

@@ -42,20 +42,25 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * default applications
+    * tester: bookworm, koodo-reader, foliate for epub
     * tester: bind = ESC, MOD_NONE, closeactive, class:Nm-connection-editor
-    * tester: qalculate-gtk
     * checker si hypridle fonctionne
+    * waybar fixed workspaces => pas bon
     * battery-alert ne marche pas (user/root ?)
     * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
+    * hypridle ne marche pas (user/root ?)
     * sddm not working
-    * symbolic link to configurations
     * theme
         * dark mode by default
         * theme catpuccin qt/gtk
         * theme waybar
         * theme sddm
         * theme walker
+        * theme swayimg
+    * smile: on ne voit pas les emoji
+    * dark mode by default
     * smile: on ne voit pas les emoji
     * clean generations
 
@@ -87,6 +92,7 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
 
 # Later
 
+- ESC pour cacher les fenêtres floating BT, ...
 - Status bar:
     * https://github.com/MalpenZibo/ashell
     * https://github.com/elkowar/eww/
@@ -109,3 +115,15 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
         * https://git.sr.ht/~kennylevinsen/gtkgreet
         * https://gitlab.com/marcusbritanicus/QtGreet (bof)
         * https://github.com/apognu/tuigreet (tui, why not)
+- Special workspaces:
+    * https://medium.com/@mynameised/how-to-create-multiple-special-workspaces-in-hyprland-b4de8bc2ddd7
+- Monitor configuration:
+    * https://filipmikina.com/blog/hyprdynamicmonitors
+- Calendar:
+    * https://github.com/anufrievroman/calcure
+- Bluetooth:
+    * https://github.com/pythops/bluetui
+- Downloader:
+    * https://github.com/surge-downloader/surge
+- bittorent:
+    * https://github.com/stabldev/torrra

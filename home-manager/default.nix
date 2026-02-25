@@ -18,6 +18,7 @@
     ./git.nix
     ./hypridle.nix
     ./hyprland.nix
+    ./hyprlock.nix
     ./input-remapper.nix
     ./lsd.nix
     ./mpv.nix
