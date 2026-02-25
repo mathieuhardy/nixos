@@ -10,7 +10,6 @@
       inter # For GUI
       nerd-fonts.commit-mono # For development
       noto-fonts # For the rest
-      noto-fonts-cjk
       noto-fonts-color-emoji
     ];
 
@@ -19,22 +18,22 @@
 
       defaultFonts = {
         monospace = [
-            "CommitMono Nerd Font"
-            "Noto Color Emoji"
+          "CommitMono Nerd Font"
+          "Noto Color Emoji"
         ];
 
         sansSerif = [
-            "Inter"
-            "Noto Color Emoji"
+          "Inter"
+          "Noto Color Emoji"
         ];
 
         serif = [
-            "Noto Serif"
-            "Noto Color Emoji"
+          "Noto Serif"
+          "Noto Color Emoji"
         ];
 
         emoji = [
-            "Noto Color Emoji"
+          "Noto Color Emoji"
         ];
       };
     };
