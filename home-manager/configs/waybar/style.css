@@ -6,7 +6,8 @@
 
 * {
     font-family: Commit Mono Nerd Font;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: bold;
     border: none;
     border-radius: 0;
     padding: 1px;
@@ -34,7 +35,7 @@ window#waybar {
 
 /* Default and non-empty buttons */
 #workspaces button {
-    color: #f4b8e4;
+    color: #f2d5cf;
     background-color: transparent;
     border: none;
     margin: 0 2px 0 2px;
@@ -61,7 +62,7 @@ window#waybar {
 
 /* Current */
 #workspaces button.active {
-    color: #99d1db;
+    color: #e7c664;
     background-color: transparent;
 }
 
@@ -204,7 +205,7 @@ window#waybar {
 }
 
 #bluetooth.off {
-    color: #f38ba8;
+    color: #666666;
 }
 
 /*
