@@ -7,14 +7,17 @@
 
   fonts = {
     packages = with pkgs; [
-      dejavu_fonts
       nerd-fonts.commit-mono
+      noto-fonts
+      noto-fonts-cjk
       noto-fonts-color-emoji
     ];
 
     fontconfig = {
       defaultFonts = {
-        monospace = [ "DejaVu Sans Mono" ];
+        monospace = [ "CommitMono Nerd Font" ];
+        sansSerif = [ "Noto Sans" ];
+        serif = [ "Noto Serif" ];
         emoji = [ "Noto Color Emoji" ];
       };
     };
