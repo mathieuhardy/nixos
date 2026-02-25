@@ -60,8 +60,6 @@ sudo nixos-rebuild switch --flake .#nixos
         * theme walker
         * theme swayimg
     * smile: on ne voit pas les emoji
-    * dark mode by default
-    * smile: on ne voit pas les emoji
     * clean generations
 
 - hardware config: récupérer ça:
