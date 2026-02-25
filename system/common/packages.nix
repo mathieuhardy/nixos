@@ -85,10 +85,9 @@ in
     fd
     gparted
     input-remapper
-    kdePackages.spectacle # Screenshots
     loglit # Logs highlighting
     lsd
-    qalculate-qt
+    qalculate-gtk
     ripgrep
     sops # For secrets encryption in NixOS configuration
     starship
