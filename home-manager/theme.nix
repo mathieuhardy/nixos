@@ -1,10 +1,11 @@
 { pkgs, ... }:
 
 let
+  # TODO: remove
   catppuccin-gtk = pkgs.catppuccin-gtk.override {
     accents = [ "mauve" ];
     variant = "frappe";
-    tweaks = [ "normal" ];
+    # tweaks = [ "normal" ];
   };
 in
 {
@@ -16,7 +17,7 @@ in
     enable = true;
 
     theme = {
-      name = "Catppuccin-Frappe-Standard-Mauve-Dark";
+      name = "catppuccin-frappe-mauve-standard";
       package = catppuccin-gtk;
     };
 
@@ -26,7 +27,7 @@ in
     };
 
     cursorTheme = {
-      name = "Catppuccin-Frappe-Mauve";
+      name = "catppuccin-frappe-mauve";
       package = pkgs.catppuccin-cursors.frappeMauve;
     };
 
@@ -63,10 +64,10 @@ in
 
   # Force dark mode for GTK4 using settings.ini
   # TODO: remove if all GTK apps are well configured
-  # xdg.configFile."gtk-4.0/settings.ini".text = ''
-  #   [Settings]
-  #   gtk-application-prefer-dark-theme=true
-  # '';
+  xdg.configFile."gtk-4.0/settings.ini".text = ''
+    [Settings]
+    gtk-application-prefer-dark-theme=true
+  '';
 
   # ────────────────────────────────────────────────────────────────────────────
   # Qt

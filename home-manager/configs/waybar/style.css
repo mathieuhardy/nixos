@@ -62,7 +62,7 @@ window#waybar {
 
 /* Current */
 #workspaces button.active {
-    color: #e7c664;
+    color: #ca9ee6;
     background-color: transparent;
 }
 
