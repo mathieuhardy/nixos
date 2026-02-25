@@ -31,6 +31,7 @@ in
     devcontainer
     fnm
     gitg
+    gnumake
     go
     meld
     nodejs
@@ -87,10 +88,12 @@ in
     input-remapper
     loglit # Logs highlighting
     lsd
+    pandoc # Documents conversion
     qalculate-gtk
     ripgrep
     sops # For secrets encryption in NixOS configuration
     starship
+    texlive.combined.scheme-basic # For pdflatex
     trashy
     unzip
     wget
