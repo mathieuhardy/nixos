@@ -170,11 +170,20 @@ in
 
   systemd.user.services.battery-monitor = {
     description = "battery monitoring (for alerting)";
-    wantedBy = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+
     serviceConfig = {
       Type = "exec";
       ExecStart = "${battery-monitor}/bin/battery-monitor";
+      Restart = "always";
     };
+
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+
+    path = with pkgs; [
+      libnotify
+      coreutils
+      bash
+    ];
   };
 }
