@@ -1,4 +1,9 @@
-{ config, osConfig, ... }:
+{
+  config,
+  osConfig,
+  pkgs,
+  ...
+}:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -7,13 +12,34 @@
 
   services.hypridle = {
     enable = true;
+
+    settings = {
+      general = {
+        lock_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        before_sleep_cmd = "${pkgs.hyprlock}/bin/hyprlock";
+        after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+      };
+
+      listener = [
+        # 1 min → dim
+        {
+          timeout = 60;
+          on-timeout = "${pkgs.brightnessctl}/bin/brightnessctl -s set 10%";
+          on-resume = "${pkgs.brightnessctl}/bin/brightnessctl -r";
+        }
+
+        # 2 min → lock
+        {
+          timeout = 120;
+          on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
+        }
+
+        # 5 min → suspend
+        {
+          timeout = 300;
+          on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
+        }
+      ];
+    };
   };
-
-  # ────────────────────────────────────────────────────────────────────────────
-  # Link to config:
-  #   ~/.config/hypr/hypridle.conf
-  # ────────────────────────────────────────────────────────────────────────────
-
-  xdg.configFile."hypr/hypridle.conf".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/hypridle/hypridle.conf";
 }

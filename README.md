@@ -42,8 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * checker si hypridle fonctionne (avec dim donc écran laptop)
-    * debug battery-alert
     * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
     * debug sddm
@@ -54,7 +52,9 @@ sudo nixos-rebuild switch --flake .#nixos
         * theme sddm
         * theme walker
         * theme swayimg
-    * smile: on ne voit pas les emoji
+    * smile:
+        * on ne voit pas les emoji
+        * config : run in the background, ...
     * clean generations
 
 - hardware config: récupérer ça:
