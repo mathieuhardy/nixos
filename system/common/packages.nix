@@ -4,7 +4,16 @@ let
   unstable = import <nixos-unstable> { };
 
   # Custom packages
+  battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
+  git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
+  gparted-launcher = pkgs.callPackage ./custom-packages/gparted-launcher.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
+  monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
+  notifications-count = pkgs.callPackage ./custom-packages/notifications-count.nix { };
+  toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
+  toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
+  trash-count = pkgs.callPackage ./custom-packages/trash-count.nix { };
+  workspace-navigation = pkgs.callPackage ./custom-packages/workspace-navigation.nix { };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -81,23 +90,32 @@ in
     age # For secrets encryption in NixOS configuration
     alacritty # Backup terminal
     bash
+    battery-monitor # Monitor the level of battery and send notifications
     bottom
     curl
     fd
+    git-branch-checker # Checks if local branches are merged
     gparted
+    gparted-launcher # Simple wrapper to start gParted with correct inputs
     input-remapper
     loglit # Logs highlighting
     lsd
+    monitor-setup # Auto configure monitors according to what's plugged
+    notifications-count
     pandoc # Documents conversion
     qalculate-gtk
     ripgrep
     sops # For secrets encryption in NixOS configuration
     starship
     texlive.combined.scheme-basic # For pdflatex
+    toggle-bluetooth
+    toggle-window
     trashy
+    trash-count
     unzip
     wget
     wezterm
+    workspace-navigation # Loop navigation between worspaces
     xarchiver
     xdg-user-dirs
     zip
@@ -143,5 +161,20 @@ in
       thunar-archive-plugin # zip/unzip
       thunar-volman # mount volumes
     ];
+  };
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # Services
+  # TODO: move elsewhere
+  # ────────────────────────────────────────────────────────────────────────────
+
+  systemd.user.services.battery-monitor = {
+    description = "battery monitoring (for alerting)";
+    wantedBy = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${battery-monitor}/bin/battery-monitor";
+    };
   };
 }

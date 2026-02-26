@@ -45,7 +45,7 @@
     "disk": {
         "interval": 60,
         "format": " {percentage_used}%",
-        "on-click": "~/.config/hypr/scripts/gparted.sh",
+        "on-click": "gparted-launcher",
         "tooltip": true,
         "tooltip-format": "{used} out of {total}"
     },
@@ -185,8 +185,8 @@
         "format-on": "󰂯",
         "format-off": "󰂲",
         "format-connected": "󰂱 {device_alias}",
-        "on-click": "~/.config/hypr/scripts/toggle-window.sh toggle .blueman-manager-wrapped blueman-manager",
-        "on-click-right": "~/.config/hypr/scripts/toggle-bluetooth.sh"
+        "on-click": "toggle-window toggle .blueman-manager-wrapped blueman-manager",
+        "on-click-right": "toggle-bluetooth"
     },
 
     // System related
@@ -258,7 +258,7 @@
     },
 
     "custom/trash": {
-        "exec": "~/.config/hypr/scripts/trash.sh",
+        "exec": "trash-count",
         "interval": 5,
         "return-type": "json",
         "on-click": "thunar trash:///",
@@ -268,7 +268,7 @@
 
     "custom/swaync": {
         "interval": 2,
-        "exec": "~/.config/hypr/scripts/notifications-count.sh",
+        "exec": "notifications-count",
         "format": "{}",
         "on-click": "swaync-client -t -sw",
         "tooltip": false

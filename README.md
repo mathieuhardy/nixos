@@ -42,7 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * installer ~/bin/git-branch-checker.sh + rajouter l'abbr fish "gb"
+    * rajouter l'abbr fish "gb" pour git-branch-checker
     * tester: bind = ALT, F4, exec toggle-window, class:nm-connection-editor
     * checker si hypridle fonctionne (avec dim donc écran laptop)
     * waybar fixed workspaces => pas bon
@@ -97,10 +97,9 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://github.com/danyspin97/wpaperd
     * https://github.com/LGFae/swww
 - Automatic display configuration
+    * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
     * kanshi (pas rust)
-- Screenshot:
-    * https://github.com/waycrate/wayshot
 - Zooming:
     * https://github.com/coffeeispower/woomer
 - Power menu:
@@ -113,8 +112,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
         * https://github.com/apognu/tuigreet (tui, why not)
 - Special workspaces:
     * https://medium.com/@mynameised/how-to-create-multiple-special-workspaces-in-hyprland-b4de8bc2ddd7
-- Monitor configuration:
-    * https://filipmikina.com/blog/hyprdynamicmonitors
 - Calendar:
     * https://github.com/anufrievroman/calcure
 - Bluetooth:

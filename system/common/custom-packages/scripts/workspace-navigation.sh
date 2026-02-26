@@ -15,4 +15,3 @@ then
     [ ${TARGET} -lt 1 ] && TARGET=${WS_COUNT}
     hyprctl dispatch workspace ${TARGET}
 fi
-
