@@ -19,17 +19,15 @@
       defaultFonts = {
         monospace = [
           "CommitMono Nerd Font"
-          "Noto Color Emoji"
         ];
 
         sansSerif = [
+          "Noto Sans"
           "Inter"
-          "Noto Color Emoji"
         ];
 
         serif = [
           "Noto Serif"
-          "Noto Color Emoji"
         ];
 
         emoji = [
@@ -38,4 +36,16 @@
       };
     };
   };
+
+  # TODO: remove
+  # environment.systemPackages = with pkgs; [
+  #   adwaita-icon-theme # icônes symboliques GTK4 / libadwaita
+  #   gnome-themes-extra # plus de thèmes et icônes optionnels
+  # ];
+  #
+  # environment.variables = {
+  #   GDK_BACKEND = "wayland"; # obligatoire pour Hyprland
+  #   GTK_USE_PORTAL = "1"; # pour GTK apps sandboxées
+  #   FONTCONFIG_PATH = "${pkgs.fontconfig}/etc/fonts"; # pour Pango / fontconfig
+  # };
 }
