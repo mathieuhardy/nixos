@@ -3,8 +3,9 @@
 pkgs.stdenv.mkDerivation {
   name = "gparted-launcher";
   src = ./scripts/gparted-launcher.sh;
+  dontUnpack = true;
 
-  buildInputs = [];
+  buildInputs = [ ];
 
   installPhase = ''
     mkdir -p $out/bin

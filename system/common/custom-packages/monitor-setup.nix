@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "monitor-setup";
   src = ./scripts/monitor-setup.sh;
+  dontUnpack = true;
 
   buildInputs = [ pkgs.hyprland ];
 

@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "toggle-window";
   src = ./scripts/toggle-window.sh;
+  dontUnpack = true;
 
   buildInputs = [ pkgs.hyprland ];
 

@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "workspace-navigation";
   src = ./scripts/workspace-navigation.sh;
+  dontUnpack = true;
 
   buildInputs = [ pkgs.hyprland ];
 

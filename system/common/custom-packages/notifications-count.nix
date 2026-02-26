@@ -3,8 +3,9 @@
 pkgs.stdenv.mkDerivation {
   name = "notifications-count";
   src = ./scripts/notifications-count.sh;
+  dontUnpack = true;
 
-  buildInputs = [ pkgs.swaync ];
+  buildInputs = [ pkgs.swaynotificationcenter ];
 
   installPhase = ''
     mkdir -p $out/bin

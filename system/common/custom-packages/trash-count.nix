@@ -3,8 +3,9 @@
 pkgs.stdenv.mkDerivation {
   name = "trash-count";
   src = ./scripts/trash-count.sh;
+  dontUnpack = true;
 
-  buildInputs = [];
+  buildInputs = [ ];
 
   installPhase = ''
     mkdir -p $out/bin

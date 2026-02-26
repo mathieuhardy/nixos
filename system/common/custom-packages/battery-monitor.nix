@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "battery-monitor";
   src = ./scripts/battery-monitor.sh;
+  dontUnpack = true;
 
   buildInputs = [ pkgs.libnotify ];
 

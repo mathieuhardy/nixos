@@ -3,8 +3,9 @@
 pkgs.stdenv.mkDerivation {
   name = "toggle-bluetooth";
   src = ./scripts/toggle-bluetooth.sh;
+  dontUnpack = true;
 
-  buildInputs = [];
+  buildInputs = [ ];
 
   installPhase = ''
     mkdir -p $out/bin

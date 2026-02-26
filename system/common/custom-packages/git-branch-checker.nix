@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation {
   name = "git-branch-checker";
   src = ./scripts/git-branch-checker.sh;
+  dontUnpack = true;
 
   buildInputs = [ pkgs.git ];
 
