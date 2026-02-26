@@ -42,10 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * rajouter l'abbr fish "gb" pour git-branch-checker
-    * tester: bind = ALT, F4, exec toggle-window, class:nm-connection-editor
     * checker si hypridle fonctionne (avec dim donc écran laptop)
-    * waybar fixed workspaces => pas bon
     * debug battery-alert
     * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
