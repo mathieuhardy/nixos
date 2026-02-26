@@ -42,16 +42,14 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * default applications
-    * tester: bookworm, koodo-reader, foliate for epub
-    * tester: bind = ESC, MOD_NONE, closeactive, class:Nm-connection-editor
-    * checker si hypridle fonctionne
+    * installer ~/bin/git-branch-checker.sh + rajouter l'abbr fish "gb"
+    * tester: bind = ALT, F4, exec toggle-window, class:nm-connection-editor
+    * checker si hypridle fonctionne (avec dim donc écran laptop)
     * waybar fixed workspaces => pas bon
-    * battery-alert ne marche pas (user/root ?)
+    * debug battery-alert
     * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
-    * hypridle ne marche pas (user/root ?)
-    * sddm not working
+    * debug sddm
     * theme
         * dark mode by default
         * theme catpuccin qt/gtk
@@ -125,3 +123,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://github.com/surge-downloader/surge
 - bittorent:
     * https://github.com/stabldev/torrra
+- default applications
+- tester: bookworm, koodo-reader, foliate for epub
+- remplacer certains scripts par des binaires Rust
