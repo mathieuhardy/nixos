@@ -120,3 +120,4 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
 - default applications
 - tester: bookworm, koodo-reader, foliate for epub
 - remplacer certains scripts par des binaires Rust
+- remove gparted-launcher
