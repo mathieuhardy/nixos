@@ -26,16 +26,15 @@ in
       package = pkgs.papirus-icon-theme;
     };
 
-    # Disabled as some cursors names are missing
-    # cursorTheme = {
-    #   name = "catppuccin-frappe-mauve";
-    #   package = pkgs.catppuccin-cursors.frappeMauve;
-    # };
-
     cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
+      name = "catppuccin-frappe-mauve";
+      package = pkgs.catppuccin-cursors.frappeMauve;
     };
+
+    # cursorTheme = {
+    #   name = "Bibata-Modern-Classic";
+    #   package = pkgs.bibata-cursors;
+    # };
 
     font = {
       name = "Inter";
