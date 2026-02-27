@@ -30,6 +30,7 @@
     ./swaybg.nix
     ./swayimg.nix
     ./swaync.nix
+    ./swayosd.nix
     ./theme.nix
     ./walker.nix
     ./waybar.nix

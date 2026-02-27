@@ -67,7 +67,6 @@
     playerctl # GUI to control media
     pwvucontrol # GUI to control volume
     swaybg # Background manager
-    swayosd # On-screen display for other tools
     swayimg # Image viewer
     # wdisplays  # GUI to manage displays (alternative)
   ];
