@@ -34,9 +34,9 @@
           on-timeout = "${pkgs.hyprlock}/bin/hyprlock";
         }
 
-        # 5 min → suspend
+        # 10 min → suspend
         {
-          timeout = 300;
+          timeout = 600;
           on-timeout = "${pkgs.systemd}/bin/systemctl suspend";
         }
       ];
