@@ -42,6 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * walker not started
     * debug sddm
     * theme
         * dark mode by default
