@@ -142,6 +142,10 @@ window#waybar {
     color: #f8f8f8;
 }
 
+#custom-swaync.notification {
+  color: #e7c664;
+}
+
 /*
  * ─────────────────────────────────────────────────────────────────────────────
  * System: battery, backlight, displays, etc

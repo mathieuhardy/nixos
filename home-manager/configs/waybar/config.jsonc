@@ -272,10 +272,12 @@
     },
 
     "custom/swaync": {
-        "interval": 2,
-        "exec": "notifications-count",
-        "format": "{}",
+        // "interval": 2,
+        "exec": "swaync-client -swb",
+        "return-type": "json",
+        "format": "󰂚 {}",
         "on-click": "swaync-client -t -sw",
+        "on-click-right": "swaync-client -C",
         "tooltip": false
     },
 
