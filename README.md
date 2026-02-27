@@ -42,7 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * home-manager for services.walker.enable
     * home-manager for services.swayosd.enable
     * debug sddm
     * theme
