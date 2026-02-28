@@ -69,6 +69,7 @@
     swaybg # Background manager
     swayimg # Image viewer
     # wdisplays  # GUI to manage displays (alternative)
+    woomer # Zoom desktop
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

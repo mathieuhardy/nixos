@@ -96,8 +96,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
     * kanshi (pas rust)
-- Zooming:
-    * https://github.com/coffeeispower/woomer
 - Power menu:
     * https://github.com/AMNatty/wleave
 - Login screen:
@@ -119,4 +117,3 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
 - default applications
 - tester: bookworm, koodo-reader, foliate for epub
 - remplacer certains scripts par des binaires Rust
-- remove gparted-launcher
