@@ -168,8 +168,9 @@
 
     "network": {
         "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󰈀 {ifname}",
-        "format-disconnected": "󰤭",
+        "format-ethernet": "󰈀 ",
+        "format-disconnected": "󰤭 ",
+        "format-linked": "󰤨 (no IP)",
         "on-click": "nm-connection-editor",
         "tooltip-format-wifi": "{signalStrength}%",
         "tooltip-format-ethernet": "{ipaddr}",
