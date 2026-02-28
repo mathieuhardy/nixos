@@ -44,6 +44,7 @@ sudo nixos-rebuild switch --flake .#nixos
 - hyprland:
     * sddm: voir pour le basculer sur DP-2
     * theme
+        * cursor: hand2
         * dark mode by default
         * theme catpuccin qt/gtk
         * theme waybar

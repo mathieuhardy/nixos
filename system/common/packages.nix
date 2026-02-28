@@ -6,7 +6,6 @@ let
   # Custom packages
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
-  gparted-launcher = pkgs.callPackage ./custom-packages/gparted-launcher.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
   notifications-count = pkgs.callPackage ./custom-packages/notifications-count.nix { };
@@ -96,7 +95,6 @@ in
     fd
     git-branch-checker # Checks if local branches are merged
     gparted
-    gparted-launcher # Simple wrapper to start gParted with correct inputs
     input-remapper
     loglit # Logs highlighting
     lsd
