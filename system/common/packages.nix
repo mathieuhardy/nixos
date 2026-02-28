@@ -94,6 +94,7 @@ in
     curl
     fd
     git-branch-checker # Checks if local branches are merged
+    gnome-calculator
     gparted
     input-remapper
     loglit # Logs highlighting
@@ -101,7 +102,6 @@ in
     monitor-setup # Auto configure monitors according to what's plugged
     notifications-count
     pandoc # Documents conversion
-    qalculate-gtk
     ripgrep
     sops # For secrets encryption in NixOS configuration
     starship

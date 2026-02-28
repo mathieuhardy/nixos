@@ -13,7 +13,7 @@ calibre
 re.sonny.Eloquent
 libreoffice
 gparted
-qalculate-gtk
+gnome-calculator
 blueman-manager
 gsimplecal
 nm-connection-editor
