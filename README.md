@@ -100,8 +100,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
         * https://github.com/apognu/tuigreet (tui, why not)
 - Special workspaces:
     * https://medium.com/@mynameised/how-to-create-multiple-special-workspaces-in-hyprland-b4de8bc2ddd7
-- Calendar:
-    * https://github.com/anufrievroman/calcure
 - Bluetooth:
     * https://github.com/pythops/bluetui
 - Downloader:
