@@ -8,26 +8,29 @@ YELLOW="\033[1;33m"
 BLUE="\033[1;34m"
 NC="\033[0m"
 
-# Laptop monitor
-LAPTOP=$(hyprctl monitors all -j | jq -r '.[] | select(.name | startswith("eDP")) | .name')
+# Active workspace
+ACTIVE_WS=$(hyprctl activeworkspace -j | jq '.id')
 
-# External monitor (first non-laptop)
+# Internal monitor
+INTERNAL=$(hyprctl monitors all -j | jq -r '.[] | select(.name | startswith("eDP")) | .name')
+
+# External monitor (first non-internal)
 EXTERNAL=$(hyprctl monitors -j | jq -r '.[] | select(.name | startswith("eDP") | not) | .name' | head -n1)
 
-HAS_LAPTOP=true
+HAS_INTERNAL=true
 HAS_EXTERNAL=false
 
-if [[ -n "${LAPTOP}" ]]
+if [[ -n "${INTERNAL}" ]]
 then
     # Check the LID status
     state=$(cat /proc/acpi/button/lid/*/state)
 
     if echo "${state}" | grep -q closed
     then
-        HAS_LAPTOP=false
+        HAS_INTERNAL=false
     fi
 else
-    HAS_LAPTOP=false
+    HAS_INTERNAL=false
 fi
 
 if [[ -n "${EXTERNAL}" ]]
@@ -35,35 +38,61 @@ then
     HAS_EXTERNAL=true
 fi
 
-if [[ "${HAS_LAPTOP}" = "true" ]]
+# Handle profiles
+if [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "false" ]]
 then
-    echo -e "${GREEN}✓ Laptop screen opened → enabling ${LAPTOP}${NC}"
-    hyprctl keyword monitor "${LAPTOP},preferred,auto,1"
+    # Assign all workspaces to internal
+    echo -e "${BLUE}⮊ Move workspace 1 to ${INTERNAL} (as default)${NC}"
+    hyprctl keyword workspace "1,monitor:${INTERNAL},persistent:true,default:true"
+    hyprctl dispatch moveworkspacetomonitor 1 "${INTERNAL}"
 
-    # Move workspace 10 to laptop.
-    # If this is the only monitor all workspaces will be on it already.
-    echo -e "${BLUE}⮊ Move workspace 10 to ${LAPTOP}${NC}"
-    hyprctl dispatch moveworkspacetomonitor 10 "${LAPTOP}"
-else
-    echo -e "${RED}✖ Laptop screen closed → disabling ${LAPTOP}${NC}"
-    hyprctl keyword monitor "${LAPTOP},disable"
-fi
+    for ws in {2..10}
+    do
+        echo -e "${BLUE}⮊ Move workspace ${ws} to ${INTERNAL}${NC}"
+        hyprctl keyword workspace "${ws},monitor:${INTERNAL},persistent:true"
+        hyprctl dispatch moveworkspacetomonitor "${ws}" "${INTERNAL}"
+    done
 
-if [[ "${HAS_EXTERNAL}" = "true" ]]
+    echo -e "${GREEN}✓ Enabling internal: ${INTERNAL}${NC}"
+    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
+elif [[ "${HAS_INTERNAL}" = "false" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
 then
-    echo -e "${GREEN}✓ External screen detected → ${EXTERNAL}${NC}"
+    # Assign all workspaces to external
+    echo -e "${BLUE}⮊ Move workspace 1 to ${EXTERNAL} (as default)${NC}"
+    hyprctl keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
+    hyprctl dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
 
-    # Move workspaces to external except the 10.
-    # In case the laptop is closed it will still be on this monitor.
-    for ws in {1..9}
+    for ws in {2..10}
     do
         echo -e "${BLUE}⮊ Move workspace ${ws} to ${EXTERNAL}${NC}"
+        hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
         hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
     done
 
-    if [[ "${HAS_LAPTOP}" = "false" ]]
-    then
-        echo -e "${BLUE}⮊ Move workspace 10 to ${EXTERNAL}${NC}"
-        hyprctl dispatch moveworkspacetomonitor 10 "${EXTERNAL}"
-    fi
+    echo -e "${RED}✖ Disabling internal: ${INTERNAL}${NC}"
+    hyprctl keyword monitor "${INTERNAL},disable"
+elif [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
+then
+    # Workspace 10 to internal
+    echo -e "${BLUE}⮊ Move workspace 10 to ${INTERNAL} (as default)${NC}"
+    hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
+    hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
+
+    echo -e "${GREEN}✓ Enabling internal: ${INTERNAL}${NC}"
+    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
+
+    # The rest to external
+    echo -e "${BLUE}⮊ Move workspace 1 to ${EXTERNAL} (as default)${NC}"
+    hyprctl keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
+    hyprctl dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
+
+    for ws in {2..9}
+    do
+        echo -e "${BLUE}⮊ Move workspace ${ws} to ${EXTERNAL}${NC}"
+        hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
+        hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
+    done
 fi
+
+# Jump back to active
+hyprctl dispatch workspace "${ACTIVE_WS}"
