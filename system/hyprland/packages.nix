@@ -56,7 +56,7 @@
     # Utilities
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
-    blueman # GUI to manage bluetooth
+    bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker

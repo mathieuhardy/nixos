@@ -186,7 +186,7 @@
         "format-on": "󰂯",
         "format-off": "󰂲",
         "format-connected": "󰂱 {device_alias}",
-        "on-click": "toggle-window toggle .blueman-manager-wrapped blueman-manager",
+        "on-click": "alacritty --class bluetui -e bluetui",
         "on-click-right": "toggle-bluetooth"
     },
 
