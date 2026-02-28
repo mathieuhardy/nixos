@@ -42,8 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * walker not started
-    * debug sddm
+    * sddm: voir pour le basculer sur DP-2
     * theme
         * dark mode by default
         * theme catpuccin qt/gtk
