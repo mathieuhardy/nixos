@@ -14,10 +14,6 @@ in
 
   };
 
-  systemd.user.services.walker.Service.Environment = [
-    "WAYLAND_DISPLAY=wayland-1"
-  ];
-
   # ────────────────────────────────────────────────────────────────────────────
   # Link to config:
   #   ~/.config/walker/

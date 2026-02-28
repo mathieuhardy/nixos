@@ -42,6 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * walker ne démarre pas
     * sddm: voir pour le basculer sur DP-2
     * theme
         * cursor: hand2
