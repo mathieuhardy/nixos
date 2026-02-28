@@ -13,7 +13,13 @@
     enableIPv6 = false;
 
     # NetworkManager
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      wifi.backend = "iwd";
+    };
+
+    # Wifi
+    wireless.iwd.enable = true;
 
     # Firewall
     firewall = {
