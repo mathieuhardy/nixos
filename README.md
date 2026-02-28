@@ -42,7 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * walker ne démarre pas
     * sddm: voir pour le basculer sur DP-2
     * theme
         * cursor: hand2
@@ -50,11 +49,7 @@ sudo nixos-rebuild switch --flake .#nixos
         * theme catpuccin qt/gtk
         * theme waybar
         * theme sddm
-        * theme walker
         * theme swayimg
-    * smile:
-        * on ne voit pas les emoji
-        * config : run in the background, ...
     * clean generations
 
 - hardware config: récupérer ça:
@@ -97,8 +92,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
     * kanshi (pas rust)
-- Power menu:
-    * https://github.com/AMNatty/wleave
 - Login screen:
     * https://sr.ht/~kennylevinsen/greetd
         * https://github.com/rharish101/ReGreet (propre)

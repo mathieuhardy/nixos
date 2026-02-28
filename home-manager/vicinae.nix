@@ -1,24 +1,24 @@
 { config, osConfig, ... }:
 
-let
-  uid = builtins.getEnv "UID";
-in
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Enable package and service
   # ────────────────────────────────────────────────────────────────────────────
 
-  services.walker = {
+  programs.vicinae = {
     enable = true;
-    systemd.enable = true;
 
+    systemd = {
+      enable = true;
+      autoStart = true;
+    };
   };
 
   # ────────────────────────────────────────────────────────────────────────────
   # Link to config:
-  #   ~/.config/walker/
+  #   ~/.config/vicinae/vicinae.json
   # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.configFile."walker".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/walker";
+  xdg.configFile."vicinae/vicinae.json".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/vicinae/vicinae.json";
 }

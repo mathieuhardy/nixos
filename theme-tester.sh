@@ -18,4 +18,3 @@ blueman-manager
 gsimplecal
 nm-connection-editor
 pwvucontrol
-smile

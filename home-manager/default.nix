@@ -32,7 +32,7 @@
     ./swaync.nix
     ./swayosd.nix
     ./theme.nix
-    ./walker.nix
+    ./vicinae.nix
     ./waybar.nix
     ./xdg.nix
     ./zed.nix
