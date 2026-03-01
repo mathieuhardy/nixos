@@ -60,6 +60,7 @@
     brightnessctl # Control of the brightness
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
+    impala # TUI wifi manager
     jq # Used in scripts to parse JSON outputs
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
     nwg-bar # Power menu
