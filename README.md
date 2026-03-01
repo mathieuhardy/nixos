@@ -42,6 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * monitor-setup : pas bon workspace 11 !
     * sddm: voir pour le basculer sur DP-2
     * theme
         * cursor: hand2
