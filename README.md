@@ -43,6 +43,7 @@ sudo nixos-rebuild switch --flake .#nixos
 
 - hyprland:
     * monitor-setup : pas bon workspace 11 !
+    * monitor-setup : set back correct script triggered
     * theme
         * cursor: hand2
     * clean generations

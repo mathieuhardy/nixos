@@ -91,8 +91,12 @@ elif [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
 then
     # Workspace 10 to internal
     log "${BLUE}" "⮊ Move workspace 10 to ${INTERNAL} (as default)"
-    hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
-    hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
+    # hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
+    # hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
+    hyprctl --batch "
+        keyword workspace 10,monitor:${INTERNAL},persistent:true,default:true;
+        keyword monitor ${INTERNAL},preferred,auto,1
+    "
 
     # The rest to external
     log "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL} (as default)"
@@ -107,8 +111,8 @@ then
     done
 
     # Enable internal screen
-    log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
-    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
+    # log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
+    # hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
 fi
 
 # Jump back to active
