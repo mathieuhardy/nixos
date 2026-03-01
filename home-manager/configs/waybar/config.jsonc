@@ -255,7 +255,8 @@
         "modules": [
             "custom/trash",
             "custom/swaync",
-            "clock"
+            "clock#date",
+            "clock#time"
         ]
     },
 
@@ -278,10 +279,16 @@
         "tooltip": false
     },
 
-    "clock": {
-        "format": "{:%H:%M | %a %d %b}",
-        "format-alt": "{:%H:%M | %a %d %b}",
+    "clock#date": {
+        "format": "{:%a %d %b}",
+        "format-alt": "{:%a %d %b}",
         "tooltip": false,
         "on-click": "gsimplecal"
+    },
+
+    "clock#time": {
+        "format": "{:%H:%M}",
+        "format-alt": "{:%H:%M}",
+        "tooltip": false
     }
 }

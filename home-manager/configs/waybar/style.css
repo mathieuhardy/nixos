@@ -125,7 +125,8 @@ window#waybar {
     border-bottom: 2px solid #f8f8f8;
 }
 
-#clock,
+#clock.date,
+#clock.time,
 #custom-swaync,
 #custom-trash {
     background-color: #45475a;
@@ -135,8 +136,10 @@ window#waybar {
     border-radius: 4px;
 }
 
-#clock:hover,
-#clock:active,
+#clock.date:hover,
+#clock.time:hover,
+#clock.date:active,
+#clock.time:active,
 #custom-swaync:hover,
 #custom-trash:hover {
     color: #f8f8f8;
