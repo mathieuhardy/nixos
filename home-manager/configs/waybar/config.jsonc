@@ -5,16 +5,16 @@
 
     "layer": "top",
     "position": "top",
-    "height": 38,
-    "spacing": 4,
+    "height": 36,
+    "spacing": 2,
 
     // ─────────────────────────────────────────────────────────────────────────
     // Left modules
     // ─────────────────────────────────────────────────────────────────────────
 
     "modules-left": [
-        "group/g-apps",
-        "group/g-monitoring"
+        "group/g-monitoring",
+        "group/g-apps"
     ],
 
     // Tray and other applications related
@@ -124,7 +124,7 @@
             "firefox": "󰈹"
         },
         "status-icons": {
-            "paused": "󰝟"
+            "paused": ""
         },
         "max-length": 30,
         "tooltip": false,
@@ -136,7 +136,7 @@
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "<span color='#f38ba8'>󰝟</span>",
+        "format-muted": "<span color='#333333'>󰝟</span>",
         "format-icons": {
             "headphone": "󰋋",
             "headset": "󰋎",
@@ -152,7 +152,7 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": "󰍬 {volume}%",
-        "format-source-muted": "<span color='#f38ba8'>󰍭</span>",
+        "format-source-muted": "<span color='#333333'>󰍭</span>",
         "on-click": "pwvucontrol -t 3",
         "on-click-right": "swayosd-client --input-volume mute-toggle",
         "on-scroll-up": "swayosd-client --input-volume raise",
@@ -168,10 +168,10 @@
 
     "network": {
         "format-wifi": "󰤨 {essid}",
-        "format-ethernet": "󰈀 ",
-        "format-disconnected": "󰤭 ",
+        "format-ethernet": "󰈀 {ifname}",
+        "format-disconnected": "󰤭",
         "format-linked": "󰤨 (no IP)",
-        "on-click": "nm-connection-editor",
+        "on-click": "alacritty --class nmtui -e nmtui",
         "tooltip-format-wifi": "{signalStrength}%",
         "tooltip-format-ethernet": "{ipaddr}",
         "tooltip": true
@@ -204,7 +204,7 @@
     },
 
     "custom/displays": {
-        "format": "󰍹",
+        "format": "󰍹 ",
         "on-click": "nwg-displays",
         "tooltip": false
     },
