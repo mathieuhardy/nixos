@@ -28,7 +28,7 @@ in
       # Needed at least by hyprland that runs on wayland
       wayland.enable = true;
 
-      # theme = "catppuccin-frappe";
+      theme = "catppuccin-frappe";
 
       settings = {
         Autologin = {
@@ -37,9 +37,9 @@ in
           Relogin = false;
         };
 
-        # General = {
-        #   GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
-        # };
+        General = {
+          GreeterEnvironment = "QT_WAYLAND_SHELL_INTEGRATION=layer-shell";
+        };
 
         # Theme = {
         #   ThemeDir = "/run/current-system/sw/share/sddm/themes";
@@ -57,5 +57,5 @@ in
   # ];
 
   # Expose le thème à SDDM
-  # services.displayManager.sddm.extraPackages = [ sddm-catppuccin ];
+  services.displayManager.sddm.extraPackages = [ sddm-catppuccin ];
 }
