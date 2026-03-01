@@ -6,11 +6,6 @@
 }:
 
 {
-  environment.systemPackages = with pkgs; [
-    tuigreet
-  ];
-
-  # Force NixOS à construire la dérivation desktops qui agrège les .desktop
   services.displayManager.sessionPackages = [ pkgs.hyprland ];
 
   services.greetd = {
@@ -31,15 +26,9 @@
 
       initial_session = {
         command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
-        user = "mhardy";
+        user = "${config.settings.userLogin}";
       };
 
     };
   };
-
-  # systemd.tmpfiles.rules = [
-  #   "d /var/cache/tuigreet 0755 greeter greeter"
-  # ];
-  #
-  # boot.kernelParams = [ "console=tty1" ];
 }

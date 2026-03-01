@@ -48,6 +48,7 @@ sudo nixos-rebuild switch --flake .#nixos
         * cursor: hand2
         * theme sddm
         * theme swayimg
+        * theme tuigreet
     * clean generations
 
 - hardware config: récupérer ça:

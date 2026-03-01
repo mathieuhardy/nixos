@@ -10,8 +10,9 @@
   boot.loader.timeout = 2;
 
   # ────────────────────────────────────────────────────────────────────────────
-  # Kernel version
+  # Kernel configuration
   # ────────────────────────────────────────────────────────────────────────────
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "console=tty1" ];
 }
