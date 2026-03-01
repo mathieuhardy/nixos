@@ -41,7 +41,7 @@ then
     HAS_EXTERNAL=true
 fi
 
-echo "\n" >> ${LOGS}
+echo "" >> ${LOGS}
 echo "HAS_INTERNAL=${HAS_INTERNAL}" >> ${LOGS}
 echo "HAS_EXTERNAL=${HAS_EXTERNAL}" >> ${LOGS}
 
