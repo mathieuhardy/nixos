@@ -27,13 +27,13 @@
     ./nwg-bar.nix
     ./secrets.nix
     ./ssh.nix
-    ./swaybg.nix
     ./swayimg.nix
     ./swaync.nix
     ./swayosd.nix
     ./theme.nix
     ./vicinae.nix
     ./waybar.nix
+    ./wpaperd.nix
     ./xdg.nix
     ./zed.nix
   ];

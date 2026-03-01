@@ -66,11 +66,11 @@
     nwg-displays # GUI to manage displays
     playerctl # GUI to control media
     pwvucontrol # GUI to control volume
-    swaybg # Background manager
     swayimg # Image viewer
     tuigreet # TUI greeter for greetd
     # wdisplays  # GUI to manage displays (alternative)
     woomer # Zoom desktop
+    wpaperd # Background manager
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

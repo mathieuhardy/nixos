@@ -83,20 +83,10 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
 - Status bar:
     * https://github.com/MalpenZibo/ashell
     * https://github.com/elkowar/eww/
-- wallpaper (compare time to start):
-    * https://deepwiki.com/hyprwm/hyprland-wiki/5.3-hyprpaper
-    * https://github.com/danyspin97/wpaperd
-    * https://github.com/LGFae/swww
 - Automatic display configuration
     * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
     * kanshi (pas rust)
-- Login screen:
-    * https://sr.ht/~kennylevinsen/greetd
-        * https://github.com/rharish101/ReGreet (propre)
-        * https://git.sr.ht/~kennylevinsen/gtkgreet
-        * https://gitlab.com/marcusbritanicus/QtGreet (bof)
-        * https://github.com/apognu/tuigreet (tui, why not)
 - Special workspaces:
     * https://medium.com/@mynameised/how-to-create-multiple-special-workspaces-in-hyprland-b4de8bc2ddd7
 - Downloader:
