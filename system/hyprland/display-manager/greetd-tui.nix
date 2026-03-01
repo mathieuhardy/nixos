@@ -19,6 +19,7 @@
             --time \
             --remember \
             --remember-user-session \
+            --theme 'border=brightblack;text=white;prompt=blue;time=yellow;action=magenta' \
             --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions
         '';
         user = "greeter";
