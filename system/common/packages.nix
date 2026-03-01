@@ -94,6 +94,7 @@ in
     bottom
     curl
     fd
+    file-roller # Archive manager
     git-branch-checker # Checks if local branches are merged
     gnome-calculator
     gparted

@@ -42,7 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * thunar: unzip
     * sddm: voir pour le basculer sur DP-2
     * theme
         * cursor: hand2
