@@ -51,8 +51,8 @@ then
     HAS_EXTERNAL=true
 fi
 
-echo "HAS_INTERNAL=${HAS_INTERNAL}" >> ${LOGS}
-echo "HAS_EXTERNAL=${HAS_EXTERNAL}" >> ${LOGS}
+log "${BLUE}" "HAS_INTERNAL=${HAS_INTERNAL}"
+log "${BLUE}" "HAS_EXTERNAL=${HAS_EXTERNAL}"
 
 # Handle profiles
 if [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "false" ]]
@@ -69,10 +69,13 @@ then
         hyprctl dispatch moveworkspacetomonitor "${ws}" "${INTERNAL}"
     done
 
-    log "${GREEN}" "✓ Enabling internal: ${INTERNAL}"
+    log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
     hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
 elif [[ "${HAS_INTERNAL}" = "false" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
 then
+    log "${RED}" "✖ Disabling internal: ${INTERNAL}"
+    hyprctl keyword monitor "${INTERNAL},disable"
+
     # Assign all workspaces to external
     log "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL} (as default)"
     hyprctl keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
@@ -84,18 +87,12 @@ then
         hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
         hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
     done
-
-    log "${RED}" "✖ Disabling internal: ${INTERNAL}"
-    hyprctl keyword monitor "${INTERNAL},disable"
 elif [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
 then
     # Workspace 10 to internal
     log "${BLUE}" "⮊ Move workspace 10 to ${INTERNAL} (as default)"
     hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
     hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
-
-    log "${GREEN}" "✓ Enabling internal: ${INTERNAL}"
-    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
 
     # The rest to external
     log "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL} (as default)"
@@ -108,6 +105,10 @@ then
         hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
         hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
     done
+
+    # Enable internal screen
+    log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
+    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
 fi
 
 # Jump back to active
