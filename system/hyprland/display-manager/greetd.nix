@@ -32,19 +32,24 @@
         user = "greeter";
       };
 
+      # default_session = {
+      #   command = "${pkgs.greetd.regreet}/bin/regreet";
+      #   user = "greeter";
+      # };
+
       # Auto-login
       initial_session = {
-        command = "${pkgs.uwsm}/bin/uwsm start hyprland-uwsm.desktop";
+        command = "${pkgs.uwsm}/bin/uwsm start hyprland";
         user = "mhardy";
       };
     };
   };
 
-  users.users.greeter = {
-    isSystemUser = true;
-    group = "greeter";
-  };
-  users.groups.greeter = { };
+  # users.users.greeter = {
+  #   isSystemUser = true;
+  #   group = "greeter";
+  # };
+  # users.groups.greeter = { };
 
   programs.regreet = {
     enable = true;
