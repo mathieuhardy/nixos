@@ -41,6 +41,7 @@ in
     gitg
     gnumake
     go
+    koji # Git commit asisstant
     meld
     nodejs
     oxker # Docker TUI
