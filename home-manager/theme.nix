@@ -42,13 +42,20 @@ in
     };
   };
 
+  home.pointerCursor = {
+    name = "catppuccin-frappe-mauve";
+    package = pkgs.catppuccin-cursors.frappeMauve;
+    size = 24;
+    gtk.enable = true;
+  };
+
   # Lien symbolique du thème GTK4
-  # TODO: remove
+  # TODO: remove ?
   # xdg.configFile."gtk-4.0/gtk.css" = {
   #   source = "${catppuccin-gtk}/share/themes/catppuccin-frappe-mauve-normal/gtk-4.0/gtk.css";
   # };
 
-  # TODO: remove
+  # TODO: remove ?
   # xdg.configFile."gtk-4.0/gtk-dark.css" = {
   #   source = "${catppuccin-gtk}/share/themes/catppuccin-frappe-mauve-normal/gtk-4.0/gtk-dark.css";
   # };
@@ -70,10 +77,38 @@ in
     # ADW_DISABLE_PORTAL = "1";
   };
 
-  # Force dark mode for GTK4 using settings.ini
+  # Force dark mode for GTK3/GTK4 using settings.ini
+  xdg.configFile."gtk-3.0/settings.ini".text = ''
+    [Settings]
+    gtk-application-prefer-dark-theme=true
+  '';
+
   xdg.configFile."gtk-4.0/settings.ini".text = ''
     [Settings]
     gtk-application-prefer-dark-theme=true
+  '';
+
+  # Selection color
+  xdg.configFile."gtk-3.0/gtk.css".text = ''
+    @define-color accent_color #ca9ee6;
+    @define-color accent_bg_color #ca9ee6;
+    @define-color accent_fg_color #303446;
+
+    selection {
+      background-color: alpha(#ca9ee6, 0.3);
+      color: #c6d0f5;
+    }
+  '';
+
+  xdg.configFile."gtk-4.0/gtk.css".text = ''
+    @define-color accent_color #ca9ee6;
+    @define-color accent_bg_color #ca9ee6;
+    @define-color accent_fg_color #303446;
+
+    selection {
+      background-color: alpha(#ca9ee6, 0.3);
+      color: #c6d0f5;
+    }
   '';
 
   # ────────────────────────────────────────────────────────────────────────────
