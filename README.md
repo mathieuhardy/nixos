@@ -43,11 +43,8 @@ sudo nixos-rebuild switch --flake .#nixos
 
 - hyprland:
     * monitor-setup : pas bon workspace 11 !
-    * sddm: voir pour le basculer sur DP-2
     * theme
         * cursor: hand2
-        * theme sddm
-        * theme swayimg
         * theme tuigreet
     * clean generations
 
@@ -93,6 +90,5 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://github.com/surge-downloader/surge
 - bittorent:
     * https://github.com/stabldev/torrra
-- default applications
 - tester: bookworm, koodo-reader, foliate for epub
 - remplacer certains scripts par des binaires Rust
