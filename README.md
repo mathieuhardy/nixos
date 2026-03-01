@@ -42,7 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * wpaperd at boot
     * monitor-setup : pas bon workspace 11 !
     * theme
         * cursor: hand2

@@ -6,14 +6,7 @@
   # ────────────────────────────────────────────────────────────────────────────
 
   imports = [
-    ./display-manager
-    ./env
-    ./security
-    ./services
-    ./window-manager
-    ./xdg
-
-    ./packages.nix
+    ./wpaperd.nix
   ];
 
 }
