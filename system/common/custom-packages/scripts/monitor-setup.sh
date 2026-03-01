@@ -9,11 +9,17 @@ BLUE="\033[1;34m"
 NC="\033[0m"
 
 function log() {
+    msg="${1}"
     now=$(date)
+
+    echo "${now}: ${msg}" >> ${LOGS}
+}
+
+function trace() {
     color="${1}"
     msg="${2}"
 
-    echo "${now}: ${msg}" >> ${LOGS}
+    log "${msg}"
     echo -e "${color}${msg}${NC}"
 }
 
@@ -51,70 +57,87 @@ then
     HAS_EXTERNAL=true
 fi
 
-log "${BLUE}" "HAS_INTERNAL=${HAS_INTERNAL}"
-log "${BLUE}" "HAS_EXTERNAL=${HAS_EXTERNAL}"
+log "HAS_INTERNAL=${HAS_INTERNAL}"
+log "HAS_EXTERNAL=${HAS_EXTERNAL}"
 
 # Handle profiles
 if [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "false" ]]
 then
     # Assign all workspaces to internal
-    log "${BLUE}" "⮊ Move workspace 1 to ${INTERNAL} (as default)"
-    hyprctl keyword workspace "1,monitor:${INTERNAL},persistent:true,default:true"
-    hyprctl dispatch moveworkspacetomonitor 1 "${INTERNAL}"
+    trace "${BLUE}" "🖵 Assign workspace 1 to ${INTERNAL} (as default)"
+    hyprctl -q keyword workspace "1,monitor:${INTERNAL},persistent:true,default:true"
 
     for ws in {2..10}
     do
-        log "${BLUE}" "⮊ Move workspace ${ws} to ${INTERNAL}"
-        hyprctl keyword workspace "${ws},monitor:${INTERNAL},persistent:true"
-        hyprctl dispatch moveworkspacetomonitor "${ws}" "${INTERNAL}"
+        trace "${BLUE}" "🖵 Assign workspace ${ws} to ${INTERNAL}"
+        hyprctl -q keyword workspace "${ws},monitor:${INTERNAL},persistent:true"
     done
 
-    log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
-    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
-elif [[ "${HAS_INTERNAL}" = "false" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
-then
-    log "${RED}" "✖ Disabling internal: ${INTERNAL}"
-    hyprctl keyword monitor "${INTERNAL},disable"
+    # Enable monitor
+    trace "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
+    hyprctl -q keyword monitor "${INTERNAL},preferred,auto,1"
 
-    # Assign all workspaces to external
-    log "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL} (as default)"
-    hyprctl keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
-    hyprctl dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
+    # Move workspace if needed
+    trace "${BLUE}" "⮊ Move workspace 1 to ${INTERNAL}"
+    hyprctl -q dispatch moveworkspacetomonitor 1 "${INTERNAL}"
 
     for ws in {2..10}
     do
-        log "${BLUE}" "⮊ Move workspace ${ws} to ${EXTERNAL}"
-        hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
-        hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
+        trace "${BLUE}" "⮊ Move workspace ${ws} to ${INTERNAL}"
+        hyprctl -q dispatch moveworkspacetomonitor "${ws}" "${INTERNAL}"
+    done
+elif [[ "${HAS_INTERNAL}" = "false" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
+then
+    # Disable monitor
+    trace "${RED}" "✖ Disabling internal: ${INTERNAL}"
+    hyprctl -q keyword monitor "${INTERNAL},disable"
+
+    # Assign all workspaces to external
+    trace "${BLUE}" "🖵 Assign workspace 1 to ${EXTERNAL} (as default)"
+    hyprctl -q keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
+
+    trace "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL}"
+    hyprctl -q dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
+
+    for ws in {2..10}
+    do
+        trace "${BLUE}" "🖵 Assign workspace ${ws} to ${EXTERNAL}"
+        hyprctl -q keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
+
+        trace "${BLUE}" "⮊ Move workspace ${ws} to ${EXTERNAL}"
+        hyprctl -q dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
     done
 elif [[ "${HAS_INTERNAL}" = "true" ]] && [[ "${HAS_EXTERNAL}" = "true" ]]
 then
-    # Workspace 10 to internal
-    log "${BLUE}" "⮊ Move workspace 10 to ${INTERNAL} (as default)"
-    # hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
-    # hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
-    hyprctl --batch "
-        keyword workspace 10,monitor:${INTERNAL},persistent:true,default:true;
-        keyword monitor ${INTERNAL},preferred,auto,1
-    "
+    # All except 10 to external
+    trace "${BLUE}" "🖵 Assign workspace 1 to ${EXTERNAL} (as default)"
+    hyprctl -q keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
 
-    # The rest to external
-    log "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL} (as default)"
-    hyprctl keyword workspace "1,monitor:${EXTERNAL},persistent:true,default:true"
-    hyprctl dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
+    trace "${BLUE}" "⮊ Move workspace 1 to ${EXTERNAL}"
+    hyprctl -q dispatch moveworkspacetomonitor 1 "${EXTERNAL}"
 
     for ws in {2..9}
     do
-        log "${BLUE}" "⮊ Move workspace ${ws} to ${EXTERNAL}"
-        hyprctl keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
-        hyprctl dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
+        trace "${BLUE}" "🖵 Assign workspace ${ws} to ${EXTERNAL}"
+        hyprctl -q keyword workspace "${ws},monitor:${EXTERNAL},persistent:true"
+
+        trace "${BLUE}" "⮊ Move workspace ${ws} to ${EXTERNAL}"
+        hyprctl -q dispatch moveworkspacetomonitor "${ws}" "${EXTERNAL}"
     done
 
-    # Enable internal screen
-    # log "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
-    # hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
+    # Workspace 10 to internal
+    trace "${BLUE}" "🖵 Assign workspace 10 to ${INTERNAL} (as default)"
+    hyprctl keyword workspace "10,monitor:${INTERNAL},persistent:true,default:true"
+
+    # Enable monitor
+    trace "${GREEN}" "⏻ Enabling internal: ${INTERNAL}"
+    hyprctl keyword monitor "${INTERNAL},preferred,auto,1"
+
+    # Move workspace
+    trace "${BLUE}" "⮊ Move workspace 10 to ${INTERNAL}"
+    hyprctl dispatch moveworkspacetomonitor 10 "${INTERNAL}"
 fi
 
 # Jump back to active
-log "${BLUE}" "Jump back to workspace ${ACTIVE_WS}"
-hyprctl dispatch workspace "${ACTIVE_WS}"
+trace "${BLUE}" "⮊ Jump back to workspace ${ACTIVE_WS}"
+hyprctl -q dispatch workspace "${ACTIVE_WS}"
