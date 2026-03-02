@@ -46,8 +46,22 @@ in
     name = "catppuccin-frappe-mauve";
     package = pkgs.catppuccin-cursors.frappeMauve;
     size = 24;
+    x11.enable = true;
     gtk.enable = true;
   };
+
+  # TODO: can be tested for cursors
+  # wayland.windowManager.hyprland.settings = {
+  #   env = [
+  #     "XCURSOR_THEME,catppuccin-frappe-mauve-cursors"
+  #     "XCURSOR_SIZE,24"
+  #     "HYPRCURSOR_THEME,catppuccin-frappe-mauve-cursors"
+  #     "HYPRCURSOR_SIZE,24"
+  #   ];
+  #   exec-once = [
+  #     "hyprctl setcursor catppuccin-frappe-mauve-cursors 24"
+  #   ];
+  # };
 
   # Lien symbolique du thème GTK4
   # TODO: remove ?

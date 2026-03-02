@@ -46,6 +46,8 @@ sudo nixos-rebuild switch --flake .#nixos
     * nerdfonts icons for waybar (keyboard for language, ...)
     * theme
         * cursor: hand2
+        * Note : Vérifie le nom exact dans /nix/store/...-catppuccin-cursors-.../share/icons/. Parfois c'est catppuccin-frappe-mauve-cursors et non juste catppuccin-frappe-mauve.
+        * find $(nix-build '<nixpkgs>' -A catppuccin-cursors.frappeMauve --no-out-link) -name "hand2"
     * clean generations
 
 - hardware config: récupérer ça:
