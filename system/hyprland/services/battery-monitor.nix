@@ -1,5 +1,8 @@
 { pkgs, ... }:
 
+let
+  battery-monitor = pkgs.callPackage ../custom-packages/battery-monitor.nix { };
+in
 {
   # ────────────────────────────────────────────────────────────────────────────
   # User service that watches the battery status to send notifications
