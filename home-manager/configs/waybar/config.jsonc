@@ -281,7 +281,7 @@
 
     "clock#date": {
         "format": " {:%a %d %b}",
-        "format-alt": "{:%a %d %b}",
+        "format-alt": " {:%a %d %b}",
         "tooltip": false,
         "on-click": "gsimplecal"
     },

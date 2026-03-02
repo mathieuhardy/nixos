@@ -42,7 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * theme gtk all applications
+    * eloquent ne se ferme pas
     * clean generations
 
 - hardware config: récupérer ça:
