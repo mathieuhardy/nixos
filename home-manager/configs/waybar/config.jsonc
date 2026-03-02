@@ -14,22 +14,9 @@
 
     "modules-left": [
         "group/g-monitoring",
+        "group/g-system",
         "group/g-apps"
     ],
-
-    // Tray and other applications related
-    "group/g-apps": {
-        "orientation": "horizontal",
-        "modules": [
-            "tray"
-        ]
-    },
-
-    "tray": {
-        "icon-size": 20,
-        "spacing": 4,
-        "show-passive-items": false
-    },
 
     // Various system monitoring
     "group/g-monitoring": {
@@ -69,6 +56,78 @@
         "on-click": "alacritty --class floating-term -e btm"
     },
 
+    // System related
+    "group/g-system": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/displays",
+            "backlight",
+            "battery",
+            "idle_inhibitor",
+            "hyprland/language"
+        ]
+    },
+
+    "custom/displays": {
+        "format": "󰍺 ",
+        "on-click": "nwg-displays",
+        "tooltip": false
+    },
+
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["󰃞", "󰃟", "󰃠"],
+        "on-scroll-up": "swayosd-client --brightness raise",
+        "on-scroll-down": "swayosd-client --brightness lower",
+        "tooltip": false
+    },
+
+    "battery": {
+        "states": {
+          "warning": 40,
+          "critical": 10
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "󰂄 {capacity}%",
+        "format-plugged": "󰚥 {capacity}%",
+        "format-full": "󰁹 {capacity}%",
+        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+        "tooltip-format": "{timeTo}",
+        "on-scroll-up": "",
+        "on-scroll-down": ""
+    },
+
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": " ",
+            "deactivated": " "
+        },
+        "tooltip": true,
+        "tooltip-format-activated": "Idle forbidden",
+        "tooltip-format-deactivated": "Idle allowed"
+    },
+
+    "hyprland/language": {
+        "format": "  {}",
+        "format-fr": "FR",
+        "format-en": "EN"
+    },
+
+    // Tray and other applications related
+    "group/g-apps": {
+        "orientation": "horizontal",
+        "modules": [
+            "tray"
+        ]
+    },
+
+    "tray": {
+        "icon-size": 20,
+        "spacing": 4,
+        "show-passive-items": false
+    },
+
     // ─────────────────────────────────────────────────────────────────────────
     // Center modules
     // ─────────────────────────────────────────────────────────────────────────
@@ -101,7 +160,6 @@
         "group/g-media",
         "group/g-network",
         "group/g-bluetooth",
-        "group/g-system",
         "group/g-various"
     ],
 
@@ -189,64 +247,6 @@
         "format-connected": "󰂱 {device_alias}",
         "on-click": "alacritty --class bluetui -e bluetui",
         "on-click-right": "toggle-bluetooth"
-    },
-
-    // System related
-    "group/g-system": {
-        "orientation": "horizontal",
-        "modules": [
-            "custom/displays",
-            "backlight",
-            "battery",
-            "idle_inhibitor",
-            "hyprland/language"
-        ]
-    },
-
-    "custom/displays": {
-        "format": "󰍺 ",
-        "on-click": "nwg-displays",
-        "tooltip": false
-    },
-
-    "backlight": {
-        "format": "{icon} {percent}%",
-        "format-icons": ["󰃞", "󰃟", "󰃠"],
-        "on-scroll-up": "swayosd-client --brightness raise",
-        "on-scroll-down": "swayosd-client --brightness lower",
-        "tooltip": false
-    },
-
-    "battery": {
-        "states": {
-          "warning": 40,
-          "critical": 10
-        },
-        "format": "{icon} {capacity}%",
-        "format-charging": "󰂄 {capacity}%",
-        "format-plugged": "󰚥 {capacity}%",
-        "format-full": "󰁹 {capacity}%",
-        "format-icons": ["󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-        "tooltip-format": "{timeTo}",
-        "on-scroll-up": "",
-        "on-scroll-down": ""
-    },
-
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": " ",
-            "deactivated": " "
-        },
-        "tooltip": true,
-        "tooltip-format-activated": "Idle forbidden",
-        "tooltip-format-deactivated": "Idle allowed"
-    },
-
-    "hyprland/language": {
-        "format": "  {}",
-        "format-fr": "FR",
-        "format-en": "EN"
     },
 
     // Various
