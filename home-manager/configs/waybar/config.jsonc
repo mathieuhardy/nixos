@@ -195,7 +195,7 @@
 
     "pulseaudio": {
         "format": "{icon} {volume}%",
-        "format-muted": "<span color='#333333'>󰝟</span>",
+        "format-muted": "󰝟",
         "format-icons": {
             "headphone": "󰋋",
             "headset": "󰋎",
@@ -211,7 +211,7 @@
     "pulseaudio#microphone": {
         "format": "{format_source}",
         "format-source": "󰍬 {volume}%",
-        "format-source-muted": "<span color='#333333'>󰍭</span>",
+        "format-source-muted": "󰍭",
         "on-click": "pwvucontrol -t 3",
         "on-click-right": "swayosd-client --input-volume mute-toggle",
         "on-scroll-up": "swayosd-client --input-volume raise",

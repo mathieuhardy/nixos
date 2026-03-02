@@ -279,11 +279,19 @@ window#waybar {
     background-color: #e7c664;
 }
 
-#pulseaudio-microphone,
 #pulseaudio,
+#pulseaudio.microphone,
 #mpris {
     padding: 0 8px;
     border-radius: 8px;
+}
+
+#pulseaudio.source-muted.microphone {
+    color: #333333;
+}
+
+#pulseaudio.muted:not(.microphone) {
+    color: #333333;
 }
 
 #mpris.paused {
@@ -292,7 +300,11 @@ window#waybar {
     border: 2px solid #e7c664;
 }
 
+#pulseaudio:hover,
+#pulseaudio.microphone:hover,
 #mpris:hover {
     color: #f8f8f8;
     background-color: #333333;
 }
+
+
