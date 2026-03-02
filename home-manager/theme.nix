@@ -27,7 +27,7 @@ in
     };
 
     cursorTheme = {
-      name = "catppuccin-frappe-mauve";
+      name = "catppuccin-frappe-mauve-cursors";
       package = pkgs.catppuccin-cursors.frappeMauve;
     };
 
@@ -43,7 +43,7 @@ in
   };
 
   home.pointerCursor = {
-    name = "catppuccin-frappe-mauve";
+    name = "catppuccin-frappe-mauve-cursors";
     package = pkgs.catppuccin-cursors.frappeMauve;
     size = 24;
     x11.enable = true;

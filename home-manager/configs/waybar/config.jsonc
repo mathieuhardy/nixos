@@ -204,7 +204,7 @@
     },
 
     "custom/displays": {
-        "format": "󰍹 ",
+        "format": "󰍺 ",
         "on-click": "nwg-displays",
         "tooltip": false
     },
@@ -244,7 +244,7 @@
     },
 
     "hyprland/language": {
-        "format": "󰗊 {}",
+        "format": "  {}",
         "format-fr": "FR",
         "format-en": "EN"
     },
@@ -280,14 +280,14 @@
     },
 
     "clock#date": {
-        "format": "{:%a %d %b}",
+        "format": " {:%a %d %b}",
         "format-alt": "{:%a %d %b}",
         "tooltip": false,
         "on-click": "gsimplecal"
     },
 
     "clock#time": {
-        "format": "{:%H:%M}",
+        "format": "󰥔 {:%H:%M}",
         "format-alt": "{:%H:%M}",
         "tooltip": false
     }
