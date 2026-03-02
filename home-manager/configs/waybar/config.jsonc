@@ -160,7 +160,8 @@
         "group/g-media",
         "group/g-network",
         "group/g-bluetooth",
-        "group/g-various"
+        "group/g-various",
+        "group/g-datetime"
     ],
 
     // Multimedia
@@ -255,8 +256,6 @@
         "modules": [
             "custom/trash",
             "custom/swaync",
-            "clock#date",
-            "clock#time"
         ]
     },
 
@@ -277,6 +276,15 @@
         "on-click": "swaync-client -t -sw",
         "on-click-right": "swaync-client -C",
         "tooltip": false
+    },
+
+    // Datetime
+    "group/g-datetime": {
+        "orientation": "horizontal",
+        "modules": [
+            "clock#date",
+            "clock#time"
+        ]
     },
 
     "clock#date": {

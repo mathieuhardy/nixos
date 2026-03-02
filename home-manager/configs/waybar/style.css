@@ -25,6 +25,7 @@ window#waybar {
 #g-monitoring,
 #g-apps,
 #g-various,
+#g-datetime,
 #g-system,
 #g-bluetooth,
 #g-network,
@@ -125,11 +126,9 @@ window#waybar {
     background-color: #1e1e2e;
 }
 
-#clock.date,
-#clock.time,
 #custom-swaync,
 #custom-trash {
-    background-color: #f8f8f8;
+    background-color: #cba6f7;
     padding: 0 8px;
     margin: 0 2px 0 2px;
     border-radius: 8px;
@@ -142,12 +141,36 @@ window#waybar {
     border: 2px solid #f8f8f8;
 }
 
+#custom-swaync:hover,
+#custom-trash:hover {
+    color: #f8f8f8;
+    background-color: #333333;
+}
+
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Datetime
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+#g-datetime {
+    background-color: #1e1e2e;
+}
+
+#clock.date,
+#clock.time {
+    background-color: #f8f8f8;
+    padding: 0 8px;
+    margin: 0 2px 0 2px;
+    border-radius: 8px;
+    min-width: 20px;
+}
+
 #clock.date:hover,
 #clock.time:hover,
 #clock.date:active,
-#clock.time:active,
-#custom-swaync:hover,
-#custom-trash:hover {
+#clock.time:active {
     color: #f8f8f8;
     background-color: #333333;
 }
@@ -159,7 +182,7 @@ window#waybar {
  */
 
 #g-system {
-    background-color: #cba6f7;
+    background-color: #ef9f76;
 }
 
 #language,
