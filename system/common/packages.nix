@@ -6,6 +6,7 @@ let
   # Custom packages
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
+  override = pkgs.callPackage ./custom-packages/override.nix { };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -93,6 +94,7 @@ in
     input-remapper
     loglit # Logs highlighting
     lsd
+    override # Script used to override symlinks created by NixOS
     pandoc # Documents conversion
     ripgrep
     sops # For secrets encryption in NixOS configuration
