@@ -2,14 +2,15 @@
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # User service that sets the wallpaper on monitors
+  # User service that watches the battery status to send notifications
   # ────────────────────────────────────────────────────────────────────────────
 
-  # TODO: move to home-manager
-  systemd.user.services.wpaperd = {
-    description = "wpaperd wallpaper daemon";
+  systemd.user.services.battery-monitor = {
+    description = "battery monitoring (for alerting)";
 
-    wantedBy = [ "graphical-session.target" ];
+    wantedBy = [
+      "graphical-session.target"
+    ];
 
     after = [
       "graphical-session.target"
@@ -21,13 +22,14 @@
 
     serviceConfig = {
       Type = "exec";
-      ExecStart = "${pkgs.wpaperd}/bin/wpaperd";
-      Restart = "on-failure";
-      RestartSec = 1;
-
-      Environment = [
-        "XDG_SESSION_TYPE=wayland"
-      ];
+      ExecStart = "${battery-monitor}/bin/battery-monitor";
+      Restart = "always";
     };
+
+    path = with pkgs; [
+      libnotify
+      coreutils
+      bash
+    ];
   };
 }

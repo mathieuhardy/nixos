@@ -30,7 +30,6 @@
         command = "${lib.getExe config.programs.uwsm.package} start hyprland-uwsm.desktop";
         user = "${config.settings.userLogin}";
       };
-
     };
   };
 }

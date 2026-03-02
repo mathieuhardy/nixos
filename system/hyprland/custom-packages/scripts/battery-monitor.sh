@@ -19,7 +19,7 @@ do
       notify-send \
         -u critical \
         -i battery-caution \
-        "🔋 Critical battery" \
+        "🔋Critical battery" \
         "Level : ${CAPACITY}% — Plug immediately !" \
         -t 0  # show forever
 
@@ -30,7 +30,7 @@ do
       notify-send \
         -u critical \
         -i battery-low \
-        "🔋 Very low battery" \
+        "🔋Very low battery" \
         "Level: ${CAPACITY}% — Plug the charger." \
         -t 10000 # 10 seconds
 
@@ -40,7 +40,7 @@ do
       notify-send \
         -u normal \
         -i battery-low \
-        "🔋 Low battery" \
+        "🔋Low battery" \
         "Level: ${CAPACITY}% — Plug the charger." \
         -t 10000 # 10 seconds
 
