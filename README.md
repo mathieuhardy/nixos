@@ -42,8 +42,8 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * monitor-setup : pas bon workspace 11 !
-    * monitor-setup : set back correct script triggered
+    * move wpaperd to home-manager and test
+    * nerdfonts icons for waybar (keyboard for language, ...)
     * theme
         * cursor: hand2
     * clean generations

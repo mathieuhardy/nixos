@@ -4,7 +4,6 @@ let
   # Custom packages
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
-  notifications-count = pkgs.callPackage ./custom-packages/notifications-count.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
   trash-count = pkgs.callPackage ./custom-packages/trash-count.nix { };
@@ -75,7 +74,6 @@ in
     jq # Used in scripts to parse JSON outputs
     monitor-setup # Auto configure monitors according to what's plugged
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
-    notifications-count
     nwg-bar # Power menu
     nwg-displays # GUI to manage displays
     playerctl # GUI to control media
