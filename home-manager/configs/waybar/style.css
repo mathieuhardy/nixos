@@ -24,6 +24,7 @@ window#waybar {
 #g-workspaces,
 #g-monitoring,
 #g-apps,
+#g-privacy,
 #g-various,
 #g-datetime,
 #g-system,
@@ -113,6 +114,21 @@ window#waybar {
 
 
 #tray {
+    padding: 0 8px;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * Privacy
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+#g-privacy {
+    color: #f8f8f8;
+    background-color: #ff0000;
+}
+
+#privacy {
     padding: 0 8px;
 }
 

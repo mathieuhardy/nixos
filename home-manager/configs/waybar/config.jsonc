@@ -15,7 +15,8 @@
     "modules-left": [
         "group/g-monitoring",
         "group/g-system",
-        "group/g-apps"
+        "group/g-apps",
+        "group/g-privacy"
     ],
 
     // Various system monitoring
@@ -126,6 +127,31 @@
         "icon-size": 20,
         "spacing": 4,
         "show-passive-items": false
+    },
+
+    // Microphone, camera, etc
+    "group/g-privacy": {
+        "orientation": "horizontal",
+        "modules": [
+            "privacy"
+        ]
+    },
+
+    "privacy": {
+		"icon-spacing": 4,
+		"icon-size": 14,
+		"modules": [
+			{
+				"type": "screenshare",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			},
+			{
+				"type": "audio-in",
+				"tooltip": true,
+				"tooltip-icon-size": 24
+			}
+		]
     },
 
     // ─────────────────────────────────────────────────────────────────────────
