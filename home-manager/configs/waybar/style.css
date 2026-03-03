@@ -33,7 +33,7 @@ window#waybar {
 #g-media {
     color: #1e1e2e;
     margin: 6px 2px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 /*
@@ -91,7 +91,7 @@ window#waybar {
 #cpu,
 #memory {
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #disk:hover,
@@ -146,7 +146,7 @@ window#waybar {
 #custom-trash {
     background-color: #cba6f7;
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
     min-width: 20px;
 }
 
@@ -185,7 +185,7 @@ window#waybar {
 #clock.time {
     background-color: #f8f8f8;
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
     min-width: 20px;
 }
 
@@ -221,7 +221,7 @@ window#waybar {
 #backlight,
 #custom-displays {
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #language:hover,
@@ -237,14 +237,14 @@ window#waybar {
     color: #e7c664;
     background-color: #1e1e2e;
     margin: 2px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #battery.critical {
     color: #f38ba8;
     background-color: #1e1e2e;
     margin: 2px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 /*
@@ -260,7 +260,7 @@ window#waybar {
 #bluetooth {
     padding: 0 8px;
     border: 2px solid #89b4fa;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #bluetooth.off {
@@ -285,7 +285,7 @@ window#waybar {
 
 #network {
     padding: 0 12px 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #network.disconnected {
@@ -313,7 +313,7 @@ window#waybar {
 #pulseaudio.microphone,
 #mpris {
     padding: 0 8px;
-    border-radius: 8px;
+    border-radius: 12px;
 }
 
 #pulseaudio.source-muted.microphone {
