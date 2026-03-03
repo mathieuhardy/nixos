@@ -26,6 +26,7 @@
     ./neovim.nix
     ./nwg-bar.nix
     ./secrets.nix
+    ./speedcrunch.nix
     ./ssh.nix
     ./swayimg.nix
     ./swaync.nix

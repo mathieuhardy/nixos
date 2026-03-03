@@ -89,7 +89,6 @@ in
     fd
     file-roller # Archive manager
     git-branch-checker # Checks if local branches are merged
-    gnome-calculator
     gparted
     input-remapper
     loglit # Logs highlighting
@@ -98,6 +97,7 @@ in
     pandoc # Documents conversion
     ripgrep
     sops # For secrets encryption in NixOS configuration
+    speedcrunch
     starship
     texlive.combined.scheme-basic # For pdflatex
     trashy

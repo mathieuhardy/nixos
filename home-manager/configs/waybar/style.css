@@ -130,9 +130,16 @@ window#waybar {
 #custom-trash {
     background-color: #cba6f7;
     padding: 0 8px;
-    margin: 0 2px 0 2px;
     border-radius: 8px;
     min-width: 20px;
+}
+
+#custom-swaync {
+    margin-left: 2px;
+}
+
+#custom-trash {
+    margin-right: 2px;
 }
 
 #custom-swaync.notification {
@@ -162,9 +169,16 @@ window#waybar {
 #clock.time {
     background-color: #f8f8f8;
     padding: 0 8px;
-    margin: 0 2px 0 2px;
     border-radius: 8px;
     min-width: 20px;
+}
+
+#clock.time {
+    margin-left: 2px;
+}
+
+#clock.date {
+    margin-right: 2px;
 }
 
 #clock.date:hover,
