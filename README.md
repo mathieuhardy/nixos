@@ -42,7 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * eloquent ne se ferme pas
+    * logs d'hyprland au boot
     * clean generations
 
 - hardware config: récupérer ça:
