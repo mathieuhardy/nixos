@@ -101,8 +101,8 @@
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
-            "activated": " ",
-            "deactivated": " "
+            "deactivated": " ",
+            "activated": " "
         },
         "tooltip": true,
         "tooltip-format-activated": "Idle forbidden",
