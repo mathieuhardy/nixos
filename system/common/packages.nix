@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  unstable = import <nixos-unstable> { };
-
   # Custom packages
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };

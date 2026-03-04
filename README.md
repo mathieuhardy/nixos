@@ -80,10 +80,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
     * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
     * kanshi (pas rust)
-- Special workspaces:
-    * https://medium.com/@mynameised/how-to-create-multiple-special-workspaces-in-hyprland-b4de8bc2ddd7
-- Downloader:
-    * https://github.com/surge-downloader/surge
 - bittorent:
     * https://github.com/stabldev/torrra
 - tester: bookworm, koodo-reader, foliate for epub

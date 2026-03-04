@@ -321,6 +321,7 @@
 
     "clock#time": {
         "format": "󰥔 {:%H:%M}",
+        "on-click": "alacritty --class timr-tui -e timr-tui --menu",
         "tooltip": false
     }
 }

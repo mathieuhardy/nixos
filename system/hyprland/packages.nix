@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 let
   # Custom packages
@@ -83,6 +83,7 @@ in
     toggle-window
     trash-count
     tuigreet # TUI greeter for greetd
+    pkgs-unstable.timr-tui # Countdown, timer, ...
     # wdisplays  # GUI to manage displays (alternative)
     woomer # Zoom desktop
     workspace-navigation # Loop navigation between worspaces
