@@ -27,8 +27,8 @@ in
     };
 
     cursorTheme = {
-      name = "catppuccin-frappe-mauve-cursors";
-      package = pkgs.catppuccin-cursors.frappeMauve;
+      name = "Numix-Cursor-Light";
+      package = pkgs.numix-cursor-theme;
     };
 
     font = {
@@ -38,25 +38,23 @@ in
   };
 
   home.pointerCursor = {
-    name = "catppuccin-frappe-mauve-cursors";
-    package = pkgs.catppuccin-cursors.frappeMauve;
+    name = "Numix-Cursor-Light";
+    package = pkgs.numix-cursor-theme;
     size = 24;
     x11.enable = true;
     gtk.enable = true;
   };
 
   # TODO: can be tested for cursors
-  # wayland.windowManager.hyprland.settings = {
-  #   env = [
-  #     "XCURSOR_THEME,catppuccin-frappe-mauve-cursors"
-  #     "XCURSOR_SIZE,24"
-  #     "HYPRCURSOR_THEME,catppuccin-frappe-mauve-cursors"
-  #     "HYPRCURSOR_SIZE,24"
-  #   ];
-  #   exec-once = [
-  #     "hyprctl setcursor catppuccin-frappe-mauve-cursors 24"
-  #   ];
-  # };
+  wayland.windowManager.hyprland.settings = {
+    env = [
+      "XCURSOR_THEME,Numix-Cursor-Light"
+      "XCURSOR_SIZE,24"
+    ];
+    exec-once = [
+      "hyprctl setcursor Numix-Cursor-Light 24"
+    ];
+  };
 
   # Lien symbolique du thème GTK4
   # TODO: remove ?

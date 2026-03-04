@@ -58,7 +58,7 @@ in
     libsForQt5.qt5ct
 
     # Icons
-    catppuccin-cursors.frappeMauve
+    # catppuccin-cursors.frappeMauve
     papirus-icon-theme
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
