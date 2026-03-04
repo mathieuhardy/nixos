@@ -42,6 +42,8 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
+    * tuigreet: config + theme
+    * plymooth boot menu
     * logs d'hyprland au boot
     * clean generations
 
