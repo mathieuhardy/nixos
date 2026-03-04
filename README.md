@@ -43,7 +43,7 @@ sudo nixos-rebuild switch --flake .#nixos
 
 - hyprland:
     * tuigreet: config + theme
-    * plymooth boot menu
+    * plymoot h boot menu
     * logs d'hyprland au boot
     * clean generations
 
@@ -76,9 +76,6 @@ hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enab
 # Later
 
 - ESC pour cacher les fenêtres floating BT, ...
-- Status bar:
-    * https://github.com/MalpenZibo/ashell
-    * https://github.com/elkowar/eww/
 - Automatic display configuration
     * https://filipmikina.com/blog/hyprdynamicmonitors
     * https://gitlab.com/w0lff/shikane
