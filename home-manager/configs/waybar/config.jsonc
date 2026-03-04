@@ -32,7 +32,7 @@
 
     "disk": {
         "interval": 60,
-        "format": " {percentage_used}%",
+        "format": " {percentage_used}%",
         "on-click": "gparted",
         "tooltip": true,
         "tooltip-format": "{used} out of {total}"
