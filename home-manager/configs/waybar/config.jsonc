@@ -62,10 +62,10 @@
         "orientation": "horizontal",
         "modules": [
             "custom/displays",
-            "backlight",
-            "battery",
             "idle_inhibitor",
-            "hyprland/language"
+            "hyprland/language",
+            "backlight",
+            "battery"
         ]
     },
 
