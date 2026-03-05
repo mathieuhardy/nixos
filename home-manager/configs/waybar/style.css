@@ -83,7 +83,7 @@ window#waybar {
  */
 
 #g-monitoring {
-    background-color: #ea999c;
+    background-color: #e78284;
 }
 
 #disk,
@@ -144,7 +144,7 @@ window#waybar {
 
 #custom-swaync,
 #custom-trash {
-    background-color: #cba6f7;
+    background-color: #ca9ee6;
     padding: 0 8px;
     border-radius: 12px;
     min-width: 20px;
