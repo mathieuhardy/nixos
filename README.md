@@ -47,32 +47,6 @@ sudo nixos-rebuild switch --flake .#nixos
     * logs d'hyprland au boot
     * clean generations
 
-- hardware config: récupérer ça:
-
-```nix
-# Trim SSD
-services.fstrim.enable = lib.mkDefault true;
-
-# Automatic power management
-services.tlp.enable = lib.mkDefault (!config.services.power-profiles-daemon.enable);
-
-# Enable AMD driver with 3D acceleration and 32bits support
-config = {
-  services.xserver.videoDrivers = lib.mkDefault [ "modesetting" ];
-
-  hardware.graphics = {
-    enable = lib.mkDefault true;
-    enable32Bit = lib.mkDefault true;
-  };
-
-  hardware.amdgpu.initrd.enable = lib.mkDefault true;
-};
-
-# To be set in case there's a trackpoint (red one)
-hardware.trackpoint.enable = lib.mkDefault true;
-hardware.trackpoint.emulateWheel = lib.mkDefault config.hardware.trackpoint.enable;
-```
-
 # Later
 
 - ESC pour cacher les fenêtres floating BT, ...

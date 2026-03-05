@@ -18,6 +18,7 @@
     # Hardware
     ./hardware/bluetooth.nix
     ./hardware/laptop.nix
+    ./hardware/lenovo/thinkpad/p14s-gen1-amd-auto-generated.nix
     ./hardware/lenovo/thinkpad/p14s-gen1-amd.nix
 
     # System configuration
