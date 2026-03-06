@@ -3,9 +3,9 @@
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Link to config:
-  #   ~/.config/nwg-bar/
+  #   ~/.config/rofi/
   # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.configFile."nwg-bar".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/nwg-bar";
+  xdg.configFile."rofi".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/rofi";
 }

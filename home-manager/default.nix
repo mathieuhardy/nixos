@@ -24,7 +24,7 @@
     ./lsd.nix
     ./mpv.nix
     ./neovim.nix
-    ./nwg-bar.nix
+    ./rofi.nix
     ./secrets.nix
     ./speedcrunch.nix
     ./ssh.nix
