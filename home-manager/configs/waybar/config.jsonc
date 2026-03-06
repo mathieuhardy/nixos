@@ -33,7 +33,8 @@
     "disk": {
         "interval": 60,
         "format": " {percentage_used}%",
-        "on-click": "gparted",
+        "on-click": "alacritty --class diskard -e diskard",
+        "on-click-right": "gparted",
         "tooltip": true,
         "tooltip-format": "{used} out of {total}"
     },
