@@ -1,19 +1,19 @@
 configuration {
-	modi:                       "drun";
-  show-icons:                 true;
-  display-drun:               "";
-	drun-display-format:        "{name}";
+	  modi:                       "drun";
+    show-icons:                 true;
+    display-drun:               "";
+	  drun-display-format:        "{name}";
 }
 
 * {
-    font: "Commit Mono Nerd Font 10";
+    font:                       "Commit Mono Nerd Font 10";
 
-    background:     #1e1e2e;
-    background-alt: #1e1e2e;
-    foreground:     #f8f8f8;
-    selected:       #ca9ee6;
-    active:         #abe9b3;
-    urgent:         #8caaee;
+    background:                 #1e1e2e;
+    background-alt:             #1e1e2e;
+    foreground:                 #f8f8f8;
+    selected:                   #ca9ee6;
+    active:                     #abe9b3;
+    urgent:                     #8caaee;
 }
 
 window {
