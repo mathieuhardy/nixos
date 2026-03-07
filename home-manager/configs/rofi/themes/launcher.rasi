@@ -1,15 +1,15 @@
 configuration {
-	  modi:                       "drun";
-    show-icons:                 true;
+    modi:                       "drun";
+    how-icons:                  true;
     display-drun:               "";
-	  drun-display-format:        "{name}";
+    drun-display-format:        "{name}";
 }
 
 * {
     font:                       "Commit Mono Nerd Font 10";
 
     background:                 #1e1e2e;
-    background-alt:             #1e1e2e;
+    background-alt:             #303446;
     foreground:                 #f8f8f8;
     selected:                   #ca9ee6;
     active:                     #abe9b3;

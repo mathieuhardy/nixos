@@ -14,6 +14,7 @@
   imports = [
     ./alacritty.nix
     ./bat.nix
+    ./dooit.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix

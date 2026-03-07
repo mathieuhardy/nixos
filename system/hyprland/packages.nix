@@ -70,6 +70,7 @@ in
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
     diskard # Disk analyzer
+    dooit # TUI notes
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager
