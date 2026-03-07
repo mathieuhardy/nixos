@@ -42,11 +42,9 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * /tmp: ???
     * application de notes à mettre dans waybar
-    * faire le ménage dans .cache
     * tuigreet: config + theme
-    * plymoot h boot menu
+    * plymooth boot menu
     * logs d'hyprland au boot
     * clean generations
 
