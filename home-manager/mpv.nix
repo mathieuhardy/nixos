@@ -7,5 +7,5 @@
   # ────────────────────────────────────────────────────────────────────────────
 
   xdg.configFile."mpv".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/mpv-config";
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/mpv";
 }
