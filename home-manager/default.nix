@@ -35,6 +35,7 @@
     ./theme.nix
     ./vicinae.nix
     ./waybar.nix
+    ./wezterm.nix
     ./wpaperd.nix
     ./xdg.nix
     ./zed.nix
