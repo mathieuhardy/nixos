@@ -1,0 +1,46 @@
+? : show this menu
+
+# Navigation
+Ctrl-<PageUp/Down>  : navigate through tabs
+Ctrl-<Arrow>        : navigate through buffers
+<Leader><Leader>    : open previous buffer
+
+# Text control
+Shift-v             : visual block mode
+
+Ctrl-a              : select all
+Ctrl-c              : copy
+Ctrl-v              : paste
+Ctrl-x              : cut
+
+Ctrl-k              : (un)comment
+Ctrl-l              : translate
+Ctrl-w              : toggle wrapping
++/-                 : (in/de)crement value under cursor
+
+# Search
+Ctrl-f              : search files
+Ctrl-g              : grep in files
+Ctrl-s              : search symbol under cursor
+
+# Advanced
+Ctrl-<Space>        : open completion menu
+Ctrl-b              : git blame
+Ctrl-d              : delete hidden buffers
+Ctrl-o              : sort lines
+Ctrl-p              : open command menu
+Ctrl-t              : open floating terminal
+
+# F-keys
+F1                  : save buffer
+F2                  : close buffer
+F3                  : horizontal split
+F4                  : vertical split
+F5                  : toggle inlay hints
+F6                  : color picker
+F7                  : clear highlight
+F8                  : N.A.
+F9                  : show/hide invisible characters
+F10                 : show/hide file explorer
+F11                 : enter/leave limited view mode
+F12                 : enter/leave distraction free mode
