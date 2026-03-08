@@ -29,6 +29,7 @@
     ./secrets.nix
     ./speedcrunch.nix
     ./ssh.nix
+    ./starship.nix
     ./swayimg.nix
     ./swaync.nix
     ./swayosd.nix
