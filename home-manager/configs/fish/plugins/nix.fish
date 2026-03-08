@@ -1,0 +1,56 @@
+function nix_init
+    # Abbreviations
+    abbr n    'nixos_help'
+
+    abbr ns   'sudo nixos-rebuild switch --flake .#nixos'
+    abbr nf   'find /nix/store -maxdepth 1 -name'
+    abbr ngc  'sudo nix-collect-garbage'
+
+    abbr np   'nix-env --query'
+    abbr ni   'nix-env --install -A nixos.'
+    abbr nu   'nix-env --uninstall'
+    abbr nr   'nix run nixpkgs#'
+
+    abbr ng   'sudo nix-env --profile /nix/var/nix/profiles/system --list-generations'
+    abbr ngu  'nix-env --list-generations'
+    abbr ngd  'sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations'
+    abbr ngud 'nix-env --delete-generations'
+    abbr ngs  'sudo nix-env --profile /nix/var/nix/profiles/system --switch-generation'
+    abbr ngus 'nix-env --switch-generation'
+    abbr ngr  'sudo nix-env --profile /nix/var/nix/profiles/system --rollback'
+    abbr ngur 'nix-env --rollback'
+
+    abbr nc   'sudo nix-channel --list'
+    abbr nca  'sudo nix-channel --add'
+    abbr ncr  'sudo nix-channel --remove'
+    abbr ncu  'sudo nix-channel --update'
+end
+
+function nixos_help
+    echo -e '\033[1;34mSystem:\033[0m'
+    echo -e '\033[1;33m  ns\033[1;37m               \033[0m    Build and switch new configuration'
+    echo -e '\033[1;33m  nf\033[1;37m <name>        \033[0m    Find a package in the store'
+    echo -e '\033[1;33m  ngc\033[1;37m              \033[0m    Garbage collect unused packages'
+    echo -e ''
+    echo -e '\033[1;34mPackages:\033[0m'
+    echo -e '\033[1;33m  np\033[1;37m               \033[0m    List installed packages (for the current user)'
+    echo -e '\033[1;33m  ni\033[1;37m               \033[0m    Install package(s)'
+    echo -e '\033[1;33m  nu\033[1;37m               \033[0m    Uninstall package(s)'
+    echo -e '\033[1;33m  nr\033[1;37m               \033[0m    Run package without installing'
+    echo -e ''
+    echo -e '\033[1;34mGenerations:\033[0m'
+    echo -e '\033[1;33m  ng\033[1;37m               \033[0m    List generations'
+    echo -e '\033[1;33m  ngu\033[1;37m              \033[0m    List generations (user)'
+    echo -e '\033[1;33m  ngd\033[1;37m <id|+3|30d>  \033[0m    Delete generations'
+    echo -e '\033[1;33m  ngud\033[1;37m <id|+3|30d> \033[0m    Delete generations (user)'
+    echo -e '\033[1;33m  ngs\033[1;37m              \033[0m    Switch generation'
+    echo -e '\033[1;33m  ngus\033[1;37m             \033[0m    Switch generation (user)'
+    echo -e '\033[1;33m  ngr\033[1;37m              \033[0m    Rollback to previous generation'
+    echo -e '\033[1;33m  ngur\033[1;37m             \033[0m    Rollback to previous generation (user)'
+    echo -e ''
+    echo -e '\033[1;34mChannels:\033[0m'
+    echo -e '\033[1;33m  nc\033[1;37m               \033[0m    List channels'
+    echo -e '\033[1;33m  nca\033[1;37m <url> <name> \033[0m    Add channel to list'
+    echo -e '\033[1;33m  ncr\033[1;37m <name>       \033[0m    Remove channel from list'
+    echo -e '\033[1;33m  ncu\033[1;37m              \033[0m    Update list of channels'
+end

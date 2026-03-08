@@ -1,0 +1,4 @@
+function osx_init
+    # Env
+    fish_add_path /opt/homebrew/bin
+end
