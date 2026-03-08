@@ -8,8 +8,8 @@
   # ────────────────────────────────────────────────────────────────────────────
 
   xdg.configFile."lsd/config.yaml".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/lsd-config/config.yaml";
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/lsd/config.yaml";
 
   xdg.configFile."lsd/colors.yaml".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/lsd-config/catppuccin-frappe.yaml";
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/lsd/catppuccin-frappe.yaml";
 }
