@@ -5,7 +5,6 @@
   # User service that sets the wallpaper on monitors
   # ────────────────────────────────────────────────────────────────────────────
 
-  # TODO: move to home-manager
   systemd.user.services.wpaperd = {
     description = "wpaperd wallpaper daemon";
 
