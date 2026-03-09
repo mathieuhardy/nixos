@@ -7,7 +7,7 @@ let
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
-  trash-count = pkgs.callPackage ./custom-packages/trash-count.nix { };
+  trash-monitor = pkgs.callPackage ./custom-packages/trash-monitor.nix { };
   workspace-navigation = pkgs.callPackage ./custom-packages/workspace-navigation.nix { };
 in
 {
@@ -84,7 +84,7 @@ in
     swayimg # Image viewer
     toggle-bluetooth
     toggle-window
-    trash-count
+    trash-monitor
     tuigreet # TUI greeter for greetd
     pkgs-unstable.timr-tui # Countdown, timer, ...
     # wdisplays  # GUI to manage displays (alternative)
