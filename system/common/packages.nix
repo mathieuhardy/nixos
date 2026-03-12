@@ -91,6 +91,7 @@ in
     input-remapper
     loglit # Logs highlighting
     lsd
+    nix-init # Generate Nix derivations
     override # Script used to override symlinks created by NixOS
     pandoc # Documents conversion
     ripgrep
