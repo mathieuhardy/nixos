@@ -5,6 +5,7 @@ let
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
+  taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
   trash-monitor = pkgs.callPackage ./custom-packages/trash-monitor.nix { };
@@ -70,7 +71,6 @@ in
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
     diskard # Disk analyzer
-    dooit # TUI notes
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager
@@ -82,6 +82,7 @@ in
     pwvucontrol # GUI to control volume
     rofi # Power menu
     swayimg # Image viewer
+    taskbook # TUI task manager
     toggle-bluetooth
     toggle-window
     trash-monitor
