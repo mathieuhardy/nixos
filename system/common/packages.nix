@@ -66,6 +66,7 @@ in
 
     calibre # Ebooks
     eloquent # Spell checker
+    foliate # Ebooks
     libreoffice-qt
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
@@ -99,6 +100,7 @@ in
     speedcrunch
     starship
     texlive.combined.scheme-basic # For pdflatex
+    texlive.combined.scheme-medium # For pdflatex
     trashy
     unzip
     wget
