@@ -88,8 +88,10 @@ return {
           -- Formaters
           "beautysh",
           "black",
+          "htmlbeautifier",
           "isort",
           "nixfmt",
+          "prettier",
           "stylua",
           -- Debugger
           "codelldb",

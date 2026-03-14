@@ -6,6 +6,7 @@ default_opts = {
     "*.css",
     "*.h",
     "*.hpp",
+    "*.html",
     "*.json",
     "*.lua",
     "*.nix",

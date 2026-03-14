@@ -19,6 +19,8 @@ return {
       require("conform").setup({
         formatters_by_ft = {
           bash = { "beautysh" },
+          css = { "prettier" },
+          html = { "htmlbeautifier" },
           -- json = { "jq" },
           lua = { "stylua" },
           nix = { "nixfmt" },
