@@ -42,7 +42,6 @@ sudo nixos-rebuild switch --flake .#nixos
 # Todo
 
 - hyprland:
-    * application de notes à mettre dans waybar
     * tuigreet: config + theme
     * plymooth boot menu
     * logs d'hyprland au boot
@@ -57,5 +56,3 @@ sudo nixos-rebuild switch --flake .#nixos
     * kanshi (pas rust)
 - bittorent:
     * https://github.com/stabldev/torrra
-- tester: bookworm, koodo-reader, foliate for epub
-- remplacer certains scripts par des binaires Rust
