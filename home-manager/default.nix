@@ -39,8 +39,10 @@
   # Global home-manager configuration
   # ────────────────────────────────────────────────────────────────────────────
 
-  home.username = "${osConfig.settings.userLogin}";
-  home.homeDirectory = "/home/${osConfig.settings.userLogin}";
+  home = {
+    username = "${osConfig.settings.userLogin}";
+    homeDirectory = "/home/${osConfig.settings.userLogin}";
 
-  home.stateVersion = osConfig.settings.stateVersion;
+    stateVersion = osConfig.settings.stateVersion;
+  };
 }

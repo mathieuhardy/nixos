@@ -1,29 +1,29 @@
-{ ... }:
+_:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Security
   # ────────────────────────────────────────────────────────────────────────────
 
-  # Disable password for sudo commands for users in group `wheel`
-  security.sudo.wheelNeedsPassword = false;
+  security = {
+    # Disable password for sudo commands for users in group `wheel`
+    sudo.wheelNeedsPassword = false;
 
-  # RealtimeKit system service
-  security.rtkit.enable = true;
+    # RealtimeKit system service
+    rtkit.enable = true;
 
-  # ────────────────────────────────────────────────────────────────────────────
-  # Polkit
-  # ────────────────────────────────────────────────────────────────────────────
+    # Polkit
+    polkit = {
+      enable = true;
 
-  security.polkit = {
-    enable = true;
-
-    extraConfig = ''
-      polkit.addRule(function(action, subject) {
-        if (subject.isInGroup("wheel")) {
-          return polkit.Result.YES;
-        }
-      });
-    '';
+      extraConfig = ''
+        polkit.addRule(function(action, subject) {
+          if (subject.isInGroup("wheel")) {
+            return polkit.Result.YES;
+          }
+        });
+      '';
+    };
   };
+
 }
