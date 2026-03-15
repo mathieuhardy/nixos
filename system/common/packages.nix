@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 let
   # Custom packages
@@ -85,6 +85,7 @@ in
     bash
     bottom
     curl
+    deadnix # Check for dead code in NixOS configuration
     fd
     file-roller # Archive manager
     git-branch-checker # Checks if local branches are merged
