@@ -99,9 +99,8 @@ in
     sops # For secrets encryption in NixOS configuration
     speedcrunch
     starship
-    texlive.combined.scheme-basic # For pdflatex
-    texlive.combined.scheme-medium # For pdflatex
     trashy
+    typst
     unzip
     wget
     wezterm

@@ -47,9 +47,9 @@ if vim.fn.has("autocmd") then
     })
   end
 
-  -- Disable conceallevel for json
+  -- Disable conceallevel for filetypes
   vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "json", "jsonc" },
+    pattern = { "json", "jsonc", "typst" },
     callback = function()
       vim.opt_local.conceallevel = 0
     end,

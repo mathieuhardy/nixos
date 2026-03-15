@@ -7,6 +7,7 @@
 
   fonts = {
     packages = with pkgs; [
+      eb-garamond # For ebooks
       inter # For GUI
       nerd-fonts.commit-mono # For development
       noto-fonts # For the rest
