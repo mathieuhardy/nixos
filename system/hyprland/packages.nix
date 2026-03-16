@@ -78,6 +78,7 @@ in
     battery-monitor # Monitor the level of battery and send notifications
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
+    cage # For regreet
     diskard # Disk analyzer
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
@@ -88,6 +89,7 @@ in
     nwg-displays # GUI to manage displays
     playerctl # GUI to control media
     pwvucontrol # GUI to control volume
+    regreet # GTK greeter
     rofi # Power menu
     swayimg # Image viewer
     taskbook # TUI task manager
