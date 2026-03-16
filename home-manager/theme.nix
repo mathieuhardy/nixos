@@ -1,41 +1,9 @@
 { pkgs, ... }:
 
-let
-  # TODO: remove
-  catppuccin-gtk = pkgs.catppuccin-gtk.override {
-    accents = [ "mauve" ];
-    variant = "frappe";
-    # tweaks = [ "normal" ];
-  };
-in
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # GTK
+  # Cursors
   # ────────────────────────────────────────────────────────────────────────────
-
-  gtk = {
-    enable = true;
-
-    theme = {
-      name = "catppuccin-frappe-mauve-standard";
-      package = catppuccin-gtk;
-    };
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-
-    cursorTheme = {
-      name = "Numix-Cursor-Light";
-      package = pkgs.numix-cursor-theme;
-    };
-
-    font = {
-      name = "Inter";
-      size = 10;
-    };
-  };
 
   home.pointerCursor = {
     name = "Numix-Cursor-Light";
@@ -45,7 +13,6 @@ in
     gtk.enable = true;
   };
 
-  # TODO: can be tested for cursors
   wayland.windowManager.hyprland.settings = {
     env = [
       "XCURSOR_THEME,Numix-Cursor-Light"
@@ -56,32 +23,29 @@ in
     ];
   };
 
-  # Lien symbolique du thème GTK4
-  # TODO: remove ?
-  # xdg.configFile."gtk-4.0/gtk.css" = {
-  #   source = "${catppuccin-gtk}/share/themes/catppuccin-frappe-mauve-normal/gtk-4.0/gtk.css";
-  # };
+  # ────────────────────────────────────────────────────────────────────────────
+  # GTK
+  # ────────────────────────────────────────────────────────────────────────────
 
-  # TODO: remove ?
-  # xdg.configFile."gtk-4.0/gtk-dark.css" = {
-  #   source = "${catppuccin-gtk}/share/themes/catppuccin-frappe-mauve-normal/gtk-4.0/gtk-dark.css";
-  # };
+  gtk = {
+    enable = true;
 
-  # TODO: remove
-  # dconf.settings."org/gnome/desktop/interface" = {
-  #   color-scheme = "prefer-dark"; # GTK4 + Electron
-  #   gtk-theme = "catppuccin-frappe-mauve-normal"; # Some apps may use this
-  # };
+    theme = {
+      name = "catppuccin-frappe-mauve-standard";
+    };
 
-  home.sessionVariables = {
-    # Force SWT applications (dbeaver, Eclipse, ...) to use GTK3 instead of GTK2
-    SWT_GTK3 = "1";
+    iconTheme = {
+      name = "Papirus-Dark";
+    };
 
-    # Theme for GTK
-    GTK_THEME = "catppuccin-frappe-mauve-standard:dark";
+    cursorTheme = {
+      name = "Numix-Cursor-Light";
+    };
 
-    # # Force dark mode in libadwaita/GTK4
-    # ADW_DISABLE_PORTAL = "1";
+    font = {
+      name = "Inter";
+      size = 10;
+    };
   };
 
   # Force dark mode for GTK3/GTK4 using settings.ini
@@ -95,28 +59,13 @@ in
     gtk-application-prefer-dark-theme=true
   '';
 
-  # Selection color
-  xdg.configFile."gtk-3.0/gtk.css".text = ''
-    @define-color accent_color #ca9ee6;
-    @define-color accent_bg_color #ca9ee6;
-    @define-color accent_fg_color #303446;
+  dconf.settings."org/gnome/desktop/interface" = {
+    color-scheme = "prefer-dark"; # GTK4 + Electron
+  };
 
-    selection {
-      background-color: alpha(#ca9ee6, 0.3);
-      color: #c6d0f5;
-    }
-  '';
-
-  xdg.configFile."gtk-4.0/gtk.css".text = ''
-    @define-color accent_color #ca9ee6;
-    @define-color accent_bg_color #ca9ee6;
-    @define-color accent_fg_color #303446;
-
-    selection {
-      background-color: alpha(#ca9ee6, 0.3);
-      color: #c6d0f5;
-    }
-  '';
+  # home.sessionVariables = {
+  #   GTK_THEME = "catppuccin-frappe-mauve-standard";
+  # };
 
   # ────────────────────────────────────────────────────────────────────────────
   # Qt
@@ -125,14 +74,10 @@ in
   qt = {
     enable = true;
 
-    # TODO: remove ?
-    # platformTheme.name = "gtk"; # Follow Gtk theme
     platformTheme.name = "qtct";
 
     style = {
       name = "kvantum";
-      # TODO: remove ?
-      # package = pkgs.catppuccin-kvantum;
     };
   };
 

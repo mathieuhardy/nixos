@@ -50,7 +50,7 @@ return {
     lazy = false,
   },
 
-  -- Highlight TODO comments
+  -- Highlight special comments
   {
     "folke/todo-comments.nvim",
     enabled = true,

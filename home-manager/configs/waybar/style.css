@@ -62,9 +62,9 @@ window#waybar {
 
 /* Empty buttons */
 #workspaces button.empty {
-  color: #51576d;
+  color: #949cbb;
   background-color: transparent;
-  border: 1px solid #51576d;
+  border: 1px solid #949cbb;
 }
 
 /* Hover */

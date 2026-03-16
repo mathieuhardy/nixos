@@ -39,6 +39,10 @@ cd /etc/nixos
 sudo nixos-rebuild switch --flake .#nixos
 ```
 
+# Vivaldi
+
+- Go to chrome://settings, then `theme` -> Use GTK
+
 # Todo
 
 - hyprland:

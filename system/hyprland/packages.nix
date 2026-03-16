@@ -10,6 +10,12 @@ let
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
   trash-monitor = pkgs.callPackage ./custom-packages/trash-monitor.nix { };
   workspace-navigation = pkgs.callPackage ./custom-packages/workspace-navigation.nix { };
+
+  # Override color of the catppuccin-gtk pakage
+  catppuccin-gtk = pkgs.catppuccin-gtk.override {
+    accents = [ "mauve" ];
+    variant = "frappe";
+  };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -60,8 +66,10 @@ in
     libsForQt5.qt5ct
 
     # Icons
-    # catppuccin-cursors.frappeMauve
     papirus-icon-theme
+
+    # Cursors
+    numix-cursor-theme
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
     # Utilities
