@@ -171,11 +171,12 @@
     },
 
     "hyprland/workspaces": {
-        "format": "{icon}",
-        "format-icons": {
-           "active": "",
-            "default": ""
-        },
+        "format": "{id}",
+        // "format": "{icon}",
+        // "format-icons": {
+        //    "active": "",
+        //     "default": ""
+        // },
         "on-click": "activate"
     },
 
