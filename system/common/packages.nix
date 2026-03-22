@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  hyprmonitors,
+  koob,
+  pkgs,
+  ...
+}:
 
 let
   # Custom packages
@@ -30,6 +35,7 @@ in
     dbeaver-bin
     devcontainer
     fnm
+    git-branch-checker # Checks if local branches are merged
     gitg
     gnumake
     go
@@ -61,18 +67,32 @@ in
     vlc
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+    # NixOS specific
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+
+    deadnix # Check for dead code in NixOS configuration
+    nix-init # Generate Nix derivations
+    override # Script used to override symlinks created by NixOS
+    statix # Analyze NixOS configuration
+
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
     # Office
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
     calibre # Ebooks
     eloquent # Spell checker
     foliate # Ebooks
+    koob.packages.${pkgs.system}.default
     libreoffice-qt
+    pandoc # Documents conversion
+    typst
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
     # Security
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
+    age # For secrets encryption in NixOS configuration
+    sops # For secrets encryption in NixOS configuration
     steghide # for tomb exhume
     tomb
 
@@ -80,35 +100,32 @@ in
     # System utilities
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
-    age # For secrets encryption in NixOS configuration
-    alacritty # Backup terminal
-    bash
     bottom
     curl
-    deadnix # Check for dead code in NixOS configuration
     fd
     file-roller # Archive manager
-    git-branch-checker # Checks if local branches are merged
     gparted
+    hyprmonitors.packages.${pkgs.system}.default
     input-remapper
     loglit # Logs highlighting
     lsd
-    nix-init # Generate Nix derivations
-    override # Script used to override symlinks created by NixOS
-    pandoc # Documents conversion
     ripgrep
-    sops # For secrets encryption in NixOS configuration
-    speedcrunch
-    starship
-    statix # Analyze NixOS configuration
+    speedcrunch # Calculator
     trashy
-    typst
     unzip
     wget
-    wezterm
     xarchiver
     xdg-user-dirs
     zip
+
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+    # Terminal
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+
+    alacritty # Backup terminal
+    bash
+    starship
+    wezterm
   ];
 
   # ────────────────────────────────────────────────────────────────────────────

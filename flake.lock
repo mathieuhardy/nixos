@@ -21,6 +21,46 @@
         "type": "github"
       }
     },
+    "hyprmonitors": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1774213962,
+        "narHash": "sha256-vXoSrxfBZk5X4H9rc/Q10ijWnBRrHNuNDa/Rxd/nd7o=",
+        "owner": "mathieuhardy",
+        "repo": "hyprmonitors",
+        "rev": "c3229623668bf81c14636e2934acb75b483db8f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mathieuhardy",
+        "repo": "hyprmonitors",
+        "type": "github"
+      }
+    },
+    "koob": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773591773,
+        "narHash": "sha256-SZgACXFvEco4O/FAz1jLpWlHhH0e/MCECHdVaRzIdRw=",
+        "owner": "mathieuhardy",
+        "repo": "koob",
+        "rev": "182ea8afeb850ea6c85b576e1252de0067809ba9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mathieuhardy",
+        "repo": "koob",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1771043024,
@@ -56,6 +96,8 @@
     "root": {
       "inputs": {
         "home-manager": "home-manager",
+        "hyprmonitors": "hyprmonitors",
+        "koob": "koob",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix"

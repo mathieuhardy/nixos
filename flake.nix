@@ -18,6 +18,16 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    hyprmonitors = {
+      url = "github:mathieuhardy/hyprmonitors";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    koob = {
+      url = "github:mathieuhardy/koob";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # ────────────────────────────────────────────────────────────────────────────
@@ -26,9 +36,11 @@
 
   outputs =
     {
+      home-manager,
+      hyprmonitors,
+      koob,
       nixpkgs,
       nixpkgs-unstable,
-      home-manager,
       sops-nix,
       ...
     }:
@@ -38,10 +50,9 @@
     in
     {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        # system = "x86_64-linux";
         inherit system;
 
-        specialArgs = { inherit pkgs-unstable; };
+        specialArgs = { inherit hyprmonitors koob pkgs-unstable; };
 
         modules = [
           # Settings
