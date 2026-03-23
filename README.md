@@ -42,6 +42,7 @@ sudo nixos-rebuild switch --flake .#nixos
 # Vivaldi
 
 - Go to chrome://settings, then `theme` -> Use GTK
+- Go to vivaldi:flags, then "GPU rasterization" -> Enabled
 
 # Todo
 
