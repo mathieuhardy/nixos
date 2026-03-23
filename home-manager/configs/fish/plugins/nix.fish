@@ -24,6 +24,8 @@ function nix_init
     abbr nca  'sudo nix-channel --add'
     abbr ncr  'sudo nix-channel --remove'
     abbr ncu  'sudo nix-channel --update'
+
+    abbr nfu  'nix flake lock --update-input ?'
 end
 
 function nixos_help
@@ -53,4 +55,6 @@ function nixos_help
     echo -e '\033[1;33m  nca\033[1;37m <url> <name> \033[0m    Add channel to list'
     echo -e '\033[1;33m  ncr\033[1;37m <name>       \033[0m    Remove channel from list'
     echo -e '\033[1;33m  ncu\033[1;37m              \033[0m    Update list of channels'
+    echo -e ''
+    echo -e '\033[1;33m  nfu\033[1;37m              \033[0m    Update a flake'
 end
