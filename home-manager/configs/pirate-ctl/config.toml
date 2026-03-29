@@ -1,0 +1,14 @@
+[defaults]
+indexer = "piratebay"
+downloader = "aria2"
+search_limit = 20
+
+[aria2]
+download_dir = "/home/mhardy/Videos/Torrents/"
+
+[transmission]
+client = "cli"
+rpc_url = "http://localhost:9091/transmission/rpc"
+
+[cache]
+ttl_minutes = 5

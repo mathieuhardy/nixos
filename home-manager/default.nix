@@ -18,6 +18,7 @@
     ./lsd.nix
     ./mpv.nix
     ./neovim.nix
+    ./pirate-ctl.nix
     ./rofi.nix
     ./secrets.nix
     ./speedcrunch.nix

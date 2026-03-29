@@ -10,6 +10,7 @@ let
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   override = pkgs.callPackage ./custom-packages/override.nix { };
+  pirate-ctl = pkgs.callPackage ./custom-packages/pirate-ctl.nix { };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -23,6 +24,14 @@ in
 
     libmtp
     gvfs
+
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+    # Bittorent
+    # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
+
+    aria2
+    pirate-ctl
+    qbittorrent
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
     # Development
@@ -62,7 +71,6 @@ in
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
     mpv
-    qbittorrent
     shotcut # Video editor
     vlc
 
