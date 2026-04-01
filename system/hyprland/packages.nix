@@ -4,6 +4,7 @@ let
   # Custom packages
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
+  hyprmoncfg = pkgs.callPackage ./custom-packages/hyprmoncfg.nix { inherit pkgs-unstable; };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
   taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
@@ -81,6 +82,7 @@ in
     cage # For regreet
     diskard # Disk analyzer
     gsimplecal # GUI to show calendar
+    hyprmoncfg # TUI monitors and workspaces configuration
     hyprpicker # Color picker
     impala # TUI wifi manager
     jq # Used in scripts to parse JSON outputs
