@@ -8,4 +8,17 @@
 
   xdg.configFile."pirate-ctl/config.toml".source =
     config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/pirate-ctl/config.toml";
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # XDG desktop entry
+  # ────────────────────────────────────────────────────────────────────────────
+
+  xdg.desktopEntries."pirate-ctl" = {
+    name = "PirateCtl Bittorent";
+    comment = "Bittorent search and download";
+    exec = "alacritty --class pirate-ctl -e pirate-ctl tui";
+    icon = "utilities-terminal";
+    terminal = false;
+    categories = [ "Utility" ];
+  };
 }
