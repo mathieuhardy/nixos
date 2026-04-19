@@ -28,11 +28,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1776451139,
-        "narHash": "sha256-UNY+Nyy6lnL5APT5aITZ11S8wRrNnV4tLi2N0p0Jq5w=",
+        "lastModified": 1776587779,
+        "narHash": "sha256-69UtGFygMy0gkU+0xST+aMd1PdG0/HgmV3RcOOT19B8=",
         "owner": "mathieuhardy",
         "repo": "hyprmonitors",
-        "rev": "747467e192a8710645c88c07ebebebe7196920a3",
+        "rev": "91948c6761cbeb3821c95c29a61dfcc435af740f",
         "type": "github"
       },
       "original": {
