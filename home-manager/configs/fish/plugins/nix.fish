@@ -25,7 +25,7 @@ function nix_init
     abbr ncr  'sudo nix-channel --remove'
     abbr ncu  'sudo nix-channel --update'
 
-    abbr nfu  'nix flake lock --update-input ?'
+    abbr nfu  'nix flake update ?'
 end
 
 function nixos_help
