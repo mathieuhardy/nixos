@@ -53,7 +53,6 @@ in
     nodejs
     oxker # Docker TUI
     python3
-    rustc
     rustup
     tokei
     zed-editor # Backup editor
