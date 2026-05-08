@@ -53,6 +53,7 @@ in
     nodejs
     oxker # Docker TUI
     python3
+    rust-analyzer
     rustup
     tokei
     zed-editor # Backup editor

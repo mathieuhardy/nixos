@@ -86,7 +86,6 @@ in
     jq # Used in scripts to parse JSON outputs
     monitor-setup # Auto configure monitors according to what's plugged
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
-    nwg-displays # GUI to manage displays
     playerctl # GUI to control media
     pwvucontrol # GUI to control volume
     regreet # GTK greeter

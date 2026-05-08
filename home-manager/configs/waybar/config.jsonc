@@ -72,7 +72,7 @@
 
     "custom/displays": {
         "format": "󰍺 ",
-        "on-click": "nwg-displays",
+        "on-click": "alacritty --class hyprmonitors -e hyprmonitors-tui",
         "tooltip": false
     },
 
