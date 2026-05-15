@@ -41,11 +41,13 @@
   // Global
   // -------------------------------------------------------
 
+  "disable_ai": true,
   "use_system_prompts": true,
   "use_system_path_prompts": true,
   "on_last_window_closed": "quit_app",
   "when_closing_with_no_tabs": "close_window",
   "restore_on_startup": "last_workspace",
+  "ui_font_size": 14.0,
 
   // -------------------------------------------------------
   // Security
@@ -61,7 +63,7 @@
 
   "status_bar": {
     "cursor_position_button": false,
-    "active_language_button": true
+    "active_language_button": false
   },
   "global_lsp_settings": {
     "button": false
@@ -126,7 +128,8 @@
   "project_panel": {
     "git_status": false,
     "hide_gitignore": true,
-    "button": true
+    "button": true,
+    "dock": "left"
   },
 
   // -------------------------------------------------------
