@@ -91,6 +91,7 @@ in
     eloquent # Spell checker
     foliate # Ebooks
     koob.packages.${pkgs.system}.default
+    languagetool
     libreoffice-qt
     pandoc # Documents conversion
     typst
