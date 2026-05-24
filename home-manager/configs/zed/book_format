@@ -4,4 +4,5 @@ sed \
     -e 's/--/—/g' \
     -e 's/<</«/g' \
     -e 's/>>/»/g' \
-    -e 's/coeur/cœur/g'
+    -e 's/coeur/cœur/g' \
+    -e 's/oeil/œil/g'
