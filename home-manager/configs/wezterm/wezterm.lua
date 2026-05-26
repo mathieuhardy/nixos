@@ -20,7 +20,7 @@ config.font = wezterm.font_with_fallback({
   "CommitMono Nerd Font",
   "Noto Color Emoji",
 })
-config.font_size = 9.5
+config.font_size = 10
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
 
 config.audible_bell = "Disabled"
@@ -35,13 +35,13 @@ config.scrollback_lines = 1000000
 --------------------------------------------------------------------------------
 
 local themes = {
+  -- Greyish themes
+  "Monokai Pro (Gogh)",
+
   -- Catppuccin
   "Catppuccin Frappe",
   "Catppuccin Macchiato",
   "Catppuccin Mocha",
-
-  -- Greyish themes
-  "Monokai Pro (Gogh)",
 }
 
 config.color_scheme = themes[current_theme]
@@ -55,7 +55,7 @@ local scheme = wezterm.color.get_builtin_schemes()[config.color_scheme]
 
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
-config.window_frame = { font_size = 9 }
+config.window_frame = { font_size = 10 }
 config.show_tab_index_in_tab_bar = false
 -- config.show_close_tab_button_in_tabs = false
 
@@ -166,12 +166,6 @@ config.keys = {
     mods = "CTRL|SHIFT",
     action = wezterm.action.Search({ CaseInSensitiveString = "" }),
   },
-  -- Configuration
-  {
-    key = "r",
-    mods = "CTRL|SHIFT",
-    action = wezterm.action.ReloadConfiguration,
-  },
   -- Clear
   {
     key = "g",
@@ -206,7 +200,7 @@ config.keys = {
         -- An empty string if they just hit enter
         -- Or the actual line of text they wrote
         if line then
-          window:active_tab():set_title(line)
+          window:active_tab():set_title("   " .. line .. "   ")
         end
       end),
     }),
