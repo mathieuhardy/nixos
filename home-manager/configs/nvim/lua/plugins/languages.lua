@@ -10,6 +10,9 @@ return {
         server = {
           settings = {
             ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+              },
               cachePriming = {
                 enable = false,
               },
