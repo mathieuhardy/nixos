@@ -52,6 +52,7 @@ in
     meld
     nodejs
     oxker # Docker TUI
+    protobuf
     python3
     rust-analyzer
     rustup

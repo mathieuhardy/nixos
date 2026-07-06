@@ -80,6 +80,7 @@ in
     brightnessctl # Control of the brightness
     cage # For regreet
     diskard # Disk analyzer
+    feh # Image viewer
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager
