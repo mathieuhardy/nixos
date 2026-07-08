@@ -94,6 +94,7 @@ in
     koob.packages.${pkgs.system}.default
     languagetool
     libreoffice-qt
+    ltex-ls
     pandoc # Documents conversion
     typst
 
@@ -119,6 +120,7 @@ in
     input-remapper
     loglit # Logs highlighting
     lsd
+    nix-ld
     ripgrep
     speedcrunch # Calculator
     trashy
