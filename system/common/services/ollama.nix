@@ -1,26 +1,15 @@
-_:
+{ pkgs, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # User service for local LLMs
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    ./audio
-    ./bluetooth
-    ./boot
-    ./filesystem
-    ./fonts
-    ./garbage-collector
-    ./i18n
-    ./inputs
-    ./networking
-    ./openssh
-    ./printing
-    ./security
-    ./services
-    ./users
-
-    ./packages.nix
-  ];
+  services.ollama = {
+    enable = true;
+    acceleration = false;
+    loadModels = [ "mistral" ];
+    # Optionnel, pour rendre la RAM plus vite après une session d'écriture :
+    # environmentVariables.OLLAMA_KEEP_ALIVE = "5m";
+  };
 }
