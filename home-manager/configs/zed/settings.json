@@ -56,12 +56,31 @@
   "disable_ai": true,
 
   "agent": {
-    "default_profile": "write",
+    "default_profile": "ask",
     "button": true,
-    "default_model": { "provider": "ollama", "model": "mistral" }
+    "default_model": { "provider": "llamacpp", "model": "Bonsai-1.7B-Q1_0.gguf" }
   },
 
   "language_models": {
+    "openai_compatible": {
+      "llamacpp": {
+        "api_url": "http://127.0.0.1:8080/v1",
+        "available_models": [
+          {
+            "name": "Bonsai-1.7B-Q1_0.gguf",
+            "max_tokens": 32768,
+            "max_output_tokens": 4096,
+            "capabilities": {
+              "tools": false,
+              "images": false,
+              "parallel_tool_calls": false,
+              "prompt_cache_key": false,
+              "chat_completions": true
+            }
+          }
+        ]
+      }
+    },
     "ollama": {
       "api_url": "http://localhost:11434",
       "auto_discover": false,
