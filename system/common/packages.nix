@@ -11,6 +11,7 @@ let
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   override = pkgs.callPackage ./custom-packages/override.nix { };
   pirate-ctl = pkgs.callPackage ./custom-packages/pirate-ctl.nix { };
+  timelines = pkgs.callPackage ./custom-packages/timelines.nix { };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -96,6 +97,7 @@ in
     libreoffice-qt
     ltex-ls
     pandoc # Documents conversion
+    timelines
     typst
 
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
