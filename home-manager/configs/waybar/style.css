@@ -28,6 +28,7 @@ window#waybar {
 #g-various,
 #g-datetime,
 #g-system,
+#g-gitwatch,
 #g-bluetooth,
 #g-network,
 #g-media {
@@ -247,6 +248,27 @@ window#waybar {
   background-color: #1e1e2e;
   margin: 2px;
   border-radius: 12px;
+}
+
+/*
+ * ─────────────────────────────────────────────────────────────────────────────
+ * GitWatch
+ * ─────────────────────────────────────────────────────────────────────────────
+ */
+
+#g-gitwatch {
+  color: #333333;
+  background-color: #81c8be;
+}
+
+#custom-gitwatch {
+  padding: 0 8px;
+  border-radius: 12px;
+}
+
+#custom-gitwatch:hover {
+  color: #f8f8f8;
+  background-color: #333333;
 }
 
 /*

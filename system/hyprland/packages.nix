@@ -4,6 +4,8 @@ let
   # Custom packages
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
+  git-commit-push = pkgs.callPackage ./custom-packages/git-commit-push.nix { };
+  git-dirty-repos = pkgs.callPackage ./custom-packages/git-dirty-repos.nix { };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
   taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
@@ -81,6 +83,8 @@ in
     cage # For regreet
     diskard # Disk analyzer
     feh # Image viewer
+    git-commit-push # Commit and push in a Git repository
+    git-dirty-repos # Get the count of dirty Git repositories
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager

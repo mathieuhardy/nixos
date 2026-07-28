@@ -188,6 +188,7 @@
         "group/g-media",
         "group/g-network",
         "group/g-bluetooth",
+        "group/g-gitwatch",
         "group/g-various",
         "group/g-datetime"
     ],
@@ -277,6 +278,23 @@
         "format-connected": "󰂱 {device_alias}",
         "on-click": "alacritty --class bluetui -e bluetui",
         "on-click-right": "toggle-bluetooth"
+    },
+
+    // GitWatch
+    "group/g-gitwatch": {
+        "orientation": "horizontal",
+        "modules": [
+            "custom/gitwatch"
+        ]
+    },
+
+    "custom/gitwatch": {
+        "exec": "git-dirty-repos",
+        "return-type": "json",
+        "interval": 2,
+        "format": "{}",
+        "on-click": "~/.config/rofi/scripts/git-repos.sh",
+        "signal": 8
     },
 
     // Various
