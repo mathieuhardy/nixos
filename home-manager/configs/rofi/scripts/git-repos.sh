@@ -2,43 +2,46 @@
 
 dir="${HOME}/.config/rofi/themes"
 theme="gitmenu"
-icon='●'
-
-declare -A repo_path
+icon_dirty='●'
+icon_clean='○'
 
 rofi_cmd() {
 	rofi -dmenu \
 		-sync \
 		-i \
-		-p "Dirity repositories" \
-		-theme ${dir}/${theme}.rasi
+		-p "Repos" \
+		-theme "${dir}/${theme}.rasi"
 }
 
 build_list() {
+	local dirty=() clean=()
+
 	for d in "${HOME}"/dev/*/
     do
-		[ -d "${d}/.git" ] || continue
-		[ -n "$(git -C "${d}" status --porcelain 2>/dev/null)" ] || continue
+        [ -d "${d}.git" ] || continue
 
-		name=$(basename "${d}")
-		label="${icon} ${name}"
-		repo_path["${label}"]="${d%/}"
-		echo "${label}"
+        name=$(basename "$d")
+
+        if [ -n "$(git -C "$d" status --porcelain 2>/dev/null)" ]
+        then
+            dirty+=("${icon_dirty} ${name}")
+        else
+            clean+=("${icon_clean} ${name}")
+        fi
 	done
+
+	printf '%s\n' "${dirty[@]}" "${clean[@]}"
 }
 
 list=$(build_list)
-if [ -z "${list}" ]
-then
-	exit 0
-fi
+[ -z "${list}" ] && exit 1
 
-chosen=$(echo "${list}" | rofi_cmd)
+chosen=$(printf '%s\n' "${list}" | rofi_cmd)
 [ -z "${chosen}" ] && exit 0
 
-chosen=$(echo "${chosen}" | sed 's/'^"${icon}"' //g')
-repo_path="${HOME}/dev/${chosen}"
+name="${chosen#* }"
+repo="${HOME}/dev/${name}"
 
-git-commit-push "${repo_path}"
+git-commit-push "${repo}"
 
 pkill -RTMIN+8 waybar
