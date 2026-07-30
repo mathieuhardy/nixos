@@ -1,64 +1,40 @@
-# notediscovery.nix
-#
-# Module NixOS pour déployer NoteDiscovery (https://github.com/gamosoft/NoteDiscovery)
-# via un conteneur OCI (podman), SANS Docker Desktop.
-#
-#   imports = [ ./notediscovery.nix ];
-#   puis: sudo nixos-rebuild switch
-#
-# Gère :
-#   1. Le serveur (conteneur OCI)
-#   2. La langue FR pour la correction orthographique (dictionnaires système)
-#
 {
   config,
-  pkgs,
   lib,
+  pkgs,
   ...
 }:
 
 let
-  ##########################################################################
-  # Réglages faciles à modifier
-  ##########################################################################
+  version = "0.24.2";
 
-  image = "ghcr.io/gamosoft/notediscovery:latest";
+  src = pkgs.fetchFromGitHub {
+    owner = "gamosoft";
+    repo = "NoteDiscovery";
+    rev = "v${version}";
+    hash = "sha256-ON1VMhKc5Yk4bGv1x1p4bPY91DH2KmmZnyu37A1n4Y8=";
+  };
 
-  # Tes notes vivent directement dans ton dossier perso (chemin ABSOLU obligatoire :
-  # pas de ~ ni $HOME, la config est évaluée par root pendant nixos-rebuild).
   notesDir = "/home/${config.settings.userLogin}/${config.settings.repos}/notes";
+  runAsUser = config.settings.userLogin;
+  port = 8005;
 
-  # UID:GID avec lequel le conteneur tourne, pour que les fichiers créés par
-  # l'appli t'appartiennent (et pas à root). Vérifie avec `id` si besoin.
-  runAs = "1000:1000";
-
-  # Local uniquement (recommandé). Pour le LAN : "0.0.0.0:8005:8005" + firewall.
-  portMapping = "127.0.0.1:8005:8005";
-
-  ##########################################################################
-  # config.yaml (généré, monté en lecture seule)
-  ##########################################################################
   configYaml = pkgs.writeText "notediscovery-config.yaml" ''
     app:
       name: "NoteDiscovery"
-
     server:
-      host: "0.0.0.0"        # à l'intérieur du conteneur
-      port: 8005
+      host: "0.0.0.0"
+      port: ${toString port}
       reload: false
       allowed_origins: ["*"]
       debug: false
-
     storage:
       notes_dir: "./data"
       plugins_dir: "./plugins"
-
     search:
       enabled: true
-
     ui:
       autosave_delay_ms: 1000
-
     authentication:
       enabled: false
       secret_key: "change_this_to_a_random_secret_key"
@@ -67,51 +43,58 @@ let
       api_key: ""
   '';
 
+  pythonEnv = pkgs.python3.withPackages (
+    ps: with ps; [
+      fastapi
+      uvicorn
+      python-multipart
+      markdown
+      pyyaml
+      aiofiles
+      cryptography
+      bcrypt
+      itsdangerous
+      slowapi
+      colorama
+      pydantic
+    ]
+  );
+
+  # Copie du repo, avec config.yaml remplacé et data/ transformé en lien
+  # symbolique vers ton vrai dossier de notes.
+  appDir = pkgs.runCommand "notediscovery-src-${version}" { } ''
+    cp -r ${src} $out
+    chmod -R u+w $out
+    rm -f $out/config.yaml
+    cp ${configYaml} $out/config.yaml
+    rm -rf $out/data
+    ln -s ${notesDir} $out/data
+  '';
 in
 {
-  ##########################################################################
-  # 2. Langue FR pour la correction orthographique (dictionnaires navigateur)
-  #    Interface : Réglages -> Langue -> Français (locale fr fournie).
-  ##########################################################################
   environment.systemPackages = with pkgs; [
     hunspellDicts.fr-any
     aspellDicts.fr
   ];
 
-  ##########################################################################
-  # 1. Le serveur
-  ##########################################################################
-  virtualisation.podman.enable = true;
-  virtualisation.oci-containers.backend = "podman";
-
-  virtualisation.oci-containers.containers.notediscovery = {
-    inherit image;
-    autoStart = true;
-    ports = [ portMapping ];
-
-    # Le conteneur tourne avec ton UID:GID => fichiers écrits dans ~/dev/notes
-    # t'appartiennent, éditables directement avec ton éditeur.
-    user = runAs;
-
-    volumes = [
-      # Tes notes, depuis ton dossier perso
-      "${notesDir}:/app/data"
-      # Config déclarative
-      "${configYaml}:/app/config.yaml:ro"
-    ];
-
-    environment = {
-      PORT = "8005";
-    };
-  };
-
-  ##########################################################################
-  # S'assure que le dossier de notes existe, avec le bon propriétaire.
-  # (N'écrase rien s'il existe déjà et n'agit pas récursivement.)
-  ##########################################################################
   systemd.tmpfiles.rules = [
-    "d ${notesDir} 0750 1000 1000 - -"
+    "d ${notesDir} 0750 ${runAsUser} users - -"
   ];
 
-  # networking.firewall.allowedTCPPorts = [ 8005 ];  # si accès LAN
+  systemd.services.notediscovery = {
+    description = "NoteDiscovery";
+    wantedBy = [ "multi-user.target" ];
+    after = [
+      "network.target"
+      "systemd-tmpfiles-setup.service"
+    ];
+    serviceConfig = {
+      Type = "simple";
+      User = runAsUser;
+      WorkingDirectory = appDir;
+      ExecStart = "${pythonEnv}/bin/uvicorn backend.main:app --host 0.0.0.0 --port ${toString port} --timeout-graceful-shutdown 2";
+      Restart = "on-failure";
+      RestartSec = 2;
+    };
+  };
 }
