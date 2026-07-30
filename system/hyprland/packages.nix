@@ -6,6 +6,7 @@ let
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
   git-commit-push = pkgs.callPackage ./custom-packages/git-commit-push.nix { };
   git-dirty-repos = pkgs.callPackage ./custom-packages/git-dirty-repos.nix { };
+  gitwatch = pkgs.callPackage ./custom-packages/gitwatch.nix { };
   monitor-setup = pkgs.callPackage ./custom-packages/monitor-setup.nix { };
   taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
@@ -85,6 +86,7 @@ in
     feh # Image viewer
     git-commit-push # Commit and push in a Git repository
     git-dirty-repos # Get the count of dirty Git repositories
+    # gitwatch
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager
