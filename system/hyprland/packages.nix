@@ -3,6 +3,7 @@
   hyprmonitors,
   pkgs,
   pkgs-unstable,
+  trash-monitor,
   ...
 }:
 
@@ -13,7 +14,6 @@ let
   taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
-  trash-monitor = pkgs.callPackage ./custom-packages/trash-monitor.nix { };
   workspace-navigation = pkgs.callPackage ./custom-packages/workspace-navigation.nix { };
 
   # Override color of the catppuccin-gtk pakage
@@ -101,7 +101,7 @@ in
     taskbook # TUI task manager
     toggle-bluetooth
     toggle-window
-    trash-monitor
+    trash-monitor.packages.${pkgs.system}.default
     tuigreet # TUI greeter for greetd
     pkgs-unstable.timr-tui # Countdown, timer, ...
     # wdisplays  # GUI to manage displays (alternative)

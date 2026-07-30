@@ -33,6 +33,11 @@
       url = "github:mathieuhardy/koob";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    trash-monitor = {
+      url = "github:mathieuhardy/trash-monitor";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # ────────────────────────────────────────────────────────────────────────────
@@ -48,6 +53,7 @@
       nixpkgs,
       nixpkgs-unstable,
       sops-nix,
+      trash-monitor,
       ...
     }:
     let
@@ -64,6 +70,7 @@
             hyprmonitors
             koob
             pkgs-unstable
+            trash-monitor
             ;
         };
 

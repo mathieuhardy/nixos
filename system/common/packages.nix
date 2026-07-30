@@ -112,7 +112,11 @@ in
     # System utilities
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
+    # Application compatibility
     appimage-run
+    nix-ld
+
+    # Various
     bottom
     curl
     fd
@@ -121,7 +125,6 @@ in
     input-remapper
     loglit # Logs highlighting
     lsd
-    nix-ld
     ripgrep
     speedcrunch # Calculator
     trashy
