@@ -1,5 +1,4 @@
 {
-  hyprmonitors,
   koob,
   pkgs,
   ...
@@ -119,7 +118,6 @@ in
     fd
     file-roller # Archive manager
     gparted
-    hyprmonitors.packages.${pkgs.system}.default
     input-remapper
     loglit # Logs highlighting
     lsd

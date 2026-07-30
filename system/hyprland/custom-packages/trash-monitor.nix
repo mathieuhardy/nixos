@@ -4,6 +4,7 @@
   fetchFromGitHub,
 }:
 
+# TODO: move to flake
 rustPlatform.buildRustPackage {
   pname = "trash-monitor";
   version = "0.1.0";

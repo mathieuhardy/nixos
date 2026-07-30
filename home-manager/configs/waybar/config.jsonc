@@ -289,7 +289,7 @@
     },
 
     "custom/gitwatch": {
-        "exec": "git-dirty-repos",
+        "exec": "gitwatch waybar_status ~/dev",
         "return-type": "json",
         "interval": 2,
         "format": "{}",

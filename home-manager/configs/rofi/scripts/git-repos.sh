@@ -14,23 +14,7 @@ rofi_cmd() {
 }
 
 build_list() {
-	local dirty=() clean=()
-
-	for d in "${HOME}"/dev/*/
-    do
-        [ -d "${d}.git" ] || continue
-
-        name=$(basename "$d")
-
-        if [ -n "$(git -C "$d" status --porcelain 2>/dev/null)" ]
-        then
-            dirty+=("${icon_dirty} ${name}")
-        else
-            clean+=("${icon_clean} ${name}")
-        fi
-	done
-
-	printf '%s\n' "${dirty[@]}" "${clean[@]}"
+  gitwatch rofi_list ~/dev
 }
 
 list=$(build_list)
@@ -42,6 +26,6 @@ chosen=$(printf '%s\n' "${list}" | rofi_cmd)
 name="${chosen#* }"
 repo="${HOME}/dev/${name}"
 
-git-commit-push "${repo}"
+gitwatch sync "${repo}"
 
 pkill -RTMIN+8 waybar

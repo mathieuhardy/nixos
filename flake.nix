@@ -19,6 +19,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    gitwatch = {
+      url = "github:mathieuhardy/gitwatch";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprmonitors = {
       url = "github:mathieuhardy/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +41,7 @@
 
   outputs =
     {
+      gitwatch,
       home-manager,
       hyprmonitors,
       koob,
@@ -52,7 +58,14 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
 
-        specialArgs = { inherit hyprmonitors koob pkgs-unstable; };
+        specialArgs = {
+          inherit
+            gitwatch
+            hyprmonitors
+            koob
+            pkgs-unstable
+            ;
+        };
 
         modules = [
           # Settings
