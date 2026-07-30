@@ -6,22 +6,6 @@ _:
   # ────────────────────────────────────────────────────────────────────────────
 
   imports = [
-    ./audio
-    ./bluetooth
-    ./boot
-    ./filesystem
-    ./fonts
-    ./garbage-collector
-    ./i18n
-    ./inputs
-    ./networking
-    ./office
-    ./openssh
-    ./printing
-    ./security
-    ./services
-    ./users
-
-    ./packages.nix
+    # ./note-discovery.nix
   ];
 }
