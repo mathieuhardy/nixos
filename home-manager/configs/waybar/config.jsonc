@@ -291,7 +291,7 @@
     "custom/gitwatch": {
         "exec": "gitwatch waybar_status ~/dev",
         "return-type": "json",
-        "interval": 2,
+        "interval": 5,
         "format": "{}",
         "on-click": "~/.config/rofi/scripts/git-repos.sh",
         "signal": 8
