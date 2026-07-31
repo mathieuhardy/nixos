@@ -27,4 +27,15 @@
       ];
     };
   };
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # XDG default applications
+  # ────────────────────────────────────────────────────────────────────────────
+
+  xdg.mime.defaultApplications = {
+    "image/jpeg" = "swayimg.desktop";
+    "image/png" = "swayimg.desktop";
+    "image/gif" = "swayimg.desktop";
+    "image/webp" = "swayimg.desktop";
+  };
 }
