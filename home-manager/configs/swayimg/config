@@ -237,6 +237,7 @@ Alt+ScrollDown = next_frame
 MouseLeft = drag
 MouseSide = prev_file
 MouseExtra = next_file
+Ctrl+r = rotate_left
 
 ################################################################################
 # Slideshow mode key binding configuration: key = action [parameters]
