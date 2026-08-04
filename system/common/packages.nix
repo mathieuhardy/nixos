@@ -6,6 +6,7 @@
 
 let
   # Custom packages
+  altersend = pkgs.callPackage ./custom-packages/altersend.nix { };
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   override = pkgs.callPackage ./custom-packages/override.nix { };
@@ -22,6 +23,7 @@ in
     # Android
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
+    altersend
     libmtp
     gvfs
 
