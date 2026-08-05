@@ -8,6 +8,7 @@ let
   # Custom packages
   altersend = pkgs.callPackage ./custom-packages/altersend.nix { };
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
+  lexicon = pkgs.callPackage ./custom-packages/lexicon.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   override = pkgs.callPackage ./custom-packages/override.nix { };
   pirate-ctl = pkgs.callPackage ./custom-packages/pirate-ctl.nix { };
@@ -23,7 +24,7 @@ in
     # Android
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
-    altersend
+    # altersend
     libmtp
     gvfs
 
@@ -95,6 +96,7 @@ in
     foliate # Ebooks
     koob.packages.${pkgs.system}.default
     languagetool
+    # lexicon
     libreoffice-qt
     ltex-ls
     pandoc # Documents conversion

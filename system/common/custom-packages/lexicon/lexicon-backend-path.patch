@@ -1,0 +1,40 @@
+--- a/frontend/src-tauri/src/main.rs
++++ b/frontend/src-tauri/src/main.rs
+@@ -74,30 +74,13 @@
+     let _ = child.wait();
+ }
+ 
+-fn start_backend(app_handle: &tauri::AppHandle) -> Result<Child, String> {
+-    let resource_dir = app_handle
+-        .path()
+-        .resource_dir()
+-        .map_err(|error| format!("failed to resolve resource dir: {error}"))?;
+-
+-    // Bundled JRE (resources/jre) so LanguageTool needs no Java install.
+-    let jre_dir = resource_dir.join("jre");
+-    let java_home = if jre_dir.is_dir() {
+-        jre_dir.to_string_lossy().to_string()
+-    } else {
+-        String::new()
+-    };
+-
+-    // Onedir sidecar: resources/lexicon-backend/lexicon-backend[.exe]
+-    // (the `_internal` folder sits beside it and is required at runtime).
+-    // PyInstaller adds `.exe` only on Windows; the macOS bundle uses
+-    // the extensionless executable name.
+-    let sidecar_name = if cfg!(target_os = "windows") {
+-        "lexicon-backend.exe"
+-    } else {
+-        "lexicon-backend"
+-    };
+-    let sidecar_exe: PathBuf = resource_dir.join("lexicon-backend").join(sidecar_name);
++fn start_backend(_app_handle: &tauri::AppHandle) -> Result<Child, String> {
++    // Patched for the Nix build: the backend is the separate lexicon-backend
++    // Nix package (its own JRE is already on PATH via its wrapper), not a
++    // PyInstaller sidecar bundled under Tauri's resource dir. The real store
++    // path is filled in by a plain substituteInPlace in desktop.nix.
++    let java_home = String::new();
++    let sidecar_exe: PathBuf = PathBuf::from("@LEXICON_BACKEND_BIN@");
+ 
+     let mut cmd = Command::new(&sidecar_exe);
+     // Production uses a dedicated port so a running development backend on
