@@ -106,7 +106,7 @@ in
     calibre # Ebooks
     eloquent # Spell checker
     foliate # Ebooks
-    helix-notes.packages.${pkgs.system}.default
+    # helix-notes.packages.${pkgs.system}.default
     koob.packages.${pkgs.system}.default
     languagetool
     # lexicon
