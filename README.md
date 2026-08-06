@@ -55,9 +55,3 @@ sudo nixos-rebuild switch --flake .#nixos
 # Later
 
 - ESC pour cacher les fenêtres floating BT, ...
-- Automatic display configuration
-    * https://filipmikina.com/blog/hyprdynamicmonitors
-    * https://gitlab.com/w0lff/shikane
-    * kanshi (pas rust)
-- bittorent:
-    * https://github.com/stabldev/torrra
