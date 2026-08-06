@@ -1,4 +1,5 @@
 {
+  helix-notes,
   koob,
   pkgs,
   ...
@@ -8,16 +9,27 @@ let
   # Custom packages
   altersend = pkgs.callPackage ./custom-packages/altersend.nix { };
   git-branch-checker = pkgs.callPackage ./custom-packages/git-branch-checker.nix { };
-  lexicon = pkgs.callPackage ./custom-packages/lexicon.nix { };
+  # lexicon = pkgs.callPackage ./custom-packages/lexicon.nix { };
   loglit = pkgs.callPackage ./custom-packages/loglit.nix { };
   override = pkgs.callPackage ./custom-packages/override.nix { };
   pirate-ctl = pkgs.callPackage ./custom-packages/pirate-ctl.nix { };
   timelines = pkgs.callPackage ./custom-packages/timelines.nix { };
+
+  lexicon-backend = pkgs.callPackage ./custom-packages/lexicon/backend.nix { };
+  lexicon-frontend = pkgs.callPackage ./custom-packages/lexicon/frontend.nix { };
+  lexicon = pkgs.callPackage ./custom-packages/lexicon/desktop.nix {
+    inherit lexicon-frontend lexicon-backend;
+  };
 in
 {
   # ────────────────────────────────────────────────────────────────────────────
   # System packages
   # ────────────────────────────────────────────────────────────────────────────
+
+  # TODO: remove ASAP
+  nixpkgs.config.permittedInsecurePackages = [
+    "docker-28.5.2"
+  ];
 
   environment.systemPackages = with pkgs; [
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
@@ -94,6 +106,7 @@ in
     calibre # Ebooks
     eloquent # Spell checker
     foliate # Ebooks
+    helix-notes.packages.${pkgs.system}.default
     koob.packages.${pkgs.system}.default
     languagetool
     # lexicon

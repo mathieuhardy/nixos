@@ -14,14 +14,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     gitwatch = {
       url = "github:mathieuhardy/gitwatch";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helix-notes = {
+      url = "gitlab:ArkHost/HelixNotes?ref=4931ee3fab37e699bd6b19dba9264651258e2598";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprmonitors = {
@@ -31,6 +31,11 @@
 
     koob = {
       url = "github:mathieuhardy/koob";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,8 +51,9 @@
 
   outputs =
     {
-      gitwatch,
       home-manager,
+      gitwatch,
+      helix-notes,
       hyprmonitors,
       koob,
       nixpkgs,
@@ -67,6 +73,7 @@
         specialArgs = {
           inherit
             gitwatch
+            helix-notes
             hyprmonitors
             koob
             pkgs-unstable
