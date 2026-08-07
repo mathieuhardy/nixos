@@ -55,3 +55,4 @@ sudo nixos-rebuild switch --flake .#nixos
 # Later
 
 - ESC pour cacher les fenêtres floating BT, ...
+- [Lexicon grammar checker](https://github.com/AashishH15/Lexicon)
