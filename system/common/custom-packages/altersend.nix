@@ -1,86 +1,44 @@
 {
   lib,
-  stdenv,
-  fetchFromGitHub,
-  buildNpmPackage,
-  electron,
-  makeWrapper,
-  copyDesktopItems,
+  appimageTools,
+  fetchurl,
   makeDesktopItem,
 }:
 
-buildNpmPackage rec {
+let
   pname = "altersend";
   version = "1.8.0";
 
-  src = fetchFromGitHub {
-    owner = "denislupookov";
-    repo = "altersend";
-    rev = "v${version}";
-    hash = "sha256-bPcgOk2iDevcYlKxDJWb8b17n3BulW7dJ0veVkoBQgs=";
+  desktopItem = makeDesktopItem {
+    name = pname;
+    exec = pname;
+    icon = pname;
+    desktopName = "AlterSend";
+    comment = "AlterSend - description de l'app";
+    categories = [ "Utility" ];
+  };
+in
+appimageTools.wrapType2 {
+  inherit pname version;
+
+  src = fetchurl {
+    url = "https://github.com/denislupookov/altersend/releases/download/v${version}/AlterSend-x86_64.AppImage";
+    sha256 = "2b429aedad7bf96aa693d544715bfc582f1c90fde47e8b503aa9b8157d613656";
   };
 
-  npmDepsHash = "sha256-QLqJBSqgfzCAeJix9zTokBYpQOOhP26OWAmqSsDRnNw=";
+  extraPkgs = pkgs: with pkgs; [ ];
 
-  nativeBuildInputs = [
-    makeWrapper
-    copyDesktopItems
-  ];
+  extraInstallCommands = ''
+    install -Dm444 ${desktopItem}/share/applications/${pname}.desktop \
+      $out/share/applications/${pname}.desktop
 
-  npmBuildScript = "build";
-
-  env = {
-    ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
-    PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD = "1";
-    CYPRESS_INSTALL_BINARY = "0";
-  };
-
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/share/altersend
-    mkdir -p $out/bin
-
-    # Adapter si le workspace produit ailleurs.
-    cp -r apps/desktop/dist/* $out/share/altersend/
-
-    makeWrapper ${electron}/bin/electron $out/bin/altersend \
-      --add-flags "$out/share/altersend"
-
-    if [ -d apps/desktop/resources ]; then
-      mkdir -p $out/share
-      cp -r apps/desktop/resources $out/share/altersend-resources
-    fi
-
-    if [ -f apps/desktop/build/icon.png ]; then
-      mkdir -p $out/share/icons/hicolor/512x512/apps
-      cp apps/desktop/build/icon.png \
-        $out/share/icons/hicolor/512x512/apps/altersend.png
-    fi
-
-    runHook postInstall
+    install -Dm444 ${./assets/altersend.png} \
+      $out/share/icons/hicolor/512x512/apps/${pname}.png
   '';
 
-  desktopItems = [
-    (makeDesktopItem {
-      name = "altersend";
-      desktopName = "AlterSend";
-      exec = "altersend";
-      icon = "altersend";
-      terminal = false;
-      categories = [
-        "Network"
-        "Utility"
-      ];
-    })
-  ];
-
   meta = with lib; {
-    description = "Desktop client for AlterSend";
+    description = "AlterSend";
     homepage = "https://github.com/denislupookov/altersend";
-    license = licenses.mit;
-    maintainers = [ ];
-    platforms = platforms.linux;
-    mainProgram = "altersend";
+    platforms = [ "x86_64-linux" ];
   };
 }
