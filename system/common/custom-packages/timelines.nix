@@ -23,8 +23,8 @@ buildNpmPackage rec {
   src = fetchFromGitHub {
     owner = "sreegjl";
     repo = "timelines";
-    rev = "c74e5eceb8d89cdbfe7ea533da3beb90bea040f7";
-    hash = "sha256-CgmLAGbZiIM9xYaDdJ6nLTUxUNOvL7fmg8CzNBexPkc="; # lib.fakeHash
+    rev = "966e41861cc5102638328bc6f0d65bed85fa9452";
+    hash = "sha256-fyg8zEWhEms096zDzsgnwbZhrXqLLFcq4njqFpifIto="; # lib.fakeHash
   };
 
   npmDepsHash = "sha256-elBOJ2brpDn4CgWoGuh7wR5wD5atd7wIWQhM5/cv70A=";
