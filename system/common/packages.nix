@@ -49,6 +49,7 @@ in
     cargo-llvm-cov
     cargo-nextest
     clang
+    cocogitto
     dbeaver-bin
     devcontainer
     fnm
@@ -125,6 +126,7 @@ in
     # Application compatibility
     appimage-run
     nix-ld
+    podman
 
     # Various
     bottom
