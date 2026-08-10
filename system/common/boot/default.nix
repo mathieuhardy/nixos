@@ -29,6 +29,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
 
     kernelParams = [
+      "acpi_osi=Linux"
       "console=tty1"
       "vt.default_red=48,231,166,229,140,244,129,181,98,231,166,229,140,244,129,165"
       "vt.default_grn=52,130,209,200,170,184,200,191,104,130,209,200,170,184,200,173"
