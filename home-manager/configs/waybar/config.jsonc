@@ -310,7 +310,7 @@
         "exec": "trash-monitor",
         "return-type": "json",
         "on-click": "thunar trash:///",
-        "on-click-right": "trash empty --force --all && notify-send '🗑 Trash' 'Trash empty'",
+        "on-click-right": "trash empty --force --all",
         "tooltip": true
     },
 
