@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1785437541,
-        "narHash": "sha256-JipRSpFQasi4BvKWRePF+KJurnupXPnpu2HQN7xUpKg=",
+        "lastModified": 1786480956,
+        "narHash": "sha256-hvw+ShPBdnbnOxEnuUbnc8lVCOOKAFDiR6dwB7auhd4=",
         "owner": "mathieuhardy",
         "repo": "gitwatch",
-        "rev": "22bca21b9bb4082e34f0059e18e8ab257739280f",
+        "rev": "567e20d350bd1418d9ace30d5dfef62e0c6fb686",
         "type": "github"
       },
       "original": {
