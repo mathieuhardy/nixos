@@ -65,6 +65,7 @@ in
     python3
     rust-analyzer
     rustup
+    sqlx-cli
     tokei
     zed-editor # Backup editor
 

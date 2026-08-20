@@ -7,5 +7,6 @@ _:
 
   imports = [
     # ./ollama.nix
+    ./postgresql.nix
   ];
 }
