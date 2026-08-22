@@ -2,27 +2,14 @@ _:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # Virtualisation configuration
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    ./audio
-    ./bluetooth
-    ./boot
-    ./filesystem
-    ./fonts
-    ./garbage-collector
-    ./i18n
-    ./inputs
-    ./networking
-    ./office
-    ./openssh
-    ./printing
-    ./security
-    ./services
-    ./users
-    ./virtualisation
+  virtualisation.containers = {
+    enable = true;
 
-    ./packages.nix
-  ];
+    registries.search = [
+      "docker.io"
+    ];
+  };
 }
