@@ -126,8 +126,8 @@ in
 
     # Application compatibility
     appimage-run
+    docker
     nix-ld
-    podman
 
     # Various
     bottom
