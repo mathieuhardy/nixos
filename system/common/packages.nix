@@ -49,7 +49,6 @@ in
     cargo-llvm-cov
     cargo-nextest
     clang
-    cocogitto
     dbeaver-bin
     devcontainer
     fnm
