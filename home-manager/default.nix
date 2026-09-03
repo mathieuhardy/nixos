@@ -8,6 +8,7 @@
   imports = [
     ./alacritty.nix
     ./bat.nix
+    ./claude.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix
