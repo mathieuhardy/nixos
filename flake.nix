@@ -34,6 +34,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    storyteller = {
+      url = "github:mathieuhardy/storyteller";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +61,7 @@
       helix-notes,
       hyprmonitors,
       koob,
+      storyteller,
       nixpkgs,
       nixpkgs-unstable,
       sops-nix,
@@ -76,6 +82,7 @@
             helix-notes
             hyprmonitors
             koob
+            storyteller
             pkgs-unstable
             trash-monitor
             ;

@@ -2,6 +2,7 @@
   helix-notes,
   koob,
   pkgs,
+  storyteller,
   ...
 }:
 
@@ -107,6 +108,7 @@ in
     libreoffice-qt
     ltex-ls
     pandoc # Documents conversion
+    storyteller.packages.${pkgs.system}.default
     timelines
     typst
 
