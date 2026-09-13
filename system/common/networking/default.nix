@@ -43,4 +43,7 @@ _:
       allowPing = true;
     };
   };
+
+  # Don't block boot waiting for network
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
