@@ -17,5 +17,8 @@ _:
   # Docker specific
   # ────────────────────────────────────────────────────────────────────────────
 
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    enableOnBoot = false; 
+  };
 }
