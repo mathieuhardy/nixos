@@ -32,8 +32,11 @@
     fsType = "ext4";
   };
 
-  boot.initrd.luks.devices."luks-f62b3c22-8fa9-4c49-8eb3-9d25b7991e54".device =
-    "/dev/disk/by-uuid/f62b3c22-8fa9-4c49-8eb3-9d25b7991e54";
+  boot.initrd.luks.devices."luks-f62b3c22-8fa9-4c49-8eb3-9d25b7991e54" = {
+    device = "/dev/disk/by-uuid/f62b3c22-8fa9-4c49-8eb3-9d25b7991e54";
+    # NVMe optimization: bypass dm-crypt workqueues
+    crypttabExtraOpts = [ "no-read-workqueue" "no-write-workqueue" ];
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/07AC-3009";
