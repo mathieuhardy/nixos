@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
@@ -6,6 +6,9 @@
   # ────────────────────────────────────────────────────────────────────────────
 
   services.input-remapper.enable = true;
+
+  # Delay daemon start until graphical session
+  systemd.services.input-remapper.wantedBy = lib.mkForce [ "graphical.target" ];
 
   systemd.user.services.input-remapper-autoload = {
     description = "input-remapper autoload";
