@@ -1,5 +1,6 @@
 {
   config,
+  lib,
   pkgs,
   ...
 }:
@@ -9,7 +10,7 @@
   # PostgreSQL database
   # ────────────────────────────────────────────────────────────────────────────
 
-  config.services.postgresql = {
+  services.postgresql = {
     enable = true;
 
     ensureUsers = [
@@ -32,4 +33,7 @@
         pg_uuidv7
       ];
   };
+
+  # Don't start automatically. Use `sudo systemctl start postgresql`
+  systemd.services.postgresql.wantedBy = lib.mkForce [ ];
 }
