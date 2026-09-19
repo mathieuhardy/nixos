@@ -1,13 +1,9 @@
-_:
+{ pkgs, ... }:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # OpenSSH
+  # Disable SSH daemon
   # ────────────────────────────────────────────────────────────────────────────
 
-  services.openssh = {
-    enable = true;
-    allowSFTP = false;
-    settings.X11Forwarding = true;
-  };
+  services.openssh.enable = false;
 }

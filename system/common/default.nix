@@ -16,7 +16,6 @@ _:
     ./inputs
     ./networking
     ./office
-    ./openssh
     ./printing
     ./security
     ./services

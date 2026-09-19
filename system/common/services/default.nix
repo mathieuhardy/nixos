@@ -8,5 +8,6 @@ _:
   imports = [
     # ./ollama.nix
     ./postgresql.nix
+    ./ssh.nix
   ];
 }
