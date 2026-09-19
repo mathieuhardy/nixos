@@ -6,8 +6,7 @@ _:
   # ────────────────────────────────────────────────────────────────────────────
 
   imports = [
-    ./greetd-tui.nix
-    # ./regreet.nix
-    # ./sddm.nix
+    ./autologin.nix
+    # ./greetd-tui.nix
   ];
 }
