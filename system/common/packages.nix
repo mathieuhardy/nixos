@@ -50,6 +50,7 @@ in
     cargo-llvm-cov
     cargo-nextest
     clang
+    claude-code
     dbeaver-bin
     devcontainer
     fnm
@@ -127,6 +128,7 @@ in
 
     # Application compatibility
     appimage-run
+    dpkg
     docker
     nix-ld
 
