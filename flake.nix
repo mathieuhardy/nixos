@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    helix-notes = {
-      url = "gitlab:ArkHost/HelixNotes?ref=4931ee3fab37e699bd6b19dba9264651258e2598";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprmonitors = {
       url = "github:mathieuhardy/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -58,7 +53,6 @@
     {
       home-manager,
       gitwatch,
-      helix-notes,
       hyprmonitors,
       koob,
       storyteller,
@@ -79,7 +73,6 @@
         specialArgs = {
           inherit
             gitwatch
-            helix-notes
             hyprmonitors
             koob
             storyteller
