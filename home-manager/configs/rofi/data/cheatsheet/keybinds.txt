@@ -1,0 +1,19 @@
+# === Windows ===
+ALT + RETURN           Windows | Full screen
+ALT + F4               Windows | Close window
+SUPER + F              Windows | Toggle floating
+
+# === Applications ===
+SUPER + C              Apps | Calculator
+SUPER + E              Apps | File manager
+SUPER + E              Apps | Emoji picker
+SUPER + N              Apps | Notes
+SUPER + P              Apps | Launcher
+SUPER + V              Apps | Vivaldi
+SUPER + T|RETURN       Apps | Terminal
+
+# === System ===
+SUPER + L              System | Lock
+SUPER + W              System | Wifi manager
+ALT|SUPER + ESC        System | Power menu
+CTRL + ALT + SUPPR     System | Exit Hyprland
