@@ -43,6 +43,11 @@
       url = "github:mathieuhardy/trash-monitor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    waynote = {
+      url = "github:mryll/waynote";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   # ────────────────────────────────────────────────────────────────────────────
@@ -60,6 +65,7 @@
       nixpkgs-unstable,
       sops-nix,
       trash-monitor,
+      waynote,
       ...
     }:
     let
@@ -78,6 +84,7 @@
             storyteller
             pkgs-unstable
             trash-monitor
+            waynote
             ;
         };
 

@@ -4,6 +4,7 @@
   pkgs,
   pkgs-unstable,
   trash-monitor,
+  waynote,
   ...
 }:
 
@@ -11,7 +12,6 @@ let
   # Custom packages
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
-  taskbook = pkgs.callPackage ./custom-packages/taskbook.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
   toggle-window = pkgs.callPackage ./custom-packages/toggle-window.nix { };
   workspace-navigation = pkgs.callPackage ./custom-packages/workspace-navigation.nix { };
@@ -98,12 +98,12 @@ in
     regreet # GTK greeter
     rofi # Power menu
     swayimg # Image viewer
-    taskbook # TUI task manager
     toggle-bluetooth
     toggle-window
     trash-monitor.packages.${pkgs.system}.default
     tuigreet # TUI greeter for greetd
     pkgs-unstable.timr-tui # Countdown, timer, ...
+    waynote.packages.${pkgs.system}.default
     # wdisplays  # GUI to manage displays (alternative)
     workspace-navigation # Loop navigation between worspaces
     wpaperd # Background manager

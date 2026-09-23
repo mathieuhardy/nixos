@@ -139,7 +139,8 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "sops-nix": "sops-nix",
         "storyteller": "storyteller",
-        "trash-monitor": "trash-monitor"
+        "trash-monitor": "trash-monitor",
+        "waynote": "waynote"
       }
     },
     "rust-overlay": {
@@ -218,6 +219,26 @@
       "original": {
         "owner": "mathieuhardy",
         "repo": "trash-monitor",
+        "type": "github"
+      }
+    },
+    "waynote": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788815726,
+        "narHash": "sha256-iaZmyEU5D0n/vkLYyaHwynEU5NosO/nFGvPrw/6Gn9o=",
+        "owner": "mryll",
+        "repo": "waynote",
+        "rev": "9ce004f2c87a5ec2d73fe65cd37bb446340f2aa0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mryll",
+        "repo": "waynote",
         "type": "github"
       }
     }
