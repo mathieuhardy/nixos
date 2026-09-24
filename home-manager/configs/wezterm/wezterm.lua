@@ -22,6 +22,9 @@ config.font = wezterm.font_with_fallback({
 })
 config.font_size = 10
 config.harfbuzz_features = { "calt=0", "clig=0", "liga=0" }
+config.freetype_load_target = "Light"
+config.freetype_render_target = "HorizontalLcd"
+config.line_height = 1.1
 
 config.audible_bell = "Disabled"
 
