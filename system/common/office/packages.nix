@@ -13,12 +13,12 @@ in
     calibre # Ebooks
     eloquent # Spell checker
     foliate # Ebooks
-    koob.packages.${pkgs.system}.default
+    koob.packages.${pkgs.stdenv.hostPlatform.system}.default
     languagetool
     libreoffice-qt
     ltex-ls # TODO: Check if still used
     pandoc # Documents conversion
-    storyteller.packages.${pkgs.system}.default
+    storyteller.packages.${pkgs.stdenv.hostPlatform.system}.default
     timelines
     typst
   ];

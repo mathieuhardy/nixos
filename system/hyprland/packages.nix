@@ -88,8 +88,8 @@ in
     cage # For regreet
     diskard # Disk analyzer
     feh # Image viewer
-    gitwatch.packages.${pkgs.system}.default
-    hyprmonitors.packages.${pkgs.system}.default
+    gitwatch.packages.${pkgs.stdenv.hostPlatform.system}.default
+    hyprmonitors.packages.${pkgs.stdenv.hostPlatform.system}.default
     gsimplecal # GUI to show calendar
     hyprpicker # Color picker
     impala # TUI wifi manager
@@ -102,10 +102,10 @@ in
     swayimg # Image viewer
     toggle-bluetooth
     toggle-window
-    trash-monitor.packages.${pkgs.system}.default
+    trash-monitor.packages.${pkgs.stdenv.hostPlatform.system}.default
     tuigreet # TUI greeter for greetd
     pkgs-unstable.timr-tui # Countdown, timer, ...
-    waynote.packages.${pkgs.system}.default
+    waynote.packages.${pkgs.stdenv.hostPlatform.system}.default
     # wdisplays  # GUI to manage displays (alternative)
     workspace-navigation # Loop navigation between worspaces
     wpaperd # Background manager
