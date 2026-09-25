@@ -1,11 +1,12 @@
-_:
+{ pkgs, ... }:
 
 {
-  # ────────────────────────────────────────────────────────────────────────────
-  # Imports
-  # ────────────────────────────────────────────────────────────────────────────
-
-  imports = [
-    ./packages.nix
+  environment.systemPackages = with pkgs; [
+    starship
   ];
+
+  programs = {
+    bash.enable = true;
+    fish.enable = true;
+  };
 }

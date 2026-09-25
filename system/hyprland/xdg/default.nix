@@ -2,6 +2,18 @@
 
 {
   # ────────────────────────────────────────────────────────────────────────────
+  # Packages
+  # ────────────────────────────────────────────────────────────────────────────
+
+  # TODO: remove packages declared in the same file ?
+  environment.systemPackages = with pkgs; [
+    xdg-desktop-portal
+    xdg-desktop-portal-gtk # Fallback version
+    xdg-desktop-portal-hyprland # Screen sharing, file pickers, etc
+    xdg-utils
+  ];
+
+  # ────────────────────────────────────────────────────────────────────────────
   # XDG desktop portal
   # ────────────────────────────────────────────────────────────────────────────
 

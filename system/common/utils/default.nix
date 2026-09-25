@@ -1,11 +1,14 @@
-_:
+{ pkgs, ... }:
 
 {
-  # ────────────────────────────────────────────────────────────────────────────
-  # Imports
-  # ────────────────────────────────────────────────────────────────────────────
+  environment.systemPackages = with pkgs; [
+    # Application compatibility
+    appimage-run
+    dpkg
+    nix-ld
 
-  imports = [
-    ./packages.nix
+    # Various
+    input-remapper
+    speedcrunch # Calculator
   ];
 }

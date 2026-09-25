@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  timelines = pkgs.callPackage ../custom-packages/timelines.nix { };
-in
 {
   environment.systemPackages = with pkgs; [
     calibre # Ebooks
@@ -19,7 +16,6 @@ in
     ltex-ls # TODO: Check if still used
     pandoc # Documents conversion
     storyteller.packages.${pkgs.stdenv.hostPlatform.system}.default
-    timelines
     typst
   ];
 

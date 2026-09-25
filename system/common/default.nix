@@ -8,7 +8,6 @@ _:
   imports = [
     ./android
     ./audio
-    ./bluetooth
     ./boot
     ./cli
     ./development

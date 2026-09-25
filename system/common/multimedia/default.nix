@@ -1,11 +1,10 @@
-_:
+{ pkgs, ... }:
 
 {
-  # ────────────────────────────────────────────────────────────────────────────
-  # Imports
-  # ────────────────────────────────────────────────────────────────────────────
-
-  imports = [
-    ./packages.nix
+  environment.systemPackages = with pkgs; [
+    imagemagick
+    mpv
+    shotcut # Video editor
+    vlc
   ];
 }

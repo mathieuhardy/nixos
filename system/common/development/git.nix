@@ -1,11 +1,19 @@
 { pkgs, ... }:
 
-let
-  git-branch-checker = pkgs.callPackage ../custom-packages/git-branch-checker.nix { };
-in
 {
+  # ────────────────────────────────────────────────────────────────────────────
+  # Imports
+  # ────────────────────────────────────────────────────────────────────────────
+
+  imports = [
+    ./git-branch-checker
+  ];
+
+  # ────────────────────────────────────────────────────────────────────────────
+  # Packages
+  # ────────────────────────────────────────────────────────────────────────────
+
   environment.systemPackages = with pkgs; [
-    git-branch-checker # Checks if local branches are merged
     gitg
   ];
 }

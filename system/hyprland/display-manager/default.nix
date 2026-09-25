@@ -7,6 +7,5 @@ _:
 
   imports = [
     ./autologin.nix
-    # ./greetd-tui.nix
   ];
 }

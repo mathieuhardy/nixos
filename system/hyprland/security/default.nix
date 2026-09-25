@@ -1,9 +1,12 @@
-_:
+{ pkgs, ... }:
 
 {
+
   # ────────────────────────────────────────────────────────────────────────────
-  # Hyprlock accesses
+  # Packages
   # ────────────────────────────────────────────────────────────────────────────
 
-  security.pam.services.hyprlock = { };
+  environment.systemPackages = with pkgs; [
+    hyprpolkitagent
+  ];
 }

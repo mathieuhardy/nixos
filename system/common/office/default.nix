@@ -8,5 +8,6 @@ _:
   imports = [
     ./note-discovery.nix
     ./packages.nix
+    ./timelines
   ];
 }

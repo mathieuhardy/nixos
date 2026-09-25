@@ -8,12 +8,13 @@ _:
   imports = [
     ./display-manager
     ./env
+    ./multimedia
+    ./notifications
     ./security
-    ./services
+    ./theme
+    ./utils
     ./window-manager
     ./xdg
-
-    ./packages.nix
   ];
 
 }

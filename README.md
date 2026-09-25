@@ -44,15 +44,6 @@ sudo nixos-rebuild switch --flake .#nixos
 - Go to chrome://settings, then `theme` -> Use GTK
 - Go to vivaldi:flags, then "GPU rasterization" -> Enabled
 
-# Todo
+# TODO
 
-- hyprland:
-    * tuigreet: config + theme
-    * plymooth boot menu
-    * logs d'hyprland au boot
-    * clean generations
-
-# Later
-
-- ESC pour cacher les fenêtres floating BT, ...
-- [Lexicon grammar checker](https://github.com/AashishH15/Lexicon)
+- fingerprint + password timeout with hyprlock

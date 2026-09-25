@@ -7,7 +7,6 @@ _:
 
   imports = [
     ./logind.nix
-    # ./ollama.nix
     ./postgresql.nix
     ./ssh.nix
   ];
