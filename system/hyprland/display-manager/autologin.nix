@@ -10,7 +10,7 @@
   services.greetd.enable = lib.mkForce false;
   services.displayManager.sddm.enable = lib.mkForce false;
   services.xserver.displayManager.lightdm.enable = lib.mkForce false;
-  services.xserver.displayManager.gdm.enable = lib.mkForce false;
+  services.displayManager.gdm.enable = lib.mkForce false;
 
   # Autologin on tty1
   services.getty.autologinUser = config.settings.userLogin;
