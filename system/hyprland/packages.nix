@@ -81,6 +81,7 @@ in
     # Utilities
     # ┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄
 
+    alt-f4
     battery-monitor # Monitor the level of battery and send notifications
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
