@@ -10,6 +10,7 @@
 
 let
   # Custom packages
+  alt-f4 = pkgs.callPackage ./custom-packages/alt-f4.nix { };
   battery-monitor = pkgs.callPackage ./custom-packages/battery-monitor.nix { };
   diskard = pkgs.callPackage ./custom-packages/diskard.nix { };
   toggle-bluetooth = pkgs.callPackage ./custom-packages/toggle-bluetooth.nix { };
