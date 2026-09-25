@@ -2,13 +2,10 @@ _:
 
 {
   # ────────────────────────────────────────────────────────────────────────────
-  # Imports
+  # Don't handle Lid when docker
   # ────────────────────────────────────────────────────────────────────────────
 
-  imports = [
-    ./logind.nix
-    # ./ollama.nix
-    ./postgresql.nix
-    ./ssh.nix
-  ];
+  services.logind.extraConfig = ''
+    HandleLidSwitchDocked=ignore
+  '';
 }
