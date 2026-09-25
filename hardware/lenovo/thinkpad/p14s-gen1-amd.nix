@@ -36,5 +36,8 @@ _:
   # hardware.trackpoint.emulateWheel = config.hardware.trackpoint.enable;
 
   # Fingerprint reader
+  #   > fprintd-enroll -f left-index-finger
+  #   > fprintd-list $USER
+  #   > fprintd-verify
   services.fprintd.enable = true;
 }
