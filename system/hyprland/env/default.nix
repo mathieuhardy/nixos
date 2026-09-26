@@ -14,5 +14,8 @@ _:
 
     # For Electron applications
     NIXOS_OZONE_WL = "1";
+
+    # Force GTK apps (gparted, steam menus) to use Wayland backend
+    GDK_BACKEND = "wayland,x11";
   };
 }
