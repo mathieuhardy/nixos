@@ -11,5 +11,5 @@ _:
   # Security
   # ────────────────────────────────────────────────────────────────────────────
 
-  security.pam.services.hyprlock = { };
+  security.pam.services.hyprlock.fprintAuth = false;
 }
