@@ -29,6 +29,7 @@
     ./swaync.nix
     ./swayosd.nix
     ./theme.nix
+    ./udiskie.nix
     ./vicinae.nix
     ./waybar.nix
     ./wezterm.nix
