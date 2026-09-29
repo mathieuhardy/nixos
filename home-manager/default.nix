@@ -22,7 +22,6 @@
     ./pirate-ctl.nix
     ./rofi.nix
     ./secrets.nix
-    ./speedcrunch.nix
     ./ssh.nix
     ./starship.nix
     ./swayimg.nix

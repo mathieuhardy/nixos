@@ -9,6 +9,6 @@
 
     # Various
     input-remapper
-    speedcrunch # Calculator
+    gnome-calculator
   ];
 }
