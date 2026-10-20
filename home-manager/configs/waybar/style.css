@@ -4,6 +4,9 @@
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
+@define-color g_fg #ffffff;
+@define-color g_bg #1e1e2e;
+
 * {
   font-family: CommitMono Nerd Font;
   font-size: 14px;
@@ -17,8 +20,8 @@
 }
 
 window#waybar {
-  color: #ffffff;
-  background-color: #1e1e2e;
+  color: @g_fg;
+  background-color: @g_bg;
 }
 
 #g-workspaces,
@@ -32,7 +35,7 @@ window#waybar {
 #g-bluetooth,
 #g-network,
 #g-media {
-  color: #1e1e2e;
+  color: @g_bg;
   margin: 6px 2px;
   border-radius: 12px;
 }
@@ -43,17 +46,24 @@ window#waybar {
  * ─────────────────────────────────────────────────────────────────────────────
  */
 
-#g-workspaces {
-  color: #1e1e2e;
-}
+@define-color ws_active         #cba6f7;
+@define-color ws_active_fg      #1e1e2e;
+@define-color ws_active_bg      #ca9ee6;
 
-/* Non-empty buttons */
+@define-color ws_busy           #cba6f7;
+@define-color ws_busy_bg        #89b4fa;
+
+@define-color ws_empty          #585b70;
+@define-color ws_empty_hover_fg #cdd6f4;
+
+/* Non-empty and non-active buttons */
 #workspaces button {
-  background-color: #51576d;
+  color: @ws_busy;
+  background-color: alpha(@ws_busy_bg, 0.2);
   min-width: 30px;
   margin: 0 2px;
-  border-radius: 5px;
-  border: 1px solid #51576d;
+  border-radius: 8px;
+  border: 1px solid alpha(@ws_busy, 0.6);
 }
 
 #workspaces button label {
@@ -63,22 +73,29 @@ window#waybar {
 
 /* Empty buttons */
 #workspaces button.empty {
-  color: #949cbb;
+  color: @ws_empty;
   background-color: transparent;
-  border: 1px solid #949cbb;
+  border: 1px solid;
+  border-color: alpha(@ws_empty, 0.5);
 }
 
 /* Hover */
 #workspaces button:hover {
-  color: #f8f8f8;
-  background: transparent;
+  color: @g_fg;
+  background: alpha(@ws_busy, 0.35);
+  border-color: @ws_busy;
+}
+
+#workspaces button.empty:hover {
+  color: @ws_empty_hover_fg;
+  background: alpha(@ws_empty, 0.25);
 }
 
 /* Current */
 #workspaces button.active {
-  color: #1e1e2e;
-  background-color: #ca9ee6;
-  border: 1px solid #ca9ee6;
+  color: @ws_active_fg;
+  background: @ws_active;
+  border-color: @ws_active;
 }
 
 /*
