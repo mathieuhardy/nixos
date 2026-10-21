@@ -39,5 +39,5 @@ _:
   #   > fprintd-enroll -f left-index-finger
   #   > fprintd-list $USER
   #   > fprintd-verify
-  services.fprintd.enable = true;
+  # services.fprintd.enable = true;
 }
