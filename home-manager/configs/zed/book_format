@@ -5,4 +5,9 @@ sed \
     -e 's/<</«/g' \
     -e 's/>>/»/g' \
     -e 's/coeur/cœur/g' \
-    -e 's/oeil/œil/g'
+    -e 's/oeil/œil/g' \
+    -e 's/oeuvre/œuvre/g' \
+    -e 's/Chaima/Chaïma/g' \
+    -e 's/Emilie/Émilie/g' \
+    -e 's/Leila/Leïla/g' \
+    -e 's/Joao/João/g'
