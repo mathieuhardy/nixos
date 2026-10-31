@@ -14,11 +14,18 @@ _:
   # services.tlp.enable = (!config.services.power-profiles-daemon.enable);
 
   # ────────────────────────────────────────────────────────────────────────────
+  # initrd: use systemd to avoid race condition on LUKS prompt (NVMe not ready)
+  # ────────────────────────────────────────────────────────────────────────────
+
+  boot.initrd.systemd.enable = true;
+
+  # ────────────────────────────────────────────────────────────────────────────
   # Enable AMD driver with 3D acceleration and 32bits support
   # ────────────────────────────────────────────────────────────────────────────
 
-  # TODO: set to amdgpu
-  services.xserver.videoDrivers = [ "modesetting" ];
+  boot.kernelModules = [ "amdgpu" ];
+
+  services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.graphics = {
     enable = true;

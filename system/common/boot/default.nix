@@ -30,6 +30,7 @@
 
     kernelParams = [
       "acpi_osi=Linux"
+      "acpi_sleep=nonvs"
       "reboot=acpi"
       "console=tty1"
       "vt.default_red=48,231,166,229,140,244,129,181,98,231,166,229,140,244,129,165"
