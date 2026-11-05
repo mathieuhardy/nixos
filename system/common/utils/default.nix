@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, pkgs-unstable, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -10,5 +10,8 @@
     # Various
     input-remapper
     gnome-calculator
+
+    # Whatsapp
+    # pkgs-unstable.zapfast
   ];
 }
