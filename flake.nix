@@ -29,13 +29,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    storyteller = {
-      url = "github:mathieuhardy/storyteller";
-      inputs.nixpkgs.follows = "nixpkgs";
+    ski = {
+      url = "github:ilyamiro/Ski";
+      flake = false;
     };
 
     sops-nix = {
       url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    storyteller = {
+      url = "github:mathieuhardy/storyteller";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,10 +65,11 @@
       gitwatch,
       hyprmonitors,
       koob,
-      storyteller,
       nixpkgs,
       nixpkgs-unstable,
+      ski,
       sops-nix,
+      storyteller,
       trash-monitor,
       waynote,
       ...
@@ -94,6 +100,9 @@
 
           # System entry point
           ./main.nix
+
+          # Ski
+          "${ski}/nix/module.nix"
 
           # Home manager
           home-manager.nixosModules.home-manager
