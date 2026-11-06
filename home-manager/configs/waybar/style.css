@@ -387,6 +387,14 @@ window#waybar {
   background-color: @c_bg;
 }
 
+#mpris:not(.playing):not(.paused) {
+  padding: 0;
+  margin: 0;
+  border: none;
+  min-width: 0;
+  background: transparent;
+}
+
 #pulseaudio:hover,
 #pulseaudio.microphone:hover,
 #mpris:hover {
