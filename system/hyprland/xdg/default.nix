@@ -5,7 +5,6 @@
   # Packages
   # ────────────────────────────────────────────────────────────────────────────
 
-  # TODO: remove packages declared in the same file ?
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal
     xdg-desktop-portal-gtk # Fallback version

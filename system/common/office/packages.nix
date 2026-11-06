@@ -13,7 +13,7 @@
     koob.packages.${pkgs.stdenv.hostPlatform.system}.default
     languagetool
     libreoffice-qt
-    ltex-ls # TODO: Check if still used
+    ltex-ls # Used in Zed editor for spellcheck
     pandoc # Documents conversion
     storyteller.packages.${pkgs.stdenv.hostPlatform.system}.default
     typst

@@ -181,8 +181,9 @@ window#waybar {
 }
 
 #custom-swaync.notification {
-  color: @c_fg;
+  color: @c_various;
   background-color: @c_bg;
+  padding: 0 6px;
 }
 
 #custom-swaync:hover,
