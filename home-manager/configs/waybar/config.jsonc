@@ -259,8 +259,7 @@
         "format-ethernet": "󰈀 {ifname}",
         "format-disconnected": "󰤭",
         "format-linked": "󰤨 (no IP)",
-        "on-click": "alacritty --class nmtui -e nmtui",
-        "on-click-right": "alacritty --class impala -e impala",
+        "on-click": "nm-sidebar --toggle",
         "tooltip-format-wifi": "{signalStrength}%",
         "tooltip-format-ethernet": "{ipaddr}",
         "tooltip": true

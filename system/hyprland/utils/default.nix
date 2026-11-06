@@ -19,6 +19,7 @@
     ./battery-monitor
     ./diskard
     ./hyprlock
+    ./network-manager-sidebar
     ./toggle-bluetooth
     ./toggle-window
     ./workspace-navigation
@@ -34,7 +35,6 @@
     gitwatch.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprmonitors.packages.${pkgs.stdenv.hostPlatform.system}.default
     gsimplecal # GUI to show calendar
-    impala # TUI wifi manager
     jq # Used in scripts to parse JSON outputs
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
     rofi # Power menu
