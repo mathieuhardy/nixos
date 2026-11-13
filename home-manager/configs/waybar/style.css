@@ -60,7 +60,7 @@ window#waybar {
 #g-workspaces {
   background-color: @c_workspaces;
   border-radius: 8px;
-  padding: 2px 4px;
+  padding: 2px 2px;
 }
 
 /* Non-empty and non-active buttons */
