@@ -51,6 +51,6 @@ default_opts = {
     toml = 4,
   },
   ai = {
-    suggestions_backend = "",
+    suggestions_backend = "minuet",
   },
 }

@@ -27,9 +27,7 @@ return {
           command_palette = {
             {
               "AI",
-              { "Chat", ":CodeCompanionChat" },
-              { "Suggestions - Codeium", ":lua select_ai_suggestions_backend('codeium')" },
-              { "Suggestions - Copilot", ":lua select_ai_suggestions_backend('copilot')" },
+              { "Suggestions - Minuet", ":lua select_ai_suggestions_backend('minuet')" },
               { "Suggestions - Disabled", ":lua select_ai_suggestions_backend('')" },
             },
             {
