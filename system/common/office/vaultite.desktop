@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Vaultite
+Comment=Notes manager
+Exec=vaultite %U
+Icon=vaultite
+Type=Application
+Categories=Utility;Security;
+Keywords=notes;vaultite;
+StartupWMClass=Vaultite

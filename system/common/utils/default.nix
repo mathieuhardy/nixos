@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     # Application compatibility
-    appimage-run
     dpkg
     nix-ld
 
@@ -14,4 +13,9 @@
     # Whatsapp
     # pkgs-unstable.zapfast
   ];
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 }
