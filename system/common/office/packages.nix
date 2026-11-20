@@ -20,7 +20,6 @@
     # Spellcheck
     correct.packages.${pkgs.stdenv.hostPlatform.system}.default
     languagetool
-    ltex-ls # Used in Zed editor for spellcheck TODO: remove
 
     # Various
     libreoffice-qt

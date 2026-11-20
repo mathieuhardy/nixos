@@ -271,21 +271,6 @@
         "external": {
           "command": "/home/mhardy/.config/zed/book_format"
         }
-      },
-      "language_servers": ["ltex"]
-    },
-    "Plain Text": {
-      "language_servers": ["ltex"]
-    }
-  },
-
-  "lsp": {
-    "ltex": {
-      "settings": {
-        "ltex": {
-          "enabled": true,
-          "language": "fr"
-        }
       }
     }
   },
@@ -297,8 +282,7 @@
   "extensions": {
     "auto_install": [
       "catppuccin",
-      "catppuccin-icons",
-      "ltex"
+      "catppuccin-icons"
     ]
   }
 }
