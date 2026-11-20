@@ -9,6 +9,7 @@
     ./alacritty.nix
     ./bat.nix
     ./claude.nix
+    ./correct.nix
     ./firefox.nix
     ./fish.nix
     ./git.nix

@@ -9,6 +9,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+    correct = {
+      url = "github:mathieuhardy/correct";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -61,6 +66,7 @@
 
   outputs =
     {
+      correct,
       home-manager,
       gitwatch,
       hyprmonitors,
@@ -84,6 +90,7 @@
 
         specialArgs = {
           inherit
+            correct
             gitwatch
             hyprmonitors
             koob

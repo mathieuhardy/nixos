@@ -8,6 +8,6 @@ _:
   imports = [
     ./packages.nix
     ./timelines
-    ./vaultite.nix
+    ./vaultite
   ];
 }
