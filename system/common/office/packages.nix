@@ -20,6 +20,7 @@
     # Spellcheck
     correct.packages.${pkgs.stdenv.hostPlatform.system}.default
     languagetool
+    python311Packages.grammalecte
 
     # Various
     libreoffice-qt
