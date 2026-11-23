@@ -212,13 +212,13 @@ return {
   -- Color picker
   {
     "nvzone/volt",
-    enable = false,
+    enabled = true,
     lazy = true,
   },
 
   {
     "nvzone/minty",
-    enable = false,
+    enabled = true,
     lazy = false,
     cmd = { "Shades", "Huefy" },
   },
