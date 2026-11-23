@@ -47,7 +47,6 @@ return {
           { name = "sql" }, -- sql files
           { name = "dotenv" }, -- dotenv
           { name = "crates" }, -- Rust crates
-          { name = "minuet" },
         }),
         performance = {
           fetching_timeout = 2000,

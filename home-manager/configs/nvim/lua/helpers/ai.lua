@@ -26,4 +26,11 @@ function set_minuet_status(enabled)
   else
     action.disable_auto_trigger()
   end
+
+  local cmp = require("cmp")
+  local sources = vim.tbl_filter(function(s) return s.name ~= "minuet" end, cmp.get_config().sources)
+  if enabled then
+    table.insert(sources, { name = "minuet" })
+  end
+  cmp.setup({ sources = cmp.config.sources(sources) })
 end
