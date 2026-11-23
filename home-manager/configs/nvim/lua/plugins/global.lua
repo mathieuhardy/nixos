@@ -93,8 +93,6 @@ return {
           "nixfmt",
           "prettier",
           "stylua",
-          -- Debugger
-          "codelldb",
         },
       })
     end,
