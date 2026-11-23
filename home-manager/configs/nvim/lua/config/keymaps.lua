@@ -73,11 +73,6 @@ remap("n", "<C-k>", "gcc", "Comment/uncomment", { noremap = false })
 remap("i", "<C-k>", "<ESC>gcc", "Comment/uncomment", { noremap = false })
 remap("v", "<C-k>", "gc", "Comment/uncomment", { noremap = false })
 
--- ctrl-l: Translate
-remap("n", "<C-l>", "<CMD>Pantran<CR>", "Translation")
-remap("i", "<C-l>", "<ESC><CMD>Pantran<CR>", "Translation")
-remap("v", "<C-l>", "<CMD>Pantran<CR>", "Translation")
-
 -- ctrl-w: wrapping
 remap("n", "<C-w>", "<CMD>set wrap!<CR>", "Toggle wrapping")
 remap("i", "<C-w>", "<ESC><CMD>set wrap!<CR>a", "Toggle wrapping")
