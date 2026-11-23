@@ -35,10 +35,6 @@ return {
               { "Search", ":lua require('telescope.builtin').man_pages()" },
             },
             {
-              "Notes",
-              { "Open", ":VimwikiIndex" },
-            },
-            {
               "Rust",
               { "Actions", ":lua rust_hover_actions()" },
               { "Run", ":lua rust_runnables()" },
