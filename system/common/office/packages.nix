@@ -1,5 +1,4 @@
 {
-  koob,
   pkgs,
   ...
 }:
@@ -7,7 +6,6 @@
 {
   environment.systemPackages = with pkgs; [
     # Books
-    koob.packages.${pkgs.stdenv.hostPlatform.system}.default
     pandoc # Documents conversion
 
     # Ebooks

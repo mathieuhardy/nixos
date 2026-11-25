@@ -41,26 +41,6 @@
         "type": "github"
       }
     },
-    "koob": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1773591773,
-        "narHash": "sha256-SZgACXFvEco4O/FAz1jLpWlHhH0e/MCECHdVaRzIdRw=",
-        "owner": "mathieuhardy",
-        "repo": "koob",
-        "rev": "182ea8afeb850ea6c85b576e1252de0067809ba9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mathieuhardy",
-        "repo": "koob",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1782847189,
@@ -97,7 +77,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprmonitors": "hyprmonitors",
-        "koob": "koob",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "ski": "ski",

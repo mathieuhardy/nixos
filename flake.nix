@@ -19,11 +19,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    koob = {
-      url = "github:mathieuhardy/koob";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ski = {
       url = "github:ilyamiro/Ski";
       flake = false;
@@ -53,7 +48,6 @@
     {
       home-manager,
       hyprmonitors,
-      koob,
       nixpkgs,
       nixpkgs-unstable,
       ski,
@@ -73,7 +67,6 @@
         specialArgs = {
           inherit
             hyprmonitors
-            koob
             pkgs-unstable
             trash-monitor
             waynote
