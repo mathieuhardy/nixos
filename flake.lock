@@ -1,25 +1,5 @@
 {
   "nodes": {
-    "gitwatch": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1795627323,
-        "narHash": "sha256-/JNmX23yO2TTVcFvsNqTrZwOL15tC7TrewKI7GhTLC8=",
-        "owner": "mathieuhardy",
-        "repo": "gitwatch",
-        "rev": "52ce1f4cbdd8f5da8e1e171016f6b469988ed29c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mathieuhardy",
-        "repo": "gitwatch",
-        "type": "github"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -131,7 +111,6 @@
     },
     "root": {
       "inputs": {
-        "gitwatch": "gitwatch",
         "home-manager": "home-manager",
         "hyprmonitors": "hyprmonitors",
         "koob": "koob",

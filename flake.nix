@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    gitwatch = {
-      url = "github:mathieuhardy/gitwatch";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprmonitors = {
       url = "github:mathieuhardy/hyprmonitors";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,7 +57,6 @@
   outputs =
     {
       home-manager,
-      gitwatch,
       hyprmonitors,
       koob,
       nixpkgs,
@@ -84,7 +78,6 @@
 
         specialArgs = {
           inherit
-            gitwatch
             hyprmonitors
             koob
             storyteller

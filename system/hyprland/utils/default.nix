@@ -1,5 +1,4 @@
 {
-  gitwatch,
   hyprmonitors,
   pkgs,
   pkgs-unstable,
@@ -18,6 +17,7 @@
     ./alt-f4
     ./battery-monitor
     ./diskard
+    ./gitwatch
     ./hyprlock
     ./network-manager-sidebar
     ./toggle-bluetooth
@@ -32,7 +32,6 @@
   environment.systemPackages = with pkgs; [
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
-    gitwatch.packages.${pkgs.stdenv.hostPlatform.system}.default
     hyprmonitors.packages.${pkgs.stdenv.hostPlatform.system}.default
     gsimplecal # GUI to show calendar
     jq # Used in scripts to parse JSON outputs
