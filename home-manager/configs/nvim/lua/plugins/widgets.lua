@@ -184,13 +184,6 @@ return {
     end,
   },
 
-  -- Popup menu for keymaps
-  {
-    "javiorfo/nvim-popcorn",
-    enabled = true,
-    lazy = false,
-  },
-
   -- Color picker
   {
     "nvzone/volt",

@@ -5,7 +5,7 @@ return {
     lazy = false,
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "LinArcX/telescope-command-palette.nvim",
+      "mars90226/telescope-command-palette.nvim",
     },
     config = function()
       require("telescope").setup({
