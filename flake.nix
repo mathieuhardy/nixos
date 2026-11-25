@@ -34,11 +34,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    storyteller = {
-      url = "github:mathieuhardy/storyteller";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     trash-monitor = {
       url = "github:mathieuhardy/trash-monitor";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -63,7 +58,6 @@
       nixpkgs-unstable,
       ski,
       sops-nix,
-      storyteller,
       trash-monitor,
       waynote,
       ...
@@ -80,7 +74,6 @@
           inherit
             hyprmonitors
             koob
-            storyteller
             pkgs-unstable
             trash-monitor
             waynote

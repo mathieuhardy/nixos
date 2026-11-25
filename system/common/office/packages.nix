@@ -1,7 +1,6 @@
 {
   koob,
   pkgs,
-  storyteller,
   ...
 }:
 
@@ -10,7 +9,6 @@
     # Books
     koob.packages.${pkgs.stdenv.hostPlatform.system}.default
     pandoc # Documents conversion
-    storyteller.packages.${pkgs.stdenv.hostPlatform.system}.default
 
     # Ebooks
     calibre # Ebooks
