@@ -1,5 +1,4 @@
 {
-  correct,
   koob,
   pkgs,
   storyteller,
@@ -18,7 +17,6 @@
     foliate # Ebooks
 
     # Spellcheck
-    correct.packages.${pkgs.stdenv.hostPlatform.system}.default
     languagetool
     python311Packages.grammalecte
 
