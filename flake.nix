@@ -14,11 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprmonitors = {
-      url = "github:mathieuhardy/hyprmonitors";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     ski = {
       url = "github:ilyamiro/Ski";
       flake = false;
@@ -42,7 +37,6 @@
   outputs =
     {
       home-manager,
-      hyprmonitors,
       nixpkgs,
       nixpkgs-unstable,
       ski,
@@ -60,7 +54,6 @@
 
         specialArgs = {
           inherit
-            hyprmonitors
             pkgs-unstable
             waynote
             ;

@@ -1,5 +1,4 @@
 {
-  hyprmonitors,
   pkgs,
   pkgs-unstable,
   waynote,
@@ -18,6 +17,7 @@
     ./diskard
     ./gitwatch
     ./hyprlock
+    ./hyprmonitors
     ./network-manager-sidebar
     ./toggle-bluetooth
     ./toggle-window
@@ -32,7 +32,6 @@
   environment.systemPackages = with pkgs; [
     bluetui # TUI to manage bluetooth
     brightnessctl # Control of the brightness
-    hyprmonitors.packages.${pkgs.stdenv.hostPlatform.system}.default
     gsimplecal # GUI to show calendar
     jq # Used in scripts to parse JSON outputs
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
