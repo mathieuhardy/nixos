@@ -13,6 +13,7 @@ _:
     ./ide.nix
     ./javascript.nix
     ./python.nix
+    ./rust-glancer
     ./rust.nix
     ./tools.nix
   ];
