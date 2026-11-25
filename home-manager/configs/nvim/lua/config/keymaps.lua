@@ -99,11 +99,6 @@ remap("n", "<C-g>", "<CMD>lua require('telescope.builtin').live_grep()<CR>", "Gr
 remap("i", "<C-g>", "<ESC><CMD>lua require('telescope.builtin').live_grep()<CR>", "Grep pattern")
 remap("v", "<C-g>", "<ESC><CMD>lua require('telescope.builtin').live_grep()<CR>", "Grep pattern")
 
--- ctrl-j: jump to documentation
-remap("n", "<C-j>", "<CMD>RustLsp openDocs<CR>", "Open Rust documentation")
-remap("i", "<C-j>", "<ESC><CMD>RustLsp openDocs)<CR>", "Open Rust documentation")
-remap("v", "<C-j>", "<ESC><CMD>RustLsp openDocs<CR>", "Open Rust documentation")
-
 -- ctrl-s: search symbol under cursor
 remap("n", "<C-s>", "<CMD>AnyJump<CR>", "Jump to definition")
 remap("i", "<C-s>", "<ESC><CMD>AnyJump<CR>", "Jump to definition")

@@ -34,11 +34,6 @@ return {
               "Man pages",
               { "Search", ":lua require('telescope.builtin').man_pages()" },
             },
-            {
-              "Rust",
-              { "Actions", ":lua rust_hover_actions()" },
-              { "Run", ":lua rust_runnables()" },
-            },
           },
         },
       })
