@@ -2,7 +2,6 @@
   hyprmonitors,
   pkgs,
   pkgs-unstable,
-  trash-monitor,
   waynote,
   ...
 }:
@@ -22,6 +21,7 @@
     ./network-manager-sidebar
     ./toggle-bluetooth
     ./toggle-window
+    ./trash-monitor
     ./workspace-navigation
   ];
 
@@ -37,7 +37,6 @@
     jq # Used in scripts to parse JSON outputs
     networkmanagerapplet # nm-applet (tray) + nm-connection-editor
     rofi # Power menu
-    trash-monitor.packages.${pkgs.stdenv.hostPlatform.system}.default
     pkgs-unstable.timr-tui # Countdown, timer, ...
     wayland-utils
     waynote.packages.${pkgs.stdenv.hostPlatform.system}.default

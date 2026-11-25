@@ -81,7 +81,6 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "ski": "ski",
         "sops-nix": "sops-nix",
-        "trash-monitor": "trash-monitor",
         "waynote": "waynote"
       }
     },
@@ -118,26 +117,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "trash-monitor": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1785438970,
-        "narHash": "sha256-6mZxOq7YPrsL+f63oAx64cq7drBVQnj1Hlur+jIrV8E=",
-        "owner": "mathieuhardy",
-        "repo": "trash-monitor",
-        "rev": "85868bf8fccd474665b8c3883887133e1725da50",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mathieuhardy",
-        "repo": "trash-monitor",
         "type": "github"
       }
     },

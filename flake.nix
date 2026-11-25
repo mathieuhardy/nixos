@@ -29,11 +29,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    trash-monitor = {
-      url = "github:mathieuhardy/trash-monitor";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     waynote = {
       url = "github:mryll/waynote";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
@@ -52,7 +47,6 @@
       nixpkgs-unstable,
       ski,
       sops-nix,
-      trash-monitor,
       waynote,
       ...
     }:
@@ -68,7 +62,6 @@
           inherit
             hyprmonitors
             pkgs-unstable
-            trash-monitor
             waynote
             ;
         };
