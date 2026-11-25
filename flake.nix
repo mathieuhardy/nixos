@@ -14,19 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    ski = {
-      url = "github:ilyamiro/Ski";
-      flake = false;
-    };
-
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    waynote = {
-      url = "github:mryll/waynote";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
 
@@ -39,9 +29,7 @@
       home-manager,
       nixpkgs,
       nixpkgs-unstable,
-      ski,
       sops-nix,
-      waynote,
       ...
     }:
     let
@@ -53,10 +41,7 @@
         inherit system;
 
         specialArgs = {
-          inherit
-            pkgs-unstable
-            waynote
-            ;
+          inherit pkgs-unstable;
         };
 
         modules = [
@@ -65,9 +50,6 @@
 
           # System entry point
           ./main.nix
-
-          # Ski
-          "${ski}/nix/module.nix"
 
           # Home manager
           home-manager.nixosModules.home-manager

@@ -1,7 +1,6 @@
 {
   pkgs,
   pkgs-unstable,
-  waynote,
   ...
 }:
 
@@ -22,6 +21,7 @@
     ./toggle-bluetooth
     ./toggle-window
     ./trash-monitor
+    ./waynote
     ./workspace-navigation
   ];
 
@@ -38,6 +38,5 @@
     rofi # Power menu
     pkgs-unstable.timr-tui # Countdown, timer, ...
     wayland-utils
-    waynote.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 }

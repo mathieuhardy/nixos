@@ -58,25 +58,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
-        "ski": "ski",
-        "sops-nix": "sops-nix",
-        "waynote": "waynote"
-      }
-    },
-    "ski": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1793704142,
-        "narHash": "sha256-wxnRqzcNTWfa9ZlHkFtwJIlhxmgo+YYSmGKozIjLiBg=",
-        "owner": "ilyamiro",
-        "repo": "Ski",
-        "rev": "807c744724bb7f34de09f737973aa73391a931b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ilyamiro",
-        "repo": "Ski",
-        "type": "github"
+        "sops-nix": "sops-nix"
       }
     },
     "sops-nix": {
@@ -96,26 +78,6 @@
       "original": {
         "owner": "Mic92",
         "repo": "sops-nix",
-        "type": "github"
-      }
-    },
-    "waynote": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs-unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788815726,
-        "narHash": "sha256-iaZmyEU5D0n/vkLYyaHwynEU5NosO/nFGvPrw/6Gn9o=",
-        "owner": "mryll",
-        "repo": "waynote",
-        "rev": "9ce004f2c87a5ec2d73fe65cd37bb446340f2aa0",
-        "type": "github"
-      },
-      "original": {
-        "owner": "mryll",
-        "repo": "waynote",
         "type": "github"
       }
     }
