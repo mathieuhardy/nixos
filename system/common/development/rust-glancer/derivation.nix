@@ -11,7 +11,7 @@
 
 stdenv.mkDerivation rec {
   pname = "rust-glancer";
-  version = "0.5.1";
+  version = "0.5.2";
 
   src = fetchurl {
     url = "https://github.com/rust-glancer/rust-glancer/releases/download/v${version}/rust-glancer-x86_64-unknown-linux-gnu.tar.gz";
