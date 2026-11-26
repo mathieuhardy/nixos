@@ -5,6 +5,7 @@
   # Decrypt secrets with SOPS and install them
   #   - Mistral API key
   #   - GitHub SSH keys
+  #   - GitHub token
   # ────────────────────────────────────────────────────────────────────────────
 
   sops = {
@@ -27,6 +28,12 @@
   sops.secrets."ssh/id_ed25519_pub" = {
     sopsFile = ./secrets/ssh/id_ed25519_pub.json;
     path = "${config.home.homeDirectory}/.ssh/id_ed25519.pub";
+    mode = "0644";
+  };
+
+  sops.secrets."github/token.txt" = {
+    sopsFile = ./secrets/github/token.json;
+    path = "${config.home.homeDirectory}/.config/github/token.txt";
     mode = "0644";
   };
 }
