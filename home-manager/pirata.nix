@@ -3,20 +3,20 @@
 {
   # ────────────────────────────────────────────────────────────────────────────
   # Link to config:
-  #   ~/.config/pirate-ctl/config.toml
+  #   ~/.config/pirata/config.toml
   # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.configFile."pirate-ctl/config.toml".source =
-    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/pirate-ctl/config.toml";
+  xdg.configFile."pirata/config.toml".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/${osConfig.settings.userLogin}/${osConfig.settings.repos}/nixos/home-manager/configs/pirata/config.toml";
 
   # ────────────────────────────────────────────────────────────────────────────
   # XDG desktop entry
   # ────────────────────────────────────────────────────────────────────────────
 
-  xdg.desktopEntries."pirate-ctl" = {
-    name = "PirateCtl Bittorent";
-    comment = "Bittorent search and download";
-    exec = "alacritty --class pirate-ctl -e pirate-ctl tui";
+  xdg.desktopEntries."pirata" = {
+    name = "Pirata BitTorrent";
+    comment = "BitTorrent search and download";
+    exec = "alacritty --class pirata -e pirata tui";
     icon = "utilities-terminal";
     terminal = false;
     categories = [ "Utility" ];

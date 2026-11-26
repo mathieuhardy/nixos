@@ -20,7 +20,7 @@
     ./lsd.nix
     ./mpv.nix
     ./neovim.nix
-    ./pirate-ctl.nix
+    ./pirata.nix
     ./rofi.nix
     ./secrets.nix
     ./ssh.nix

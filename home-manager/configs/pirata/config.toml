@@ -6,6 +6,10 @@ search_limit = 20
 [aria2]
 download_dir = "/home/mhardy/Videos/Torrents/"
 
+[downloads]
+incomplete_dir = "/home/mhardy/Videos/Torrents/incomplete"
+completed_dir = "/home/mhardy/Videos/Torrents/completed"
+
 [transmission]
 client = "cli"
 rpc_url = "http://localhost:9091/transmission/rpc"
