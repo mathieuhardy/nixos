@@ -1,0 +1,108 @@
+{
+  "theme": "dracula",
+  "language": "system",
+  "accent": "#e0a3ff",
+  "font": "/nix/store/kr4lscjd7l1xnzsgjp2b34ss2ym4r1iv-nerd-fonts-commit-mono-3.4.0+1.143/share/fonts/opentype/NerdFonts/CommitMono/CommitMonoNerdFontMono-Regular.otf",
+  "font_name": "CommitMono Nerd Font Mono",
+  "scale": 1.0,
+  "corner_scale": 1.0,
+  "opacity": 100,
+  "icon_style": "Classic",
+  "view_mode": "List",
+  "chooser_view_mode": "List",
+  "sort_by": "Name",
+  "sort_order": "Ascending",
+  "show_hidden": false,
+  "folders_first": true,
+  "columns": [
+    "Size",
+    "Modified"
+  ],
+  "column_widths": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "start_location": "Home",
+  "start_path": null,
+  "last_dir": "/home/mhardy",
+  "session_tabs": [
+    "/home/mhardy"
+  ],
+  "session_active": 0,
+  "single_click_open": false,
+  "vim_keys": false,
+  "open_in_new_window": false,
+  "run_in_background": false,
+  "confirm_delete": true,
+  "queue_copies": true,
+  "terminal": "",
+  "templates_dir": null,
+  "type_to_filter": true,
+  "type_ahead": false,
+  "swipe_navigation": false,
+  "scroll_speed": 1.25,
+  "plugins": {
+    "git": false
+  },
+  "search_scope": "Everywhere",
+  "search_case": false,
+  "search_contents": false,
+  "density": "Comfortable",
+  "grid_size": 72,
+  "grid_name_lines": 2,
+  "show_sidebar": true,
+  "show_all_partitions": true,
+  "hidden_places": [
+    "Recent",
+    "Bookmarks"
+  ],
+  "shown_places": [
+    "ConnectToServer"
+  ],
+  "context_menus": {
+    "file": {
+      "hidden": [
+        "Bookmark",
+        "Pin",
+        "UseAsFolderIcon",
+        "Copy",
+        "Cut",
+        "Rename",
+        "Trash",
+        "DeleteForever",
+        "CopyTo",
+        "MoveTo",
+        "CreateLink",
+        "Duplicate"
+      ],
+      "layout": [],
+      "custom_groups": []
+    },
+    "folder": {
+      "hidden": [],
+      "layout": [],
+      "custom_groups": []
+    },
+    "background": {
+      "hidden": [],
+      "layout": [],
+      "custom_groups": []
+    }
+  },
+  "show_status_bar": true,
+  "show_thumbnails": true,
+  "remote_previews": false,
+  "show_extensions": true,
+  "relative_dates": true,
+  "decimal_units": false,
+  "folder_sizes": "OnDemand",
+  "size_on_disk": false,
+  "animations": true,
+  "remember_view_per_folder": false,
+  "folder_views": {},
+  "keybinds": {}
+}

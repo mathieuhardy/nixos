@@ -23,6 +23,7 @@
     ./pirata.nix
     ./rofi.nix
     ./secrets.nix
+    ./ski.nix
     ./ssh.nix
     ./starship.nix
     ./swayimg.nix
