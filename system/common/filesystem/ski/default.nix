@@ -2,8 +2,8 @@ _:
 
 let
   ski = import ./derivation.nix {
-    version = "0.6.4";
-    sha256 = "1lj9sgi2rpcr6h9brnznkcf9bdc1mf8640kzz5iqs8wq4m1v672g";
+    version = "0.7.0";
+    sha256 = "sha256:1wxc7yd94f0kl66351xh0i972k229llvsn6mhkybzj12m1jakd8y";
   };
 in
 {
