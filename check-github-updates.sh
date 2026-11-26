@@ -48,6 +48,14 @@ get_latest_release() {
     echo "$json" | json_str "tag_name"
 }
 
+# Fallback : liste toutes les releases (y compris pre-releases) et prend la première
+get_latest_release_any() {
+    local owner="$1" repo="$2"
+    local json
+    json=$(github_api "https://api.github.com/repos/${owner}/${repo}/releases" 2>/dev/null) || json=""
+    echo "$json" | json_str "tag_name"
+}
+
 get_latest_tag() {
     local owner="$1" repo="$2"
     local json
@@ -91,10 +99,11 @@ print_package() {
     else
         local latest
         latest=$(get_latest_release "$owner" "$repo")
+        [[ -z "$latest" ]] && latest=$(get_latest_release_any "$owner" "$repo")
         [[ -z "$latest" ]] && latest=$(get_latest_tag "$owner" "$repo")
 
         if [[ -z "$latest" ]]; then
-            printf "     ❌ ${RED}Aucune release/tag trouvée${NC}\n"
+            printf "     ❌ ${RED}Erreur API (rate limit atteint ou dépôt introuvable)${NC}\n"
             errors=$((errors + 1)); return
         fi
 
