@@ -6,16 +6,16 @@
 
 rustPlatform.buildRustPackage {
   pname = "diskard";
-  version = "0.1.0";
+  version = "0.1.3";
 
   src = fetchFromGitHub {
     owner = "shoenot";
     repo = "diskard";
-    rev = "d26042580c5d4df407bc2fa3af17ac82149326d1";
-    hash = "sha256-N1Fm9JGWM5UdrKaRnfAEOPJSv4zzwz8AEeo0/i5PL58=";
+    rev = "v0.1.3";
+    hash = "sha256-dr7/nIK4ELPkmEhpICGgMSnhkJXVjDqPFP7UugWZ2yk=";
   };
 
-  cargoHash = "sha256-Mj1jnyuowXTipUoEHPbk/U+5kW29GwqsX7lxPpJCHXY=";
+  cargoHash = "sha256-evlQxFS3X/kW1u9TTDfiAQMMSpWYksuHId69SliOLzY=";
 
   meta = {
     description = "Disk Usage Analyzer and recursive deleter";
