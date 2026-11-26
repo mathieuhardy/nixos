@@ -7,14 +7,14 @@
 
 let
   pname = "altersend";
-  version = "1.8.0";
+  version = "2.1.0";
 
   desktopItem = makeDesktopItem {
     name = pname;
     exec = pname;
     icon = pname;
     desktopName = "AlterSend";
-    comment = "AlterSend - description de l'app";
+    comment = "AlterSend - Share files with Android";
     categories = [ "Utility" ];
   };
 in
@@ -23,7 +23,7 @@ appimageTools.wrapType2 {
 
   src = fetchurl {
     url = "https://github.com/denislupookov/altersend/releases/download/v${version}/AlterSend-x86_64.AppImage";
-    sha256 = "2b429aedad7bf96aa693d544715bfc582f1c90fde47e8b503aa9b8157d613656";
+    sha256 = "sha256-aXhjsgtBwnBRmlm7CZR7XOauCgudWDaBIGzJp1WVbYo=";
   };
 
   extraPkgs = pkgs: with pkgs; [ ];
