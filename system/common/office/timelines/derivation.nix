@@ -1,82 +1,46 @@
-# Package for https://github.com/sreegjl/timelines
-#
-# The app is a Vite/React front-end wrapped in Electron. We build the
-# front-end with `npm run build` (buildNpmPackage's default build phase),
-# then run it with nixpkgs' own `electron` package instead of the prebuilt
-# binary that the `electron` npm package would normally download — hence
-# ELECTRON_SKIP_BINARY_DOWNLOAD, which keeps the whole build fully offline
-# and sandbox-friendly.
 {
   lib,
-  buildNpmPackage,
-  fetchFromGitHub,
-  electron,
+  appimageTools,
+  fetchurl,
   makeDesktopItem,
-  copyDesktopItems,
-  makeWrapper,
 }:
 
-buildNpmPackage rec {
-  pname = "timelines";
-  version = "main";
+let
+  version = "0.9.0-alpha.1";
 
-  src = fetchFromGitHub {
-    owner = "sreegjl";
-    repo = "timelines";
-    rev = "966e41861cc5102638328bc6f0d65bed85fa9452";
-    hash = "sha256-fyg8zEWhEms096zDzsgnwbZhrXqLLFcq4njqFpifIto="; # lib.fakeHash
+  src = fetchurl {
+    url = "https://github.com/sreegjl/timelines/releases/download/v${version}/Timelines-${version}-Setup.AppImage";
+    hash = "sha256-iJQTU7nL5dWzx48/PMeb2y+bQDkUy2TSc6Y40H1xmXg=";
   };
 
-  npmDepsHash = "sha256-elBOJ2brpDn4CgWoGuh7wR5wD5atd7wIWQhM5/cv70A=";
+  appimageContents = appimageTools.extract {
+    pname = "timelines";
+    inherit version src;
+  };
 
-  env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";
+  desktopItem = makeDesktopItem {
+    name = "timelines";
+    exec = "timelines %U";
+    icon = "timelines";
+    desktopName = "Timelines";
+    genericName = "Interactive timeline editor";
+    comment = "Free, open-source app for creating interactive timelines for worldbuilding and history";
+    categories = [
+      "Office"
+      "Utility"
+    ];
+  };
+in
 
-  # `npm run build` runs `vite build`, producing ./dist. It needs the
-  # devDependencies (vite, @vitejs/plugin-react, ...), so only prune them
-  # afterwards, once the build no longer needs them.
-  postBuild = ''
-    npm prune --omit=dev
-  '';
+appimageTools.wrapType2 {
+  pname = "timelines";
+  inherit version src;
 
-  nativeBuildInputs = [
-    makeWrapper
-    copyDesktopItems
-  ];
-
-  desktopItems = [
-    (makeDesktopItem {
-      name = "timelines";
-      exec = "timelines %U";
-      icon = "timelines";
-      desktopName = "Timelines";
-      genericName = "Interactive timeline editor";
-      comment = "Free, open-source app for creating interactive timelines for worldbuilding and history";
-      categories = [
-        "Office"
-        "Utility"
-      ];
-    })
-  ];
-
-  installPhase = ''
-    runHook preInstall
-
-    mkdir -p $out/share/timelines $out/bin
-
-    # electron/main.cjs resolves dist/ and public/ relative to its own
-    # location, and package.json's "main" field points at electron/main.cjs,
-    # so all of these need to stay siblings.
-    cp -r dist electron public package.json node_modules $out/share/timelines/
-
-    install -Dm644 public/favicon/icon.png \
+  extraInstallCommands = ''
+    install -Dm644 ${desktopItem}/share/applications/timelines.desktop \
+      $out/share/applications/timelines.desktop
+    install -Dm644 ${appimageContents}/timelines.png \
       $out/share/icons/hicolor/512x512/apps/timelines.png
-
-    makeWrapper ${electron}/bin/electron $out/bin/timelines \
-      --add-flags $out/share/timelines
-
-    copyDesktopItems
-
-    runHook postInstall
   '';
 
   meta = {
