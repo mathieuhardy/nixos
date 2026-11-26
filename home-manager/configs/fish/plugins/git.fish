@@ -42,4 +42,8 @@ function git_init
     abbr squash      'git rebase -i --autosquash'
 
     abbr gg          'gitg --all&'
+
+    # Environment variables
+    file_to_env ~/.config/github/token.txt GITHUB_TOKEN
 end
+

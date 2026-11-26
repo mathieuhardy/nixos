@@ -7,3 +7,15 @@ function fish_add_user_path
         set --append fish_user_paths $argv
     end
 end
+
+function file_to_env --argument-names path variable_name
+    if not test -f $path
+        return
+    end
+
+    set -l value (string trim (cat $path))
+
+    if test -n "$value"
+        set -gx -- $variable_name $value
+    end
+end
